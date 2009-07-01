@@ -35,7 +35,7 @@ ul{
 }
 #nav ul li{
 	display:block;
-	float:left;
+	float:right;
 	padding:0 9px 0 10px;
 	background:url(images/nav_bg.gif) no-repeat;
 	background-position:right top;

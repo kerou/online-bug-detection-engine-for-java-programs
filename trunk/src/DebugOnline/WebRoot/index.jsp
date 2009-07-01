@@ -22,14 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--nav start -->
 <div id="nav">
 <ul>
-<li class="about"><span>about us</span></li>
-<li><a href="#">service</a></li>
-<li><a href="#">support</a></li>
-<li><a href="#">testimonials</a></li>
-<li><a href="#">reports</a></li>
-<li><a href="#">future</a></li>
-<li><a href="#">latest</a></li>
-<li><a href="#">meetings</a></li>
+<li class="about"><span>Introduction</span></li>
+<li><a href="#">Single File Debug</a></li>
+<li><a href="#">Project Debug</a></li>
+<li><a href="#">Login</a></li>
 <li class="nbdr"><a href="#">contact us</a></li>
 </ul>
 </div>
