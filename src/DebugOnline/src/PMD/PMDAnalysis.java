@@ -61,7 +61,7 @@ public class PMDAnalysis {
 
 			process = Runtime.getRuntime().exec(
 					dirPath + "pmd.bat " + path + " " + type + " " + rules);
-			processResult();
+			process();
 
 			System.out.println("pmd process finished");
 			return result;
@@ -71,7 +71,7 @@ public class PMDAnalysis {
 		return null;
 	}
 
-	private void processResult() {
+	public void process() {
 		InputStream stdin = process.getInputStream();
 
 		InputStreamReader isr = new InputStreamReader(stdin);
