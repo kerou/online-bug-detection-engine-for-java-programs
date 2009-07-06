@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="content">
 		<div id="primaryContentContainer">
 			<div id="primaryContent">
-				<h2>Welcome to Online Debug Site</h2>
+				<h2>Welcome to Sitename.com!</h2>
 				<p><strong>Rational</strong> is a free template from <a href="http://www.freecsstemplates.org/">www.mbsky.com</a> released under a <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 License</a>. You're free to use it for both commercial or personal use. I only ask that you link back to <a href="http://www.freecsstemplates.org/">my site</a> in some way. Enjoy :)</p>
 				<p>Suspendisse potenti. Donec nulla est, laoreet quis, pellentesque in, congue in, dui. Nunc rhoncus placerat augue. Donec justo odio, eleifend varius, volutpat venenatis, sagittis ut, orci. Donec nulla est, laoreet quis, pellentesque in, congue in, dui. Nunc rhoncus placerat augue. Donec justo odio, eleifend varius, volutpat venenatis, sagittis ut, orci. Nullam et orci in erat viverra ornare. Nunc pellentesque.</p>
 				<p>Sed vestibulum blandit nisl. Quisque elementum convallis purus. Quisque pellentesque semper massa:</p>
@@ -99,8 +99,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="clear"></div>
 	</div>
 	<div id="footer">
-		<p>Copyright &copy; 2009 onlineDebug</p>
-  </div>
+		<p>Copyright &copy; 2006 Sitename.com. Designed by <a href="http://www.freecsstemplates.org">www.mbsky.com</a></p>
+	</div>
 </div>
 </body>
 </html>
