@@ -1,4 +1,4 @@
-package Util;
+package Utils;
 
 public interface UserInfoInterface {
 	public void setUsername(String username);

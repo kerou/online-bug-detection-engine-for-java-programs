@@ -1,4 +1,4 @@
-package Util;
+package Utils;
 import java.util.Vector;
 
 public interface XMLParserInterface {

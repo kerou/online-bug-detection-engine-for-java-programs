@@ -1,4 +1,4 @@
-package Util;
+package Utils;
 
 public class XMLSettings {
 	public static final int PMD = 1;
