@@ -1,6 +1,9 @@
-package Util;
+package Utils;
 
 import java.util.Vector;
+
+import FindBugs.FindBugsXML;
+import PMD.PMDXML;
 
 public class XMLParser implements XMLParserInterface {
 
@@ -43,10 +46,23 @@ public class XMLParser implements XMLParserInterface {
 	}
 
 	private void processPMD() {
-
+		PMDXML pmdxml=new PMDXML();
+		pmdxml.SetInput(input);
+		pmdxml.parse();
+		
+		for(int i=0;i<pmdxml.reports.size();i++){
+			this.reports.add(pmdxml.reports.get(i));
+		}
+		
 	}
 
 	private void processFindBugs() {
-
+		FindBugsXML fbxml=new FindBugsXML();
+		fbxml.SetInput(input);
+		fbxml.parse();
+		
+		for(int i=0;i<fbxml.reports.size();i++){
+			this.reports.add(fbxml.reports.get(i));
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package PMD;
+package FindBugs;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,11 +9,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-import Utils.*;
+import Utils.ReportGenerator;
+import Utils.XMLParser;
+import Utils.XMLSettings;
 
-public class PMDAnalysis extends ReportGenerator {
+public class FindBugsAnalysis extends ReportGenerator {
 
-	private static PMDAnalysis pmdAnalysis;
+	private static FindBugsAnalysis FindBugsAnalysis;
 	private Process process;
 	private String dirPath = "pmdBin/bin/";
 	private String type;
@@ -22,17 +24,15 @@ public class PMDAnalysis extends ReportGenerator {
 
 	private String tempFilePath = "temp.java";
 
-	private PMDAnalysis() {
-		this.parser=new XMLParser(XMLSettings.PMD);
-		setType("xml");
-		setRules("rulesets/naming.xml");
+	private FindBugsAnalysis() {
+		this.parser=new XMLParser(XMLSettings.FindBugs);
 	}
 
-	public static PMDAnalysis getInstance() {
-		if (pmdAnalysis == null) {
-			pmdAnalysis = new PMDAnalysis();
+	public static FindBugsAnalysis getInstance() {
+		if (FindBugsAnalysis == null) {
+			FindBugsAnalysis = new FindBugsAnalysis();
 		}
-		return pmdAnalysis;
+		return FindBugsAnalysis;
 	}
 
 	public void setType(String type) {
@@ -57,8 +57,7 @@ public class PMDAnalysis extends ReportGenerator {
 			pw.print(src);
 			bw.close();
 			fw.close();
-
-			reportFromFile(tempFilePath);
+			//reportFromFile(tempFilePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,10 +68,8 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			System.out.println("start pmd process");
 
-			String command=dirPath + "pmd.bat " + path + " " + type + " " + rules;
-			
-			process = Runtime.getRuntime().exec(command);
-			System.out.println("execute "+command);
+			process = Runtime.getRuntime().exec(
+					dirPath + "pmd.bat " + path + " " + type + " " + rules);
 			process();
 			System.out.println("pmd process finished");
 		} catch (IOException e) {
@@ -97,14 +94,14 @@ public class PMDAnalysis extends ReportGenerator {
 			while ((s = reader.readLine()) != null) {
 				if (s.length() != 0) {
 					sb.append(s);
-				}else{
-					System.out.println("length==0");
 				}
 			}
+			
 			result = sb.toString();
 			parser.SetInput(result);
 			parser.parse();
 			reports=parser.getReports();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
