@@ -20,9 +20,9 @@ public class UserInfo implements UserInfoInterface {
 
 	}
 
-	public String getId() {
+	public int getId() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	public String getSchool() {
