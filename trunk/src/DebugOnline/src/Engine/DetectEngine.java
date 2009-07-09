@@ -8,24 +8,16 @@ import Utils.ReportGenerator;
 
 public class DetectEngine extends ReportGenerator {
 	
-	private static DetectEngine engine;
 	private Vector<ReportGenerator> generators;
 	
-	private DetectEngine(){
+	public DetectEngine(){
 		generators=new Vector<ReportGenerator>();
 		
-		PMDAnalysis pmd=PMDAnalysis.getInstance();
-		FindBugsAnalysis findBugs=FindBugsAnalysis.getInstance();
+		PMDAnalysis pmd=new PMDAnalysis();
+		FindBugsAnalysis findBugs=new FindBugsAnalysis();
 		
 		generators.add(pmd);
 		//generators.add(findBugs);
-	}
-	
-	public static DetectEngine getInstance(){
-		if(engine==null){
-			engine=new DetectEngine();
-		}
-		return engine;
 	}
 	
 	@Override
@@ -53,7 +45,14 @@ public class DetectEngine extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId, int projectId) {
+	public void reportFromProject(int userId,String projectName){
+		for(int i=0;i<generators.size();i++){
+			generators.get(i).reportFromProject(userId, projectName);
+			
+			for(int j=0;j<generators.get(i).reports.size();j++){
+				reports.add(generators.get(i).reports.get(j));
+			}
+		}
 	}
 
 	@Override

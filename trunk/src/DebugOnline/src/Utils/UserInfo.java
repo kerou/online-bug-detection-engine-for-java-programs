@@ -42,7 +42,7 @@ public class UserInfo implements UserInfoInterface {
 
 	public boolean isLogin() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public boolean login() {
