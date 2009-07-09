@@ -13,7 +13,6 @@ import Utils.*;
 
 public class PMDAnalysis extends ReportGenerator {
 
-	private static PMDAnalysis pmdAnalysis;
 	private Process process;
 	private String dirPath = "pmdBin/bin/";
 	private String type;
@@ -22,17 +21,10 @@ public class PMDAnalysis extends ReportGenerator {
 
 	private String tempFilePath = "temp.java";
 
-	private PMDAnalysis() {
+	public PMDAnalysis() {
 		this.parser=new XMLParser(XMLSettings.PMD);
 		setType("xml");
 		setRules("rulesets/naming.xml");
-	}
-
-	public static PMDAnalysis getInstance() {
-		if (pmdAnalysis == null) {
-			pmdAnalysis = new PMDAnalysis();
-		}
-		return pmdAnalysis;
 	}
 
 	public void setType(String type) {
@@ -81,8 +73,19 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId, int projectId) {
+	public void reportFromProject(int userId,String projectName){
+		System.out.println("start pmd project process");
+
+		String command=dirPath + "pmd.bat " + "../userProjects/"+userId +"/"+projectName+" " + type + " " + rules;
 		
+		try {
+			process = Runtime.getRuntime().exec(command);
+			System.out.println("execute " + command);
+			process();
+			System.out.println("pmd project process finished");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class ReportGenerator {
 	public void reportFromFile(String path){
 	}
 	
-	public void reportFromProject(int userId,int projectId){
+	public void reportFromProject(int userId,String projectName){
 	}
 	
 	public void process(){

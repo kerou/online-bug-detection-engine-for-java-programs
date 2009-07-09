@@ -15,7 +15,6 @@ import Utils.XMLSettings;
 
 public class FindBugsAnalysis extends ReportGenerator {
 
-	private static FindBugsAnalysis FindBugsAnalysis;
 	private Process process;
 	private String dirPath = "pmdBin/bin/";
 	private String type;
@@ -24,15 +23,8 @@ public class FindBugsAnalysis extends ReportGenerator {
 
 	private String tempFilePath = "temp.java";
 
-	private FindBugsAnalysis() {
+	public FindBugsAnalysis() {
 		this.parser=new XMLParser(XMLSettings.FindBugs);
-	}
-
-	public static FindBugsAnalysis getInstance() {
-		if (FindBugsAnalysis == null) {
-			FindBugsAnalysis = new FindBugsAnalysis();
-		}
-		return FindBugsAnalysis;
 	}
 
 	public void setType(String type) {
@@ -78,8 +70,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId, int projectId) {
-		
+	public void reportFromProject(int userId,String projectName){
 	}
 
 	@Override
