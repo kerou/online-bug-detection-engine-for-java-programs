@@ -1,10 +1,19 @@
 package Utils;
 
+
+import Utils.UserInfoInterface;
+
 public class UserInfo implements UserInfoInterface {
 	
 	private static UserInfo userInfo;
+	private String id="";
+	private String school="";
+	private String sex="";
+	private String userName="";
+	private String passWord="";
 	
 	private UserInfo(){
+		
 		
 	}
 	
@@ -17,27 +26,29 @@ public class UserInfo implements UserInfoInterface {
 
 	public void clear() {
 		// TODO Auto-generated method stub
+		userInfo.clear();
+		
 
 	}
 
-	public int getId() {
+	public String getId() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	public String getSchool() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.school;
 	}
 
 	public String getSex() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.sex;
 	}
 
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.userName;
 	}
 
 	public boolean isLogin() {
@@ -57,11 +68,14 @@ public class UserInfo implements UserInfoInterface {
 
 	public void setPassword(String password) {
 		// TODO Auto-generated method stub
+		this.passWord=password;
+		
 
 	}
 
 	public void setUsername(String username) {
 		// TODO Auto-generated method stub
+		this.userName=username;
 
 	}
 
