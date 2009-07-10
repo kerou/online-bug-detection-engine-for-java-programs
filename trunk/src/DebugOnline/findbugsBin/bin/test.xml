@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://findbugs.sourceforge.net/xsl/default.xsl"?>
+
+<BugCollection version="1.3.8" sequence="0" timestamp="1245635943688" analysisTimestamp="1247116970874" release="">
+  <Project filename="&lt;&lt;unnamed project&gt;&gt;" projectName="">
+    <Jar>D:\workspace\SecurityProject\bin</Jar>
+  </Project>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_EXCEPTION" priority="2" abbrev="NP" category="CORRECTNESS" instanceHash="29d23665db2c97151ef71cf215521ad2" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Possible null pointer dereference in method on exception path</ShortMessage>
+    <LongMessage>Possible null pointer dereference of classBytes in MyClassKoader.findClass(String) on exception path</LongMessage>
+    <Class classname="MyClassKoader" primary="true">
+      <SourceLine classname="MyClassKoader" start="3" end="34" sourcefile="MyClassKoader.java" sourcepath="MyClassKoader.java">
+        <Message>At MyClassKoader.java:[lines 3-34]</Message>
+      </SourceLine>
+      <Message>In class MyClassKoader</Message>
+    </Class>
+    <Method classname="MyClassKoader" name="findClass" signature="(Ljava/lang/String;)Ljava/lang/Class;" isStatic="false" primary="true">
+      <SourceLine classname="MyClassKoader" start="7" end="17" startBytecode="0" endBytecode="140" sourcefile="MyClassKoader.java" sourcepath="MyClassKoader.java"/>
+      <Message>In method MyClassKoader.findClass(String)</Message>
+    </Method>
+    <LocalVariable name="classBytes" register="2" pc="11" role="LOCAL_VARIABLE_VALUE_OF">
+      <Message>Value loaded from classBytes</Message>
+    </LocalVariable>
+    <SourceLine classname="MyClassKoader" primary="true" start="16" end="16" startBytecode="24" endBytecode="24" sourcefile="MyClassKoader.java" sourcepath="MyClassKoader.java" role="SOURCE_LINE_DEREF">
+      <Message>Dereferenced at MyClassKoader.java:[line 16]</Message>
+    </SourceLine>
+    <SourceLine classname="MyClassKoader" start="14" end="14" startBytecode="16" endBytecode="16" sourcefile="MyClassKoader.java" sourcepath="MyClassKoader.java" role="SOURCE_LINE_KNOWN_NULL">
+      <Message>Known null at MyClassKoader.java:[line 14]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SA_FIELD_SELF_ASSIGNMENT" priority="1" abbrev="SA" category="CORRECTNESS" instanceHash="b3594aeb8022fcb0a877011416561726" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Self assignment of field</ShortMessage>
+    <LongMessage>Self assignment of field callbackHandler in MyLoginModule.initialize(Subject, CallbackHandler, Map, Map)</LongMessage>
+    <Class classname="MyLoginModule" primary="true">
+      <SourceLine classname="MyLoginModule" start="18" end="97" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>At MyLoginModule.java:[lines 18-97]</Message>
+      </SourceLine>
+      <Message>In class MyLoginModule</Message>
+    </Class>
+    <Method classname="MyLoginModule" name="initialize" signature="(Ljavax/security/auth/Subject;Ljavax/security/auth/callback/CallbackHandler;Ljava/util/Map;Ljava/util/Map;)V" isStatic="false" primary="true">
+      <SourceLine classname="MyLoginModule" start="26" end="32" startBytecode="0" endBytecode="175" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java"/>
+      <Message>In method MyLoginModule.initialize(Subject, CallbackHandler, Map, Map)</Message>
+    </Method>
+    <Field classname="MyLoginModule" name="callbackHandler" signature="Ljavax/security/auth/callback/CallbackHandler;" isStatic="false" primary="true">
+      <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>In MyLoginModule.java</Message>
+      </SourceLine>
+      <Message>Field MyLoginModule.callbackHandler</Message>
+    </Field>
+    <LocalVariable name="callbaclHandler" register="2" pc="0" role="LOCAL_VARIABLE_DID_YOU_MEAN">
+      <Message>Did you mean to refer to the local variable callbaclHandler</Message>
+    </LocalVariable>
+    <SourceLine classname="MyLoginModule" primary="true" start="27" end="27" startBytecode="10" endBytecode="10" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+      <Message>At MyLoginModule.java:[line 27]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE" instanceHash="ec1f5e5521cdf703d24b5099905553b3" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: MyLoginModule.sharedState</LongMessage>
+    <Class classname="MyLoginModule" primary="true">
+      <SourceLine classname="MyLoginModule" start="18" end="97" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>At MyLoginModule.java:[lines 18-97]</Message>
+      </SourceLine>
+      <Message>In class MyLoginModule</Message>
+    </Class>
+    <Field classname="MyLoginModule" name="sharedState" signature="Ljava/util/Map;" isStatic="false" primary="true">
+      <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>In MyLoginModule.java</Message>
+      </SourceLine>
+      <Message>Field MyLoginModule.sharedState</Message>
+    </Field>
+    <SourceLine classname="MyLoginModule" primary="true" start="28" end="28" startBytecode="15" endBytecode="15" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+      <Message>At MyLoginModule.java:[line 28]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE" instanceHash="63e955e6c5a85aa397a86311eaab1b97" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: MyLoginModule.password</LongMessage>
+    <Class classname="MyLoginModule" primary="true">
+      <SourceLine classname="MyLoginModule" start="18" end="97" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>At MyLoginModule.java:[lines 18-97]</Message>
+      </SourceLine>
+      <Message>In class MyLoginModule</Message>
+    </Class>
+    <Field classname="MyLoginModule" name="password" signature="[C" isStatic="false" primary="true">
+      <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>In MyLoginModule.java</Message>
+      </SourceLine>
+      <Message>Field MyLoginModule.password</Message>
+    </Field>
+    <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java" synthetic="true">
+      <Message>In MyLoginModule.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" abbrev="UuF" category="PERFORMANCE" instanceHash="843380820f703cd4d268565ba0cdc7" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: MyLoginModule.username</LongMessage>
+    <Class classname="MyLoginModule" primary="true">
+      <SourceLine classname="MyLoginModule" start="18" end="97" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>At MyLoginModule.java:[lines 18-97]</Message>
+      </SourceLine>
+      <Message>In class MyLoginModule</Message>
+    </Class>
+    <Field classname="MyLoginModule" name="username" signature="Ljava/lang/String;" isStatic="false" primary="true">
+      <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>In MyLoginModule.java</Message>
+      </SourceLine>
+      <Message>Field MyLoginModule.username</Message>
+    </Field>
+    <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java" synthetic="true">
+      <Message>In MyLoginModule.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UWF_UNWRITTEN_FIELD" priority="2" abbrev="UwF" category="CORRECTNESS" instanceHash="239bad5203b9a5a06d8cdcda47786299" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unwritten field</ShortMessage>
+    <LongMessage>Unwritten field: MyLoginModule.callbackHandler</LongMessage>
+    <Class classname="MyLoginModule" primary="true">
+      <SourceLine classname="MyLoginModule" start="18" end="97" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>At MyLoginModule.java:[lines 18-97]</Message>
+      </SourceLine>
+      <Message>In class MyLoginModule</Message>
+    </Class>
+    <Field classname="MyLoginModule" name="callbackHandler" signature="Ljavax/security/auth/callback/CallbackHandler;" isStatic="false" primary="true">
+      <SourceLine classname="MyLoginModule" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+        <Message>In MyLoginModule.java</Message>
+      </SourceLine>
+      <Message>Field MyLoginModule.callbackHandler</Message>
+    </Field>
+    <SourceLine classname="MyLoginModule" primary="true" start="27" end="27" startBytecode="7" endBytecode="7" sourcefile="MyLoginModule.java" sourcepath="MyLoginModule.java">
+      <Message>At MyLoginModule.java:[line 27]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugCategory category="CORRECTNESS">
+    <Description>Correctness</Description>
+  </BugCategory>
+  <BugCategory category="PERFORMANCE">
+    <Description>Performance</Description>
+  </BugCategory>
+  <BugPattern type="NP_NULL_ON_SOME_PATH_EXCEPTION" abbrev="NP" category="CORRECTNESS">
+    <ShortDescription>Possible null pointer dereference in method on exception path</ShortDescription>
+    <Details><![CDATA[
+
+<p> A reference value which is null on some exception control path is
+dereferenced here.&nbsp; This may lead to a <code>NullPointerException</code>
+when the code is executed.&nbsp;
+Note that because FindBugs currently does not prune infeasible exception paths,
+this may be a false warning.</p>
+
+<p> Also note that FindBugs considers the default case of a switch statement to
+be an exception path, since the default case is often infeasible.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="URF_UNREAD_FIELD" abbrev="UrF" category="PERFORMANCE">
+    <ShortDescription>Unread field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="SA_FIELD_SELF_ASSIGNMENT" abbrev="SA" category="CORRECTNESS">
+    <ShortDescription>Self assignment of field</ShortDescription>
+    <Details><![CDATA[
+
+<p> This method contains a self assignment of a field; e.g.
+</p>
+<pre>
+  int x;
+  public void foo() {
+    x = x;
+  }
+</pre>
+<p>Such assignments are useless, and may indicate a logic error or typo.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="UWF_UNWRITTEN_FIELD" abbrev="UwF" category="CORRECTNESS">
+    <ShortDescription>Unwritten field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never written.&nbsp; All reads of it will return the default
+value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="UUF_UNUSED_FIELD" abbrev="UuF" category="PERFORMANCE">
+    <ShortDescription>Unused field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never used.&nbsp; Consider removing it from the class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="UuF">
+    <Description>Unused field</Description>
+  </BugCode>
+  <BugCode abbrev="UrF">
+    <Description>Unread field</Description>
+  </BugCode>
+  <BugCode abbrev="UwF">
+    <Description>Unwritten field</Description>
+  </BugCode>
+  <BugCode abbrev="NP" cweid="476">
+    <Description>Null pointer dereference</Description>
+  </BugCode>
+  <BugCode abbrev="SA">
+    <Description>Useless self-operation</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 22 Jun 2009 09:59:03 +0800" total_classes="7" referenced_classes="86" total_bugs="6" total_size="149" num_packages="1" vm_version="1.6.0_02-b06" cpu_seconds="3.42" clock_seconds="2.68" peak_mbytes="30.95" alloc_mbytes="762.12" gc_seconds="0.48" priority_2="5" priority_1="1">
+    <FileStats path="Caesar.java" bugCount="0" size="15"/>
+    <FileStats path="MyCallbackHandler.java" bugCount="0" size="37"/>
+    <FileStats path="MyClassKoader.java" bugCount="1" size="23" bugHash="6ff63ebb9862023b7dc557b53a8c81cd"/>
+    <FileStats path="MyLoginModule.java" bugCount="5" size="49" bugHash="b7671f302f8a74fdf9ba9ae0d17c1368"/>
+    <FileStats path="MyPrincipal.java" bugCount="0" size="8"/>
+    <FileStats path="MyPrivilegedAction.java" bugCount="0" size="5"/>
+    <FileStats path="SecurityTest.java" bugCount="0" size="12"/>
+    <PackageStats package="" total_bugs="6" total_types="7" total_size="149" priority_2="5" priority_1="1">
+      <ClassStats class="Caesar" sourceFile="Caesar.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="MyCallbackHandler" sourceFile="MyCallbackHandler.java" interface="false" size="37" bugs="0"/>
+      <ClassStats class="MyClassKoader" sourceFile="MyClassKoader.java" interface="false" size="23" bugs="1" priority_2="1"/>
+      <ClassStats class="MyLoginModule" sourceFile="MyLoginModule.java" interface="false" size="49" bugs="5" priority_2="4" priority_1="1"/>
+      <ClassStats class="MyPrincipal" sourceFile="MyPrincipal.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="MyPrivilegedAction" sourceFile="MyPrivilegedAction.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="SecurityTest" sourceFile="SecurityTest.java" interface="false" size="12" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine" totalMilliseconds="12" invocations="448" avgMicrosecondsPerInvocation="28" maxMicrosecondsPerInvocation="8637" standardDeviationMircosecondsPerInvocation="407"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="13" invocations="23" avgMicrosecondsPerInvocation="580" maxMicrosecondsPerInvocation="3107" standardDeviationMircosecondsPerInvocation="861"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StreamResourceTracker" totalMilliseconds="17" invocations="9" avgMicrosecondsPerInvocation="1984" maxMicrosecondsPerInvocation="3368" standardDeviationMircosecondsPerInvocation="974"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="18" invocations="16" avgMicrosecondsPerInvocation="1156" maxMicrosecondsPerInvocation="3962" standardDeviationMircosecondsPerInvocation="1114"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="20" invocations="7" avgMicrosecondsPerInvocation="2891" maxMicrosecondsPerInvocation="11256" standardDeviationMircosecondsPerInvocation="4056"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="21" invocations="86" avgMicrosecondsPerInvocation="246" maxMicrosecondsPerInvocation="2155" standardDeviationMircosecondsPerInvocation="402"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="25" invocations="7" avgMicrosecondsPerInvocation="3705" maxMicrosecondsPerInvocation="20025" standardDeviationMircosecondsPerInvocation="6770"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="30" invocations="86" avgMicrosecondsPerInvocation="359" maxMicrosecondsPerInvocation="4642" standardDeviationMircosecondsPerInvocation="776"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="33" invocations="86" avgMicrosecondsPerInvocation="385" maxMicrosecondsPerInvocation="3061" standardDeviationMircosecondsPerInvocation="611"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="36" invocations="23" avgMicrosecondsPerInvocation="1597" maxMicrosecondsPerInvocation="20365" standardDeviationMircosecondsPerInvocation="4102"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.impl.ZipCodeBaseFactory" totalMilliseconds="44" invocations="9" avgMicrosecondsPerInvocation="4902" maxMicrosecondsPerInvocation="40541" standardDeviationMircosecondsPerInvocation="12601"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="44" invocations="86" avgMicrosecondsPerInvocation="522" maxMicrosecondsPerInvocation="8928" standardDeviationMircosecondsPerInvocation="1257"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="45" invocations="23" avgMicrosecondsPerInvocation="1963" maxMicrosecondsPerInvocation="11365" standardDeviationMircosecondsPerInvocation="3051"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="59" invocations="23" avgMicrosecondsPerInvocation="2590" maxMicrosecondsPerInvocation="19608" standardDeviationMircosecondsPerInvocation="4526"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="65" invocations="108" avgMicrosecondsPerInvocation="606" maxMicrosecondsPerInvocation="21881" standardDeviationMircosecondsPerInvocation="2175"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="72" invocations="38" avgMicrosecondsPerInvocation="1904" maxMicrosecondsPerInvocation="32768" standardDeviationMircosecondsPerInvocation="5359"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="73" invocations="86" avgMicrosecondsPerInvocation="854" maxMicrosecondsPerInvocation="12433" standardDeviationMircosecondsPerInvocation="2114"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="76" invocations="23" avgMicrosecondsPerInvocation="3337" maxMicrosecondsPerInvocation="63995" standardDeviationMircosecondsPerInvocation="12947"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="79" invocations="27" avgMicrosecondsPerInvocation="2936" maxMicrosecondsPerInvocation="31754" standardDeviationMircosecondsPerInvocation="6421"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="89" invocations="500" avgMicrosecondsPerInvocation="178" maxMicrosecondsPerInvocation="2140" standardDeviationMircosecondsPerInvocation="194"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="128" invocations="86" avgMicrosecondsPerInvocation="1488" maxMicrosecondsPerInvocation="15248" standardDeviationMircosecondsPerInvocation="2572"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="150" invocations="86" avgMicrosecondsPerInvocation="1749" maxMicrosecondsPerInvocation="16622" standardDeviationMircosecondsPerInvocation="3095"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="194" invocations="23" avgMicrosecondsPerInvocation="8455" maxMicrosecondsPerInvocation="130760" standardDeviationMircosecondsPerInvocation="26682"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="209" invocations="497" avgMicrosecondsPerInvocation="420" maxMicrosecondsPerInvocation="21565" standardDeviationMircosecondsPerInvocation="1248"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="213" invocations="1408" avgMicrosecondsPerInvocation="151" maxMicrosecondsPerInvocation="72814" standardDeviationMircosecondsPerInvocation="1943"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>
