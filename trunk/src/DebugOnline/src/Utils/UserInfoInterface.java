@@ -1,9 +1,10 @@
 package Utils;
 
+
 public interface UserInfoInterface {
 	public void setUsername(String username);
 	public void setPassword(String password);
-	public int getId();
+	public String getId();
 	public String getUsername();
 	public String getSchool();
 	public String getSex();

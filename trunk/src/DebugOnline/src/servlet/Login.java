@@ -1,7 +1,8 @@
-package servlet;
+package action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import entities.UserInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,21 +43,12 @@ public class Login extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out
-				.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		 UserInfo userInfo=UserInfo.getInstance();
+	        userInfo.setUsername(request.getParameter("name"));
+	        userInfo.setPassword(request.getParameter("password"));
+	        request.getSession().setAttribute("form", userInfo);
+		  
+		    response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -71,11 +63,10 @@ public class Login extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+        doGet(request,response);
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out
-				.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
 		out.println("  <BODY>");
