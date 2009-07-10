@@ -16,12 +16,12 @@ import Utils.XMLSettings;
 public class FindBugsAnalysis extends ReportGenerator {
 
 	private Process process;
-	private String dirPath = "pmdBin/bin/";
+	private String dirPath = "findbugsBin/bin/";
 	private String type;
 	private String rules;
 	private XMLParser parser;
 
-	private String tempFilePath = "temp.java";
+	private String tempFilePath = "findbugsBin/bin/temp.java";
 
 	public FindBugsAnalysis() {
 		this.parser=new XMLParser(XMLSettings.FindBugs);
@@ -49,7 +49,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 			pw.print(src);
 			bw.close();
 			fw.close();
-			//reportFromFile(tempFilePath);
+			reportFromFile(tempFilePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,12 +58,12 @@ public class FindBugsAnalysis extends ReportGenerator {
 	@Override
 	public void reportFromFile(String path) {
 		try {
-			System.out.println("start pmd process");
+			System.out.println("start findbugs process");
 
 			process = Runtime.getRuntime().exec(
-					dirPath + "pmd.bat " + path + " " + type + " " + rules);
+					dirPath + "findbugs -textui -xml:withMessages" + path + ">xxx.xml");
 			process();
-			System.out.println("pmd process finished");
+			System.out.println("findbugs process finished");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
