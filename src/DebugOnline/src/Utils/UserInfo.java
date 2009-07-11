@@ -11,6 +11,7 @@ public class UserInfo implements UserInfoInterface {
 	private String sex="";
 	private String userName="";
 	private String passWord="";
+	private String email="";
 	
 	private UserInfo(){
 		
@@ -77,6 +78,15 @@ public class UserInfo implements UserInfoInterface {
 		// TODO Auto-generated method stub
 		this.userName=username;
 
+	}
+	public String getEmail(){
+		
+		return this.email;
+	}
+	public void setEmail(String email){
+		this.email=email;
+		
+		
 	}
 
 }
