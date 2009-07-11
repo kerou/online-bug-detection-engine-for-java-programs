@@ -55,7 +55,7 @@
 							Register for an account
 						</h2>
 						<div>
-							<form id="form2" method="post" action="register.do">
+							<form id="form2" method="post" action="Register.do">
 								<div class="loginPanel2">
 									<div class="inputLabel2">
 										username:

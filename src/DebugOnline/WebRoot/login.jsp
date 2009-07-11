@@ -55,7 +55,7 @@
 							Please login
 						</h2>
 						<div>
-							<form id="form2" method="post" action="login.do">
+							<form id="form2" method="post" action="Login.do">
 								<div class="loginPanel">
 									<div class="inputLabel">
 										username:
@@ -76,7 +76,7 @@
 							</form>
 						</div>
 						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
+							<form id="form3" method="post" action="GoRegister.do">
 								<div>
 									If you don't have an account please....
 								</div>
