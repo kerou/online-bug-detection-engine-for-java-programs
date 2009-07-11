@@ -10,6 +10,19 @@
  <servlet>
   <description>java servelt</description>
   <display-name>java servelt</display-name>
+  <servlet-name>GoRegister</servlet-name>
+  <servlet-class>servlet.GoRegister</servlet-class>
+ </servlet>
+  <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>Register</servlet-name>
+  <servlet-class>servlet.Register</servlet-class>
+ </servlet>
+ 
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
   <servlet-name>Logout</servlet-name>
   <servlet-class>servlet.Logout</servlet-class>
  </servlet>
@@ -41,6 +54,14 @@
  <servlet-mapping>
   <servlet-name>Login</servlet-name>
   <url-pattern>/Login.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>GoRegister</servlet-name>
+  <url-pattern>/GoRegister.do</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+  <servlet-name>Register</servlet-name>
+  <url-pattern>/Register.do</url-pattern>
  </servlet-mapping>
  <servlet-mapping>
   <servlet-name>Logout</servlet-name>

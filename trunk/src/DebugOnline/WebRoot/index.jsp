@@ -40,8 +40,8 @@
 
 		<DIV id=guser width="100%">
 			<NOBR>
-			<A href="">Index</A>|
-			<A href="">Login</A>
+			<A href="index.jsp">Index</A>|
+			<A href="login.jsp">Login</A>
 			</NOBR>
 		</DIV>
 
