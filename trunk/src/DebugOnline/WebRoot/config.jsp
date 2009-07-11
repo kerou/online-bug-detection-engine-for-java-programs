@@ -52,37 +52,81 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
+							Config
 						</h2>
 						<div>
-							<form id="form2" method="post" action="login.do">
+							<form id="form2" method="post" action="config.do">
+								<h3>
+									Customer Config
+								</h3>
 								<div class="loginPanel">
 									<div class="inputLabel">
-										username:
+										config
 									</div>
 									<div class="inputField">
-										<input name="username" type="text" id="username" />
+										<label>
+											<input type="radio" name="RadioGroup1" value="1"
+												id="RadioGroup1_0" />
+											aaq
+										</label>
+										<label>
+											<input type="radio" name="RadioGroup1" value="2"
+												id="RadioGroup1_1" />
+											aaq
+										</label>
 									</div>
+								</div>
+								<p>
+									&nbsp;
+								</p>
+								<h3>
+									FindBugs Config
+								</h3>
+								<div class="loginPanel">
 									<div class="inputLabel">
-										password:
+										config:
 									</div>
 									<div class="inputField">
-										<input type="password" name="password" id="password" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
+										<label>
+											<input type="radio" name="RadioGroup1" value="1"
+												id="RadioGroup1_0" />
+											aaq
+										</label>
+										<label>
+											<input type="radio" name="RadioGroup1" value="2"
+												id="RadioGroup1_1" />
+											aaq
+										</label>
 									</div>
 								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
-								<div>
-									If you don't have an account please....
+								<p>
+									&nbsp;
+								</p>
+								<h3>
+									PMD Config
+								</h3>
+								<div class="loginPanel">
+									<div class="inputLabel">
+										config:
+									</div>
+									<div class="inputField">
+										<label>
+											<input type="radio" name="RadioGroup1" value="1"
+												id="RadioGroup1_0" />
+											aaq
+										</label>
+										<label>
+											<input type="radio" name="RadioGroup1" value="2"
+												id="RadioGroup1_1" />
+											aaq
+										</label>
+									</div>
 								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
+								<p>
+									&nbsp;
+								</p>
+								<div class="inputButton">
+									<input type="submit" name="submit2" id="submit2" value="submit" />
 								</div>
 							</form>
 						</div>

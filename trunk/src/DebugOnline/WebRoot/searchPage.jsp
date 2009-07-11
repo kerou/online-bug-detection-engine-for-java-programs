@@ -52,37 +52,20 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
+							Welcome to the main search engine
 						</h2>
 						<div>
-							<form id="form2" method="post" action="login.do">
+							<form id="form2" method="post" action="search.do">
 								<div class="loginPanel">
 									<div class="inputLabel">
-										username:
+										keyword:
 									</div>
 									<div class="inputField">
-										<input name="username" type="text" id="username" />
-									</div>
-									<div class="inputLabel">
-										password:
-									</div>
-									<div class="inputField">
-										<input type="password" name="password" id="password" />
+										<input name="keyword" type="text" id="keyword" />
 									</div>
 									<div class="inputButton">
 										<input type="submit" name="submit" id="submit" value="login" />
 									</div>
-								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
-								<div>
-									If you don't have an account please....
-								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
 								</div>
 							</form>
 						</div>

@@ -1,0 +1,145 @@
+BODY {
+	FONT-FAMILY: arial,sans-serif
+}
+TD {
+	FONT-FAMILY: arial,sans-serif
+}
+A {
+	FONT-FAMILY: arial,sans-serif
+}
+P {
+	FONT-FAMILY: arial,sans-serif
+}
+.h {
+	FONT-FAMILY: arial,sans-serif
+}
+.h {
+	COLOR: #36c; FONT-SIZE: 20px
+}
+.q {
+	COLOR: #00c
+}
+.ts TD {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.ts {
+	BORDER-COLLAPSE: collapse
+}
+#gbar {
+	HEIGHT: 22px
+}
+.gbh {
+	FONT-SIZE: 1px; BORDER-TOP: #c9d7f1 1px solid
+}
+.gbd {
+	FONT-SIZE: 1px; BORDER-TOP: #c9d7f1 1px solid
+}
+.gbh {
+	POSITION: absolute; WIDTH: 100%; HEIGHT: 0px; TOP: 24px
+}
+#gbi {
+	Z-INDEX: 1000; POSITION: absolute; BACKGROUND: #fff; VISIBILITY: hidden; TOP: 24px; LEFT: 0px
+}
+#gbs {
+	Z-INDEX: 1000; POSITION: absolute; BACKGROUND: #fff; VISIBILITY: hidden; TOP: 24px; LEFT: 0px
+}
+#gbi {
+	Z-INDEX: 1001; BORDER-BOTTOM: #36c 1px solid; BORDER-LEFT: #a2bae7 1px solid; BORDER-TOP: #c9d7f1 1px solid; BORDER-RIGHT: #36c 1px solid
+}
+#guser {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 7px !important
+}
+#gbar {
+	FONT-SIZE: 13px; PADDING-TOP: 1px !important
+}
+#guser {
+	FONT-SIZE: 13px; PADDING-TOP: 1px !important
+}
+
+@media All    
+{
+.gb1 {
+	HEIGHT: 22px; VERTICAL-ALIGN: top; MARGIN-RIGHT: 0.5em
+}
+.gb3 {
+	HEIGHT: 22px; VERTICAL-ALIGN: top; MARGIN-RIGHT: 0.5em
+}
+#gbar {
+	FLOAT: left
+}
+    }
+.gb2 {
+	PADDING-BOTTOM: 0.2em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; DISPLAY: block; PADDING-TOP: 0.2em
+}
+A.gb1 {
+	COLOR: #00c !important
+}
+A.gb2 {
+	COLOR: #00c !important
+}
+A.gb3 {
+	COLOR: #00c !important
+}
+.gb2 {
+	TEXT-DECORATION: none
+}
+.gb3 {
+	TEXT-DECORATION: none
+}
+A.gb2:hover {
+	BACKGROUND: #36c; COLOR: #fff !important
+}
+.searchInput INPUT {
+	BORDER-BOTTOM: #7f9db9 1px solid;
+	BORDER-LEFT: #7f9db9 1px solid;
+	BORDER-TOP: #7f9db9 1px solid;
+	BORDER-RIGHT: #7f9db9 1px solid;
+	
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	PADDING-LEFT: 3px;
+	PADDING-RIGHT: 3px;
+	
+	MARGIN-RIGHT: 5px;
+	LINE-HEIGHT: 20px;
+	
+	WIDTH: 362px;
+	HEIGHT: 25px;
+	FONT-SIZE: 18px;
+}
+
+.searchButton {
+	LINE-HEIGHT: 24px;
+	WIDTH: 75px;
+	FLOAT: left;
+	HEIGHT: 34px;
+	FONT-SIZE: 14px
+}
+
+.navigate{
+}
+
+.navigateGrid{
+	padding-left:25px;
+	padding-right:25px;
+	text-align:center;
+}
+
+.navigateGrid img{
+	border-width:0px;
+}
+
+.navigateGrid a:link{
+	color:#000000;
+	text-decoration:none;
+}
+
+.navigateGrid a:hover{
+	color:#FF0000;
+	text-decoration:underline;
+}
+
+.navigateGrid a:visited{
+	color:#990000;
+	text-decoration:none;
+}
