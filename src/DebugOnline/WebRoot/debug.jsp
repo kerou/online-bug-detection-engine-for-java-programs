@@ -34,16 +34,16 @@
 						<a href="#" accesskey="1" title="">Home</a>
 					</li>
 					<li>
-						<a href="searchPage.jsp" accesskey="2" title="">Search</a>
+						<a href="searchPage" accesskey="2" title="">Search</a>
 					</li>
 					<li>
-						<a href="debug.jsp" accesskey="3" title="">Debug</a>
+						<a href="debug" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
-						<a href="encyclopedia.jsp" accesskey="4" title="">Encyclopedia</a>
+						<a href="encyclopedia" accesskey="4" title="">Encyclopedia</a>
 					</li>
 					<li>
-						<a href="contact.jsp" accesskey="5" title="">Contact Us</a>
+						<a href="contact" accesskey="5" title="">Contact Us</a>
 					</li>
 				</ul>
 			</div>
@@ -52,39 +52,44 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
+							Please choose the debug mode
 						</h2>
+						<h3>
+							1.find bugs in a single file
+						</h3>
 						<div>
-							<form id="form2" method="post" action="login.do">
-								<div class="loginPanel">
-									<div class="inputLabel">
-										username:
+							<div class="loginPanel">
+								<div>
+									<div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
+										aaa
 									</div>
-									<div class="inputField">
-										<input name="username" type="text" id="username" />
-									</div>
-									<div class="inputLabel">
-										password:
-									</div>
-									<div class="inputField">
-										<input type="password" name="password" id="password" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
+									<div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+										<a href="singDebug.jsp">link1</a>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
+						<p>
+							&nbsp;
+						</p>
+						<h3>
+							2.find bugs involved in a project
+						</h3>
+						<div>
+							<div class="loginPanel">
 								<div>
-									If you don't have an account please....
+									<div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
+										aaa
+									</div>
+									<div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+										<a href="projectDebug.jsp">link2</a>
+									</div>
 								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
-								</div>
-							</form>
+							</div>
 						</div>
 						<p>
 							&nbsp;

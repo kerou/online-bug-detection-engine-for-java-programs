@@ -52,37 +52,57 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
+							Register for an account
 						</h2>
 						<div>
-							<form id="form2" method="post" action="login.do">
-								<div class="loginPanel">
-									<div class="inputLabel">
+							<form id="form2" method="post" action="register.do">
+								<div class="loginPanel2">
+									<div class="inputLabel2">
 										username:
 									</div>
-									<div class="inputField">
+									<div class="inputField2">
 										<input name="username" type="text" id="username" />
 									</div>
-									<div class="inputLabel">
-										password:
+									<div class="inputLabel2">
+										choose a password:
 									</div>
-									<div class="inputField">
+									<div class="inputField2">
 										<input type="password" name="password" id="password" />
 									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
+									<div class="inputLabel2">
+										re-enter password:
 									</div>
-								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
-								<div>
-									If you don't have an account please....
-								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
+									<div class="inputField2">
+										<input type="password" name="password" id="password" />
+									</div>
+									<div class="inputLabel2">
+										school
+									</div>
+									<div class="inputField2">
+										<input name="username" type="text" id="username" />
+									</div>
+									<div class="inputLabel2">
+										sex
+									</div>
+									<div class="inputField2">
+										<label>
+											<input type="radio" name="sex" value="M" id="sex_0" />
+											Male
+										</label>
+										<label>
+											<input type="radio" name="sex" value="F" id="sex_1" />
+											Female
+										</label>
+									</div>
+									<div class="inputLabel2">
+										Email:
+									</div>
+									<div class="inputField2">
+										<input name="username" type="text" id="username" />
+									</div>
+									<div class="inputButton">
+										<input type="submit" name="submit" id="submit" value="submit" />
+									</div>
 								</div>
 							</form>
 						</div>

@@ -34,16 +34,16 @@
 						<a href="#" accesskey="1" title="">Home</a>
 					</li>
 					<li>
-						<a href="searchPage.jsp" accesskey="2" title="">Search</a>
+						<a href="searchPage" accesskey="2" title="">Search</a>
 					</li>
 					<li>
-						<a href="debug.jsp" accesskey="3" title="">Debug</a>
+						<a href="debug" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
-						<a href="encyclopedia.jsp" accesskey="4" title="">Encyclopedia</a>
+						<a href="encyclopedia" accesskey="4" title="">Encyclopedia</a>
 					</li>
 					<li>
-						<a href="contact.jsp" accesskey="5" title="">Contact Us</a>
+						<a href="contact" accesskey="5" title="">Contact Us</a>
 					</li>
 				</ul>
 			</div>
@@ -52,43 +52,25 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
+							The Bug Encyclopedia
 						</h2>
-						<div>
-							<form id="form2" method="post" action="login.do">
-								<div class="loginPanel">
-									<div class="inputLabel">
-										username:
-									</div>
-									<div class="inputField">
-										<input name="username" type="text" id="username" />
-									</div>
-									<div class="inputLabel">
-										password:
-									</div>
-									<div class="inputField">
-										<input type="password" name="password" id="password" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
-								<div>
-									If you don't have an account please....
-								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
-								</div>
-							</form>
-						</div>
-						<p>
-							&nbsp;
-						</p>
+						<ul>
+							<li>
+								<a href="#">aaaaa</a>
+							</li>
+							<li>
+								<a href="#">bbbb</a>
+							</li>
+							<li>
+								<a href="#">cccc</a>
+							</li>
+							<li>
+								<a href="#">dddd</a>
+							</li>
+							<li>
+								<a href="#">eeee</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div id="secondaryContent">

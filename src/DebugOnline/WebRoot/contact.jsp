@@ -52,38 +52,36 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
+							Contact infomation
 						</h2>
 						<div>
 							<form id="form2" method="post" action="login.do">
-								<div class="loginPanel">
-									<div class="inputLabel">
-										username:
-									</div>
-									<div class="inputField">
-										<input name="username" type="text" id="username" />
-									</div>
-									<div class="inputLabel">
-										password:
-									</div>
-									<div class="inputField">
-										<input type="password" name="password" id="password" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="register.do">
-								<div>
-									If you don't have an account please....
-								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
-								</div>
+								<p>
+									<strong>Professor Jianjun Zhao</strong>
+								</p>
+								<ul>
+									<li>
+										E-mail:    
+										<a href="mailto:zhao-jj@cs.sjtu.edu.cn">zhao-jj@cs.sjtu.edu.cn</a>
+									</li>
+									<li>
+										Phone:    +86-21-3420-4620 (office)
+									</li>
+									<li>
+										Fax:        +86-21-3420-1145 (office)
+									</li>
+									<li>
+										Mail Address:
+										<br />
+										                 1311 Software Building,
+										<br />
+										                 Shanghai Jiao Tong University,
+										<br />
+										                 800 Dongchuan Road,
+										<br />
+										                 Shanghai 200240, China
+									</li>
+								</ul>
 							</form>
 						</div>
 						<p>

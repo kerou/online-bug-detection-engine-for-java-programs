@@ -2,50 +2,38 @@
 	Design by Free CSS Templates
 	http://www.freecsstemplates.org
 	Released for free under a Creative Commons Attribution 2.5 License
-*/
-
-/* Basic */
-
-*
-{
+*/ /* Basic */
+* {
 	margin: 0em;
 	padding: 0em;
 }
 
-h1,h2,h3,h4,h5,h6
-{
+h1,h2,h3,h4,h5,h6 {
 	color: #6a6a6a;
 }
 
-body
-{
+body {
 	font-family: "Trebuchet MS", sans-serif;
 	color: #7a7a7a;
 	font-size: 11pt;
 }
 
-a
-{
+a {
 	color: #AF0A0A;
 	text-decoration: underline;
 }
 
-a:hover
-{
+a:hover {
 	text-decoration: none;
 }
 
 /* Outer */
-
-#outer
-{
+#outer {
 	margin: 2.5em 3.0em 1.5em 3.0em;
 }
 
 /* Header */
-
-#header
-{
+#header {
 	padding: 0em 1.5em 0em 1.5em;
 	height: 8em;
 	width: 15em;
@@ -54,8 +42,7 @@ a:hover
 	background: #AF0A0A url('images/a1.gif') top right no-repeat;
 }
 
-#header h1
-{
+#header h1 {
 	position: absolute;
 	bottom: 2.2em;
 	font-size: 1.5em;
@@ -63,14 +50,12 @@ a:hover
 	width: 150px;
 }
 
-#header h1 a
-{
+#header h1 a {
 	color: #fff;
 	text-decoration: none;
 }
 
-#header h2
-{
+#header h2 {
 	position: absolute;
 	bottom: 2.7em;
 	color: #EFE0E0;
@@ -78,38 +63,32 @@ a:hover
 }
 
 /* Menu */
-
-#menu
-{
+#menu {
 	height: 8em;
 	background: #fafafa url('images/a2.gif') top left repeat-x;
 	margin-left: 18em;
 	position: relative;
 }
 
-#menu ul
-{
+#menu ul {
 	list-style: none;
 	position: absolute;
 	top: 3.3em;
 	margin-left: 1.5em;
 }
 
-#menu li
-{
+#menu li {
 	display: inline;
 	border-left: dotted 1px #848484;
 	padding-left: 0.8em;
 }
 
-#menu li.first
-{
+#menu li.first {
 	border-left: 0px;
 	padding-left: 0em;
 }
 
-#menu li a
-{
+#menu li a {
 	text-decoration: none;
 	color: #6a6a6a;
 	font-weight: bold;
@@ -118,124 +97,102 @@ a:hover
 	font-size: 0.9em;
 }
 
-#menu li a:hover
-{
+#menu li a:hover {
 	background: #AF0A0A url('images/a4.gif') bottom left repeat-x;
 	color: #fff;
 }
 
 /* Content */
-
-#content
-{
+#content {
 	background: #fff url('images/a3.gif') top left repeat-x;
 	margin-top: 1px;
 	padding-top: 1.5em;
 }
 
-#content p
-{
+#content p {
 	margin-bottom: 1.5em;
 	line-height: 1.6em;
 }
 
-#content h2
-{
+#content h2 {
 	font-size: 1.5em;
 }
 
-#content h3
-{
+#content h3 {
 	font-size: 1.1em;
 }
 
-#content h2,h3,h4,h5,h6
-{
+#content h2,h3,h4,h5,h6 {
 	padding-bottom: 0.2em;
 	margin-bottom: 1.2em;
 	border-bottom: dotted 1px #cacaca;
 }
 
-#content ul
-{
+#content ul {
 	margin-bottom: 1.5em;
 	padding-left: 1em;
 	line-height: 1.6em;
 }
 
-#content blockquote
-{
+#content blockquote {
 	border-left: solid 0.8em #cacaca;
 	padding: 0.5em 0em 0.5em 1.0em;
 	margin-bottom: 1.5em;
 	line-height: 1.6em;
 }
 
-#content blockquote p
-{
+#content blockquote p {
 	display: inline;
 }
 
-#content table
-{
+#content table {
 	border: dotted 1px #cacaca;
 	padding: 0.5em;
 	margin-bottom: 1.5em;
 }
 
-#content table th
-{
+#content table th {
 	text-align: left;
 	font-weight: bold;
 	padding: 0.5em;
 }
 
-#content table td
-{
+#content table td {
 	padding: 0.5em;
 }
 
-#content table tr.rowA
-{
+#content table tr.rowA {
 	background-color: #f5f5f5;
 	color: inherit;
 }
 
-#content table tr.rowB
-{
+#content table tr.rowB {
 	background-color: #fdfdfd;
 	color: inherit;
 }
 
 /* Primary Content */
-
-#primaryContentContainer
-{
+#primaryContentContainer {
 	float: right;
 	margin-left: -19em;
 	width: 100%;
 }
 
-#primaryContent
-{
+#primaryContent {
 	margin: 0em 0em 0em 18em;
 	padding: 1.5em;
 	border-left: dotted 1px #cacaca;
 }
 
 /* Secondary Content */
-
-#secondaryContent
-{
+#secondaryContent {
 	float: left;
 	width: 15em;
 	padding: 1.5em;
 }
 
 /* Footer */
-
-#footer
-{
+#footer {
 	margin-top: 1.0em;
 	border-top: dotted 1px #cacaca;
 	padding: 1.5em;
@@ -243,9 +200,67 @@ a:hover
 	text-align: center;
 }
 
-.clear
-{
+.clear {
 	clear: both;
 }
+
 .editContent {
+	
+}
+
+.inputLabel {
+	position: relative;
+	float: left;
+	width: 100px;
+}
+
+.inputField {
+	position: relative;
+	width: 200px;
+	clear: right;
+}
+
+.inputLabel2 {
+	position: relative;
+	float: left;
+	width: 200px;
+}
+
+.inputField2 {
+	position: relative;
+	width: 200px;
+	clear: right;
+}
+
+.loginPanel2 {
+	position: relative;
+	width: 450px;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+	border-style: double;
+	border-width: 2px;
+	border-color: #CC0000;
+}
+
+.codeContent {
+	width: 100%;
+	padding: 2px 2px 2px 2px;
+	margin: 10px 10px 10px 10px;
+	border-style: double;
+	border-width: 2px;
+	border-color: #CC0000;
+}
+
+.loginPanel {
+	position: relative;
+	width: 350px;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+	border-style: double;
+	border-width: 2px;
+	border-color: #CC0000;
+}
+
+.inputButton {
+	margin-top: 10px;
 }
