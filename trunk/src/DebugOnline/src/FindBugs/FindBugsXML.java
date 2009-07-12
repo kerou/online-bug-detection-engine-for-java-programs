@@ -53,6 +53,9 @@ public class FindBugsXML implements XMLParserInterface {
 			
 			Element root = doc.getDocumentElement();
 			NodeList bugs = root.getElementsByTagName("BugInstance");
+			
+			System.out.print("xby");
+			System.out.println(bugs.getLength());
 			for (int i = 0; i < bugs.getLength(); i++) 
 			{
 				Element bugElement=(Element)bugs.item(i);
@@ -60,11 +63,20 @@ public class FindBugsXML implements XMLParserInterface {
 				
 				
 				report.setPriority(Integer.parseInt(bugElement.getAttribute("priority")));
-				report.setInfo(bugElement.getFirstChild().getTextContent());
-				report.setLine(Integer.parseInt(bugElement.getChildNodes().item(6)
-						.getAttributes().getNamedItem("start").getTextContent()));
-				report.setFilePath(bugElement.getElementsByTagName("class").item(0).getAttributes().item(0).getTextContent());
+				report.setInfo(bugElement.getElementsByTagName("ShortMessage").item(0).getTextContent());
+				report.setLine(Integer.parseInt(((Element)(bugElement.getElementsByTagName("SourceLine").item(3)))
+								.getAttribute("start")));
+				
+				report.setFilePath(bugElement.getElementsByTagName("Class").item(0).getAttributes().item(0).getTextContent());
+				reports.add(report);
+				System.out.print("xxx ");
+				System.out.print(report.filePath+" ");
+				System.out.print(report.info+" ");
+				System.out.print(report.line+" ");
+				System.out.print(report.priority+" ");
 			}
+			
+			
 		}
 		catch (Exception e)
 		{
