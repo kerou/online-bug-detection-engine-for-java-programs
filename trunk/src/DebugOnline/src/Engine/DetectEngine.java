@@ -16,8 +16,8 @@ public class DetectEngine extends ReportGenerator {
 		PMDAnalysis pmd=new PMDAnalysis();
 		FindBugsAnalysis findBugs=new FindBugsAnalysis();
 		
-		//generators.add(pmd);
-		generators.add(findBugs);
+		generators.add(pmd);
+		//generators.add(findBugs);
 	}
 	
 	@Override

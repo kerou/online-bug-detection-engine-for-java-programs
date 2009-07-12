@@ -10,7 +10,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<base href="<%=basePath%>">
-
 		<title>Welcome to Debug Online Service</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
@@ -68,6 +67,19 @@
 									</div>
 									<div class="inputField">
 										<input type="password" name="password" id="password" />
+									</div>
+									<div>
+										<%
+											String error = (String) request.getSession().getAttribute(
+													"errorMessage");
+										%>
+										<%
+											if (error!=null&&error.equals("inputWrong")) {
+										%>
+										<%="There is something wrong with your username or password"%>
+										<%
+											}
+										%>
 									</div>
 									<div class="inputButton">
 										<input type="submit" name="submit" id="submit" value="login" />

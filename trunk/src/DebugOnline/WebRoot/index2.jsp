@@ -52,42 +52,37 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Single File Bug Detect
+							Please login
 						</h2>
-						<h3>
-							1.you can upload a single file
-						</h3>
 						<div>
-							<form id="form2" method="post" action="singleDebug.do">
+							<form id="form2" method="post" action="Login.do">
 								<div class="loginPanel">
 									<div class="inputLabel">
-										file:
+										username:
 									</div>
 									<div class="inputField">
 										<input name="username" type="text" id="username" />
 									</div>
+									<div class="inputLabel">
+										password:
+									</div>
+									<div class="inputField">
+										<input type="password" name="password" id="password" />
+									</div>
 									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="browser" />
-										<input type="submit" name="submit" id="submit" value="upload" />
+										<input type="submit" name="submit" id="submit" value="login" />
 									</div>
 								</div>
 							</form>
 						</div>
-						<p>
-							&nbsp;
-						</p>
-						<h3>
-							2.you can type your code here
-						</h3>
-						<div class="codeContent">
-							<form id="form3" method="post" action="CreateSingleReport.do">
-								<div style="margin-bottom: 20px">
-									<textarea id="content2" name="content" cols="50" rows="30"
-										style="height: 100%; width: 100%;"></textarea>
+						<div class="loginPanel">
+							<form id="form3" method="post" action="GoRegister.do">
+								<div>
+									If you don't have an account please....
 								</div>
 								<div>
 									<input type="submit" name="register" id="register"
-										value="submit" />
+										value="register" />
 								</div>
 							</form>
 						</div>

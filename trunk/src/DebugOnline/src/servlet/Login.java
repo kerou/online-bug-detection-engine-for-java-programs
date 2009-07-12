@@ -1,9 +1,10 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import Utils.SQLUtil;
 import Utils.UserInfo;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,60 +34,70 @@ public class Login extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
-	 *
+	 * 
 	 * This method is called when a form has its tag value method equals to get.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 
-		UserInfo userInfo=UserInfo.getInstance();
-	        userInfo.setUsername(request.getParameter("name"));
-	        userInfo.setPassword(request.getParameter("password"));
-	        request.getSession().setAttribute("form", userInfo);
-		    //request.setAttribute("result", "密码错误！");
-		    response.sendRedirect("index.jsp");
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		
+		SQLUtil sql=SQLUtil.getInstance();
+		System.out.println("************************");
+		System.out.println(sql.chechLogin(username, password));
+		if(sql.chechLogin(username, password)){
+			
+			UserInfo userInfo=SQLUtil.getInstance().getUserInfo(username, password);
+			request.getSession().setAttribute("userInfo", userInfo);
+			request.getSession().setAttribute("username", username);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/customer.jsp");
+		    dispatcher.forward(request, response);
+		}else{
+			request.getSession().setAttribute("errorMessage", "inputwrong");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+		    dispatcher.forward(request, response);
+		}
 	}
 
 	/**
 	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * This method is called when a form has its tag value method equals to
+	 * post.
+	 * 
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-        doGet(request,response);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the POST method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		doGet(request, response);
 	}
 
 	/**
 	 * Initialization of the servlet. <br>
-	 *
-	 * @throws ServletException if an error occurs
+	 * 
+	 * @throws ServletException
+	 *             if an error occurs
 	 */
 	public void init() throws ServletException {
 		// Put your code here
 	}
 
 }
+

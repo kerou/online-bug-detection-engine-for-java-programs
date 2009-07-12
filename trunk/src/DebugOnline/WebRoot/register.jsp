@@ -79,26 +79,26 @@
 										school
 									</div>
 									<div class="inputField2">
-										<input name="username" type="text" id="username" />
+										<input name="username" type="text" id="school" />
 									</div>
 									<div class="inputLabel2">
 										sex
 									</div>
 									<div class="inputField2">
-										<label>
-											<input type="radio" name="sex" value="M" id="sex_0" />
+							    <label>
+											<input type="radio" name="sex" value="0" id="M" />
 											Male
 										</label>
 										<label>
-											<input type="radio" name="sex" value="F" id="sex_1" />
+											<input type="radio" name="sex" value="1" id="F" />
 											Female
 										</label>
 									</div>
-									<div class="inputLabel2">
+							  <div class="inputLabel2">
 										Email:
 									</div>
 									<div class="inputField2">
-										<input name="username" type="text" id="username" />
+										<input name="username" type="text" id="email" />
 									</div>
 									<div class="inputButton">
 										<input type="submit" name="submit" id="submit" value="submit" />
@@ -106,8 +106,8 @@
 								</div>
 							</form>
 						</div>
-						<p>
-							&nbsp;
+						<p>&nbsp;
+							
 						</p>
 					</div>
 				</div>
