@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-
+import Utils.JavaUtil;
 import Utils.ReportGenerator;
 import Utils.XMLParser;
 import Utils.XMLSettings;
@@ -21,7 +21,8 @@ public class FindBugsAnalysis extends ReportGenerator {
 	private String rules;
 	private XMLParser parser;
 
-	private String tempFilePath = "findbugsBin/bin/temp.java";
+	private String tempFilePath = "temp.java";
+	private String tempClassFilePath="temp.class";
 
 	public FindBugsAnalysis() {
 		this.parser=new XMLParser(XMLSettings.FindBugs);
@@ -49,7 +50,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 			pw.print(src);
 			bw.close();
 			fw.close();
-			reportFromFile(tempFilePath);
+			reportFromFile(tempClassFilePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,8 +59,10 @@ public class FindBugsAnalysis extends ReportGenerator {
 	@Override
 	public void reportFromFile(String path) {
 		try {
+			
 			System.out.println("start findbugs process");
-
+			JavaUtil util;
+			util=JavaUtil.getInstance();
 			process = Runtime.getRuntime().exec(
 					dirPath + "findbugs -textui -xml:withMessages" + path + ">xxx.xml");
 			process();
