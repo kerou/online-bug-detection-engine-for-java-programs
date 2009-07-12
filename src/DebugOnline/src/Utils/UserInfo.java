@@ -1,39 +1,31 @@
 package Utils;
 
-
 import Utils.UserInfoInterface;
 
 public class UserInfo implements UserInfoInterface {
-	
-	private static UserInfo userInfo;
-	private String id="";
-	private String school="";
-	private String sex="";
-	private String userName="";
-	private String passWord="";
-	private String email="";
-	
-	private UserInfo(){
-		
-		
-	}
-	
-	public static UserInfo getInstance(){
-		if(userInfo==null){
-			userInfo=new UserInfo();
-		}
-		return userInfo;
+
+	private int id;
+	private String school;
+	private String sex;
+	private String userName;
+	private String passWord;
+	private String email;
+
+	public UserInfo() {
+		clear();
 	}
 
 	public void clear() {
 		// TODO Auto-generated method stub
-		userInfo.clear();
-		
-
+		id = 0;
+		school = "";
+		sex = "";
+		userName = "";
+		passWord = "";
+		email = "";
 	}
 
-	public String getId() {
-		// TODO Auto-generated method stub
+	public int getId() {
 		return this.id;
 	}
 
@@ -45,6 +37,19 @@ public class UserInfo implements UserInfoInterface {
 	public String getSex() {
 		// TODO Auto-generated method stub
 		return this.sex;
+	}
+	
+	public int getSexInteger() {
+		// TODO Auto-generated method stub
+		int sex=-1;
+		if(this.sex.equals("Male")){
+			sex=0;
+		}else{
+			if(this.sex.equals("Female")){
+				sex=1;
+			}
+		}
+		return sex;
 	}
 
 	public String getUsername() {
@@ -69,24 +74,46 @@ public class UserInfo implements UserInfoInterface {
 
 	public void setPassword(String password) {
 		// TODO Auto-generated method stub
-		this.passWord=password;
-		
-
+		this.passWord = password;
 	}
 
 	public void setUsername(String username) {
 		// TODO Auto-generated method stub
-		this.userName=username;
-
+		this.userName = username;
 	}
-	public String getEmail(){
-		
+
+	public String getEmail() {
 		return this.email;
 	}
-	public void setEmail(String email){
-		this.email=email;
-		
-		
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		this.id = id;
+	}
+
+	public void setSchool(String school) {
+		// TODO Auto-generated method stub
+		this.school = school;
+	}
+
+	public void setSex(int id) {
+		// TODO Auto-generated method stub
+		if (id == 0) {
+			this.sex = "Male";
+		} else {
+			if (id == 1) {
+				this.sex = "Female";
+			}
+		}
+	}
+
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return passWord;
 	}
 
 }

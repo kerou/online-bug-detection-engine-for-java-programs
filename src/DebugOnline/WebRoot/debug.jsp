@@ -66,7 +66,7 @@
 									</div>
 									<div
 										style="width: 70%; position: relative; margin-bottom: 10px;">
-										<a href="singDebug.jsp">link1</a>
+										<a href="singleDebug.jsp">link1</a>
 									</div>
 								</div>
 							</div>

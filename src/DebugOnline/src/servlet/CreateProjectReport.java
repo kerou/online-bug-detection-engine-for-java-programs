@@ -52,8 +52,9 @@ public class CreateProjectReport extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("7777777777777777");
-		System.out.println(UserInfo.getInstance().isLogin());
-		if (UserInfo.getInstance().isLogin()) {
+//		System.out.println(UserInfo.getInstance().isLogin());
+		if (true) {
+//		if (UserInfo.getInstance().isLogin()) {
 //			int Uid = UserInfo.getInstance().getId();
 //			String pName = request.getParameter("pName");
 			
