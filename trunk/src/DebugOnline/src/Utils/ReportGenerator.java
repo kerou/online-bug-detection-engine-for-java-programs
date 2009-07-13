@@ -16,7 +16,7 @@ public class ReportGenerator {
 		this.toolType=type;
 	}
 	
-	public void reportFromString(String src){
+	public void reportFromString(String src,String SessionId){
 	}
 	
 	public void reportFromFile(String path){
@@ -26,6 +26,10 @@ public class ReportGenerator {
 	}
 	
 	public void process(){
+	}
+	
+	public String getFileName(String src) {
+		return null;
 	}
 	
 	public Vector<Report> getReports(){
