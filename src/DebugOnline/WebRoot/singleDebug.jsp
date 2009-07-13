@@ -58,16 +58,15 @@
 							1.you can upload a single file
 						</h3>
 						<div>
-							<form id="form2" method="post" action="singleDebug.do">
+							<form id="form2" method="post" action="UploadFile.do" enctype="MULTIPART/FORM-DATA">
 								<div class="loginPanel">
 									<div class="inputLabel">
 										file:
 									</div>
 									<div class="inputField">
-										<input name="username" type="text" id="username" />
+										<input name="upload" type="file" id="upload" />
 									</div>
 									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="browser" />
 										<input type="submit" name="submit" id="submit" value="upload" />
 									</div>
 								</div>

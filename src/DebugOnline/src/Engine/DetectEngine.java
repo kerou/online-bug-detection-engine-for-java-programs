@@ -21,9 +21,9 @@ public class DetectEngine extends ReportGenerator {
 	}
 	
 	@Override
-	public void reportFromString(String src) {
+	public void reportFromString(String src,String sessionId) {
 		for(int i=0;i<generators.size();i++){
-			generators.get(i).reportFromString(src);
+			generators.get(i).reportFromString(src,sessionId);
 			
 			for(int j=0;j<generators.get(i).reports.size();j++){
 				reports.add(generators.get(i).reports.get(j));

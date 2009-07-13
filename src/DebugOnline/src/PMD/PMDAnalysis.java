@@ -3,11 +3,15 @@ package PMD;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import Utils.*;
 
@@ -19,10 +23,8 @@ public class PMDAnalysis extends ReportGenerator {
 	private String rules;
 	private XMLParser parser;
 
-	private String tempFilePath = "temp.java";
-
 	public PMDAnalysis() {
-		this.parser=new XMLParser(XMLSettings.PMD);
+		this.parser = new XMLParser(XMLSettings.PMD);
 		setType("xml");
 		setRules("rulesets/naming.xml");
 	}
@@ -36,24 +38,39 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromString(String src) {
+	public void reportFromString(String src, String sessionId) {
+		String fileName = getFileName(src);
+		String tempFilePath = "tempFiles\\" + sessionId + "\\" + fileName
+				+ ".java";
+		File dir = new File("tempFiles\\" + sessionId);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
 		File file = new File(tempFilePath);
 		if (file.exists()) {
 			file.delete();
 		}
 		try {
-			FileWriter fw = new FileWriter(tempFilePath);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pw = new PrintWriter(bw);
-
-			pw.print(src);
-			bw.close();
-			fw.close();
+			OutputStream out = new FileOutputStream(file);
+			BufferedWriter rd = new BufferedWriter(new OutputStreamWriter(out,
+					"utf-8"));
+			rd.write(src);
+			rd.close();
+			out.close();
 
 			reportFromFile(tempFilePath);
+			file.delete();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getFileName(String src) {
+		int index1 = src.indexOf("class");
+		int index2 = src.indexOf("{");
+		String className = src.substring(index1 + 6, index2);
+		return className;
 	}
 
 	@Override
@@ -61,10 +78,11 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			System.out.println("start pmd process");
 
-			String command=dirPath + "pmd.bat " + path + " " + type + " " + rules;
-			
+			String command = dirPath + "pmd.bat " + path + " " + type + " "
+					+ rules;
+
 			process = Runtime.getRuntime().exec(command);
-			System.out.println("execute "+command);
+			System.out.println("execute " + command);
 			process();
 			System.out.println("pmd process finished");
 		} catch (IOException e) {
@@ -73,11 +91,12 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId,String projectName){
+	public void reportFromProject(int userId, String projectName) {
 		System.out.println("start pmd project process");
 
-		String command=dirPath + "pmd.bat " + "../userProjects/"+userId +"/"+projectName+" " + type + " " + rules;
-		
+		String command = dirPath + "pmd.bat " + "../userProjects/" + userId
+				+ "/" + projectName + " " + type + " " + rules;
+
 		try {
 			process = Runtime.getRuntime().exec(command);
 			System.out.println("execute " + command);
@@ -100,16 +119,22 @@ public class PMDAnalysis extends ReportGenerator {
 			while ((s = reader.readLine()) != null) {
 				if (s.length() != 0) {
 					sb.append(s);
-				}else{
+				} else {
 					System.out.println("length==0");
 				}
 			}
 			result = sb.toString();
 			parser.SetInput(result);
 			parser.parse();
-			reports=parser.getReports();
+			reports = parser.getReports();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		PMDAnalysis pmd = new PMDAnalysis();
+		System.out.println("&&&&" + pmd.getFileName("public class asdasdasd{}")
+				+ "%%%%");
 	}
 }

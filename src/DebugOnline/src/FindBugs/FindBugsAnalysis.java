@@ -37,7 +37,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromString(String src) {
+	public void reportFromString(String src,String sessionId) {
 		System.out.print("xxx");
 		File file = new File(tempFilePath);
 		if (file.exists()) {

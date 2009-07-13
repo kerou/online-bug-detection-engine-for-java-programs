@@ -53,7 +53,7 @@ public class CreateSingleReport extends HttpServlet {
 		String input=request.getParameter("content");
 		
 		DetectEngine engine=new DetectEngine();
-		engine.reportFromString(input);
+		engine.reportFromString(input,request.getSession().getId());
 		
 		HttpSession session=request.getSession();
 		session.setAttribute("reports", engine.getReports());
