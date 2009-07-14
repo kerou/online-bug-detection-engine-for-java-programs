@@ -1,29 +1,27 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import Utils.Config;
+import Utils.Project;
+import Utils.SQLUtil;
 import Utils.UserInfo;
 
-import Engine.DetectEngine;
-
-public class CreateProjectReport extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class CreateProject extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CreateProjectReport() {
+	public CreateProject() {
 		super();
 	}
 
@@ -53,26 +51,42 @@ public class CreateProjectReport extends HttpServlet {
 			throws ServletException, IOException {
 		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
 				"userInfo");
-		if (userInfo != null) {
-			int Uid = userInfo.getId();
-
-			String pName = request.getParameter("PName");
-			DetectEngine engine = new DetectEngine();
-			engine.reportFromProject(Uid, pName);
-
-			HttpSession session = request.getSession();
-			session.setAttribute("reports", engine.getReports());
-
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showReports.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please login first");
+		if (userInfo == null) {
+			request.getSession().setAttribute("message", "please login first");
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/showMessage.jsp");
 			dispatcher.forward(request, response);
 		}
+
+		String PName = request.getParameter("name");
+		String desc = request.getParameter("desc");
+		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+		Timestamp time = new Timestamp(date.getTime());
+		System.out.println(time.toString());
+
+		SQLUtil sql = SQLUtil.getInstance();
+
+		Project project = new Project();
+		project.setUserId(userInfo.getId());
+		project.setName(PName);
+		project.setCreateAt(time.toString());
+		project.setTimestamp(time);
+		project.setDate(date);
+
+		sql.createProject(project);
+
+		File file = new File(Config.UserDir + userInfo.getId() + "/"
+				+ project.getId());
+
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		request.getSession().setAttribute("project", project);
+
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/projectDetail.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**

@@ -1,17 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page language="java" import="Utils.*"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%UserInfo userInfo=(UserInfo)request.getSession().getAttribute("userInfo"); %>
-<%if(userInfo==null){ %>
-<%request.getSession().setAttribute("message","Please Login first"); %>
-<%RequestDispatcher dispatcher = request.getRequestDispatcher("/showMessage.jsp");%>
-<%dispatcher.forward(request, response); %>
-<%} %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,63 +50,70 @@
 				<div></div>
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
-						<h2>
-							Project Bug detect
-						</h2>
-                          <%
-								Vector<Project> projects = (Vector<Project>) request.getSession()
-										.getAttribute("projects");
-							%>
-							<%if(projects!=null&&projects.size()!=0) {%>
-						<div class="loginBack">
-						<div class="loginPanel3">
-                          <table cellspacing="0" cellpadding="3">
-                            <tr>
-                              <th> # </th>
-                              <th> Project Name</th>
-                              <th>created at</th>
-                            </tr>
-                            <%
-									for (int i = 0; i < projects.size(); i++) {
-								%>
-                            <%
-									Project project = projects.get(i);
-								%>
-                            <%
-									if (i % 2 == 0) {
-								%>
-                            <tr>
-                              <%
-										}
-									%>
-                              <td align="center"><%=i + 1%></td>
-                              <td><a href="projectDetail.do?PId="><%=project.getName()%></a></td>
-                              <td align="center"><%=project.getCreateaAt()%></td>
-                            </tr>
-                            <%
-									}
-								%>
-                          </table>
-					  </div>
-					  </div>
-					  <%}else{ %>
-						<p>&nbsp;</p>
-						<div class="loginPanel">
-                        <div>Hey~You havn't created a project yet<br />
-                        you can <a href="createProject.jsp">create</a> on now ;-)</div>
-                        <div></div>
-					  </div>
-					  <%} %>
-						<p>&nbsp;						</p>
-				  </div>
-				</div>
-				<div id="secondaryContent">
-					<h3>
-						Hello
-						<%
+						<h2>Hi ~ 
+						  <%
 						String username = (String) request.getSession().getAttribute(
 								"username");
 					%>
+						<%
+							if (username != null && !username.equals("")) {
+						%>
+						<%=username%>
+						<%
+							}
+						%></h2>
+						<h2>Your Project  
+						</h2>
+					  <div class="loginBack">
+					    <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/07.png" alt="detec" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="debug.jsp">Let's go and find the bugs in yout file</a></p>
+                              </div>
+                            </div>
+                          </div>
+				        </div>
+					  </div>
+                      <p>&nbsp;</p>
+					  <div class="loginBack">
+                        <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/02.png" alt="ency" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="encylopedia.jsp">Let's go and look up the bug encyclopedia</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+				      </div>
+                      <p>&nbsp;</p>
+					  <div class="loginBack">
+                        <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/05.png" alt="ency" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="editInfo.jsp">change your personal infomation</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+				      </div>
+					</div>
+				</div>
+                
+				<div id="secondaryContent">
+					<h3>
+						Hello
 						<%
 							if (username != null && !username.equals("")) {
 						%>
@@ -145,14 +145,13 @@
 					</form>
 					<p></p>
 					<h3>
-						BBB
+						to be done
 					</h3>
 					<p>
 						aaa
 					</p>
 					<h3>
-						BBB
-					</h3>
+						to be done</h3>
 					<ul>
 						<li>
 							bbbb

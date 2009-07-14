@@ -261,6 +261,23 @@ a:hover {
 	border-color: #CC0000;
 }
 
+.loginPanel3 {
+	position: relative;
+	width: 500px;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+	border-style: double;
+	border-width: 2px;
+	border-color: #CC0000;
+	background-color:#FFFFFF;
+}
+
+.loginBack {
+	background-color:#F3F3F3;
+	width:550px;
+	text-align:center;
+}
+
 .inputButton {
 	margin-top: 10px;
 }
