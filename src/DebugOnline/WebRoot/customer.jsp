@@ -22,9 +22,8 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Pesticides</a>
-				</h1>
-				<h2>
+					<a href="#">Pesticide</a>				</h1>
+		  <h2>
 					by Baldur
 				</h2>
 			</div>
@@ -51,52 +50,70 @@
 				<div></div>
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
-						<h2>Welcome to your customer page 
-						</h2>
-						<div>
-							<form id="form2" method="post" action="Login.do">
-								<div class="loginPanel">
-									<div class="inputLabel">
-										username:
-									</div>
-									<div class="inputField">
-										<input name="username" type="text" id="username" />
-									</div>
-									<div class="inputLabel">
-										password:
-									</div>
-									<div class="inputField">
-										<input type="password" name="password" id="password" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="GoRegister.do">
-								<div>
-									If you don't have an account please....
-								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
-								</div>
-							</form>
-						</div>
-						<p>
-							&nbsp;
-						</p>
-					</div>
-				</div>
-				<div id="secondaryContent">
-					<h3>
-						Hello
-						<%
+						<h2>Hi ~ 
+						  <%
 						String username = (String) request.getSession().getAttribute(
 								"username");
 					%>
+						<%
+							if (username != null && !username.equals("")) {
+						%>
+						<%=username%>
+						<%
+							}
+						%></h2>
+						<h2>Welcome to your customer page 
+						</h2>
+					  <div class="loginBack">
+					    <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/07.png" alt="detec" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="debug.jsp">Let's go and find the bugs in yout file</a></p>
+                              </div>
+                            </div>
+                          </div>
+				        </div>
+					  </div>
+                      <p>&nbsp;</p>
+					  <div class="loginBack">
+                        <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/02.png" alt="ency" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="encylopedia.jsp">Let's go and look up the bug encyclopedia</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+				      </div>
+                      <p>&nbsp;</p>
+					  <div class="loginBack">
+                        <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/05.png" alt="ency" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="editInfo.jsp">change your personal infomation</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+				      </div>
+					</div>
+				</div>
+                
+				<div id="secondaryContent">
+					<h3>
+						Hello
 						<%
 							if (username != null && !username.equals("")) {
 						%>
@@ -128,14 +145,13 @@
 					</form>
 					<p></p>
 					<h3>
-						BBB
+						to be done
 					</h3>
 					<p>
 						aaa
 					</p>
 					<h3>
-						BBB
-					</h3>
+						to be done</h3>
 					<ul>
 						<li>
 							bbbb

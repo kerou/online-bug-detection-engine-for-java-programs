@@ -13,13 +13,12 @@
   <servlet-name>GoRegister</servlet-name>
   <servlet-class>servlet.GoRegister</servlet-class>
  </servlet>
-  <servlet>
+ <servlet>
   <description>java servelt</description>
   <display-name>java servelt</display-name>
   <servlet-name>Register</servlet-name>
   <servlet-class>servlet.Register</servlet-class>
  </servlet>
- 
  <servlet>
   <description>java servelt</description>
   <display-name>java servelt</display-name>
@@ -44,12 +43,25 @@
   <servlet-name>CreateSingleReport</servlet-name>
   <servlet-class>servlet.CreateSingleReport</servlet-class>
  </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>CreateProjectReport</servlet-name>
+  <servlet-class>servlet.CreateProjectReport</servlet-class>
+ </servlet>
   <servlet>
     <description>java servelt</description>
     <display-name>java servelt</display-name>
-    <servlet-name>CreateProjectReport</servlet-name>
-    <servlet-class>servlet.CreateProjectReport</servlet-class>
+    <servlet-name>CreateProject</servlet-name>
+    <servlet-class>servlet.CreateProject</servlet-class>
   </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>ProjectDetail</servlet-name>
+    <servlet-class>servlet.ProjectDetail</servlet-class>
+  </servlet>
+
 
  <servlet-mapping>
   <servlet-name>Login</servlet-name>
@@ -59,7 +71,7 @@
   <servlet-name>GoRegister</servlet-name>
   <url-pattern>/GoRegister.do</url-pattern>
  </servlet-mapping>
-  <servlet-mapping>
+ <servlet-mapping>
   <servlet-name>Register</servlet-name>
   <url-pattern>/Register.do</url-pattern>
  </servlet-mapping>
@@ -79,9 +91,17 @@
   <servlet-name>CreateSingleReport</servlet-name>
   <url-pattern>/CreateSingleReport.do</url-pattern>
  </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>CreateProjectReport</servlet-name>
+  <url-pattern>/CreateProjectReport.do</url-pattern>
+ </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>CreateProjectReport</servlet-name>
-    <url-pattern>/CreateProjectReport.do</url-pattern>
+    <servlet-name>CreateProject</servlet-name>
+    <url-pattern>/CreateProject.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProjectDetail</servlet-name>
+    <url-pattern>/ProjectDetail.do</url-pattern>
   </servlet-mapping>
  <welcome-file-list>
   <welcome-file>index.jsp</welcome-file>

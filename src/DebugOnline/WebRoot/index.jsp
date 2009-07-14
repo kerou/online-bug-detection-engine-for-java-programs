@@ -63,8 +63,9 @@
 			<TABLE cellSpacing=0 cellPadding=0>
 				<TBODY>
 					<TR vAlign=top>
-						<TD width="25%">
-							&nbsp;
+						<TD width="25%">&nbsp;
+							
+
 						</TD>
 						<TD noWrap align=middle>
 							<div class="searchInput">
@@ -87,58 +88,44 @@
 				<TBODY>
 					<TR vAlign=top>
 						<TD class="navigateGrid">
-							<A href="" target=_blank><img src="images/bugs/01.png"
+							<A href="" target=_blank> <img src="images/bugs/01.png"
 									width="64" height="64"
-									onmouseover=
-	this.src = 'images/bugs/05.png';
-onmouseout=
-	this.src = 'images/bugs/01.png';
->
+									onmouseover="this.src = 'images/bugs/05.png'"
+                                    onmouseout="this.src = 'images/bugs/01.png'">
 							</A>
 						</TD>
 						<TD class="navigateGrid">
 							<A href="" target=_blank><img src="images/bugs/02.png"
-									width="64" height="64"
-									onmouseover=
-	this.src = 'images/bugs/06.png';
-onmouseout=
-	this.src = 'images/bugs/02.png';
->
+									width="64" height="64" 
+									onmouseover="this.src= 'images/bugs/06.png'"
+									onmouseout="this.src= 'images/bugs/02.png'">
 							</A>
 						</TD>
 						<TD class="navigateGrid">
 							<A href="" target=_blank><img src="images/bugs/03.png"
 									width="64" height="64"
-									onmouseover=
-	this.src = 'images/bugs/07.png';
-onmouseout=
-	this.src = 'images/bugs/03.png';
->
+									onmouseover="this.src= 'images/bugs/07.png'"
+									onmouseout="this.src= 'images/bugs/03.png'">
 							</A>
 						</TD>
 						<TD class="navigateGrid">
 							<A href="" target=_blank><img src="images/bugs/04.png"
-									width="64" height="64"
-									onmouseover=
-	this.src = 'images/bugs/08.png';
-onmouseout=
-	this.src = 'images/bugs/04.png';
->
+									width="64" height="64" 
+									onmouseover="this.src= 'images/bugs/08.png'"
+									onmouseout="this.src= 'images/bugs/04.png'">
 							</A>
 						</TD>
 					</TR>
 					<TR vAlign=bottom>
 						<TD class="navigateGrid">
-							<A href="" target=_blank>aaaa</A>
+							<A href="debug.jsp" target=_blank>Bug Detect</A>						</TD>
+				  <TD class="navigateGrid">
+							<A href="encylopedia.jsp" target=_blank>Encyclopedia</A>						</TD>
+				  <TD class="navigateGrid">
+							<A href="" target=_blank>Bug Wiki</A>
 						</TD>
 						<TD class="navigateGrid">
-							<A href="" target=_blank>bbbb</A>
-						</TD>
-						<TD class="navigateGrid">
-							<A href="" target=_blank>cccc</A>
-						</TD>
-						<TD class="navigateGrid">
-							<A href="" target=_blank>dddd</A>
+							<A href="" target=_blank>Help</A>
 						</TD>
 					</TR>
 				</TBODY>

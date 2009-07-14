@@ -1,17 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page language="java" import="Utils.*"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%UserInfo userInfo=(UserInfo)request.getSession().getAttribute("userInfo"); %>
-<%if(userInfo==null){ %>
-<%request.getSession().setAttribute("message","Please Login first"); %>
-<%RequestDispatcher dispatcher = request.getRequestDispatcher("/showMessage.jsp");%>
-<%dispatcher.forward(request, response); %>
-<%} %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -29,8 +22,9 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Pesticide</a>				</h1>
-		  <h2>
+					<a href="#">Pesticides</a>
+				</h1>
+				<h2>
 					by Baldur
 				</h2>
 			</div>
@@ -57,55 +51,27 @@
 				<div></div>
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
-						<h2>
-							Project Bug detect
-						</h2>
-                          <%
-								Vector<Project> projects = (Vector<Project>) request.getSession()
-										.getAttribute("projects");
-							%>
-							<%if(projects!=null&&projects.size()!=0) {%>
-						<div class="loginBack">
-						<div class="loginPanel3">
-                          <table cellspacing="0" cellpadding="3">
-                            <tr>
-                              <th> # </th>
-                              <th> Project Name</th>
-                              <th>created at</th>
-                            </tr>
-                            <%
-									for (int i = 0; i < projects.size(); i++) {
-								%>
-                            <%
-									Project project = projects.get(i);
-								%>
-                            <%
-									if (i % 2 == 0) {
-								%>
-                            <tr>
-                              <%
-										}
-									%>
-                              <td align="center"><%=i + 1%></td>
-                              <td><a href="projectDetail.do?PId="><%=project.getName()%></a></td>
-                              <td align="center"><%=project.getCreateaAt()%></td>
-                            </tr>
-                            <%
-									}
-								%>
-                          </table>
-					  </div>
-					  </div>
-					  <%}else{ %>
-						<p>&nbsp;</p>
-						<div class="loginPanel">
-                        <div>Hey~You havn't created a project yet<br />
-                        you can <a href="createProject.jsp">create</a> on now ;-)</div>
-                        <div></div>
-					  </div>
-					  <%} %>
-						<p>&nbsp;						</p>
-				  </div>
+						<h2>You can now create a project</h2>
+						<div>
+							<form id="form2" method="post" action="CreateProject.do">
+								<div class="loginPanel2">
+									<div class="inputLabel2">
+										Project Name:
+									</div>
+									<div class="inputField2">
+										<input name="name" type="text" id="name" />
+									</div>
+							  <div class="inputField2"><br /></div>
+							  <div class="inputButton">
+										<input type="submit" name="submit" id="submit" value="submit" />
+									</div>
+								</div>
+							</form>
+						</div>
+						<p>&nbsp;
+							
+						</p>
+					</div>
 				</div>
 				<div id="secondaryContent">
 					<h3>

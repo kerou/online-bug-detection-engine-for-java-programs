@@ -6,9 +6,11 @@ package Utils;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +30,7 @@ public class SQLUtil {
 	Statement statement;
 
 	private SQLUtil() {
-		setAuth("root","","onlinedebug");
+		setAuth("root", "", "onlinedebug");
 	}
 
 	public static SQLUtil getInstance() {
@@ -73,6 +75,7 @@ public class SQLUtil {
 	public void execute(String sql) {
 		try {
 			statement.execute(sql);
+
 		} catch (SQLException ex) {
 			Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null,
 					ex);
@@ -107,6 +110,7 @@ public class SQLUtil {
 						userInfo.setPassword(password);
 						userInfo.setSchool(set.getString(4));
 						userInfo.setSex(set.getInt(5));
+						userInfo.setEmail(set.getString(6));
 						return userInfo;
 					}
 				}
@@ -132,21 +136,76 @@ public class SQLUtil {
 				+ ",'"
 				+ userInfo.getEmail()
 				+ "')";
-		execute(sql);
+		try {
+			statement.execute(sql, Statement.RETURN_GENERATED_KEYS);
+			ResultSet set = statement.getGeneratedKeys();
+			if (set.next()) {
+				userInfo.setId(set.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void createProject(Project project) {
+//		String sql = "insert into PROJECT(userId,name,create_at) values("
+//			+ project.userId + ",'" + project.getName() + "'," + "?)";
+		String sql = "insert into PROJECT(userId,name,create_at) values(?,?,?)";
+		try {
+			System.out.println(sql);
+			System.out.println(project.getTimestamp().toString());
+			PreparedStatement pstmt = connection.prepareStatement(sql,
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			
+			pstmt.setInt(1, project.getUserId());
+			pstmt.setString(2, project.getName());
+			pstmt.setDate(3, project.getDate());
+			
+			pstmt.executeUpdate();
+			ResultSet set = pstmt.getGeneratedKeys();
+			if (set.next()) {
+				project.setId(set.getInt(1));
+			}
+			System.out.println(project.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Project getProject(int PId) {
+		ResultSet set = executeQuery("select * from Project WHERE id=" + PId);
+		try {
+			while (set.next()) {
+				Project project = new Project();
+				project.setId(set.getInt(1));
+				project.setUserId(set.getInt(2));
+				project.setName(set.getString(3));
+				project.setCreateAt(set.getTimestamp(4).toString());
+				project.setTimestamp(set.getTimestamp(4));
+				project.setDate(set.getDate(4));
+
+				return project;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static void main(String[] args) {
-		try {
-			SQLUtil util = SQLUtil.getInstance();
-			util.setAuth("root", "", "onlinedebug");
-			ResultSet set = util.executeQuery("select * from user");
-			System.out.println("set row:" + set.getRow());
-			while (set.next()) {
-				System.out.println(set.getString(2));
-			}
-		} catch (SQLException ex) {
-			Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null,
-					ex);
-		}
+		SQLUtil sql = SQLUtil.getInstance();
+
+		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+		Timestamp time = new Timestamp(date.getTime());
+		System.out.println(time.toString());
+		
+		Project project = new Project();
+		project.setUserId(1);
+		project.setName("ddddd");
+		project.setCreateAt(time.toString());
+		project.setTimestamp(time);
+		project.setDate(date);
+		
+		sql.createProject(project);
 	}
 }
