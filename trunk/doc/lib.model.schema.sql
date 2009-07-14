@@ -22,6 +22,26 @@ CREATE TABLE `User`
 )Type=MyISAM;
 
 #-----------------------------------------------------------------------------
+#-- project
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `project`;
+
+
+CREATE TABLE `project`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`userId` INTEGER,
+	`name` VARCHAR(255),
+	`create_at` DATETIME,
+	PRIMARY KEY (`id`),
+	INDEX `project_FI_1` (`userId`),
+	CONSTRAINT `project_FK_1`
+		FOREIGN KEY (`userId`)
+		REFERENCES `User` (`id`)
+)Type=MyISAM;
+
+#-----------------------------------------------------------------------------
 #-- PMDConfig
 #-----------------------------------------------------------------------------
 
