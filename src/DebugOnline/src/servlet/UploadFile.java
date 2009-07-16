@@ -20,6 +20,10 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import Utils.Config;
+import Utils.Project;
+import Utils.UserInfo;
+
 import Engine.DetectEngine;
 
 public class UploadFile extends HttpServlet {
@@ -60,20 +64,92 @@ public class UploadFile extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("uoloadFule:"+request.getParameter("uploadType"));
+		// int type = Integer.parseInt(request.getParameter("uploadType"));
+		int type = 1;
+		switch (type) {
+		case 0:
+			processSingleFile(request, response);
+			break;
+		case 1:
+			processProjectFile(request, response);
+			break;
+		}
+	}
+
+	private void processProjectFile(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+				"userInfo");
+		Project project = (Project) request.getSession()
+				.getAttribute("project");
+
+		if (userInfo == null) {
+			request.getSession().setAttribute("message", "please login first");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/showMessage.jsp");
+			dispatcher.forward(request, response);
+		}
+		if (project == null) {
+			request.getSession().setAttribute("message",
+					"please choose a project first");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/showMessage.jsp");
+			dispatcher.forward(request, response);
+		}
 
 		if (ServletFileUpload.isMultipartContent(request)) {
-			// Create a factory for disk-based file items
 			FileItemFactory factory = new DiskFileItemFactory();
-			// Create a new file upload handler
 			ServletFileUpload upload = new ServletFileUpload(factory);
-			// Parse the request
 			try {
 				List items = upload.parseRequest(request);
-
 				String fileName = ((FileItem) (items.get(0))).getFieldName();
-
 				String sessionId = request.getSession().getId();
+				String tempFilePath = "../userProjects/" + userInfo.getId()
+						+ "/" + project.getId() + "/" + fileName + ".rar";
+				File dir = new File("../userProjects/" + userInfo.getId() + "/"
+						+ project.getId());
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
+				File file = new File(tempFilePath);
+				if (file.exists()) {
+					file.delete();
+				}
+				try {
+					((FileItem) (items.get(0))).write(file);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
+				// 解压缩，删除压缩文件。
+				String command = "\"" + Config.WinrarDir + "/UnRAR.exe\" x "
+						+ "\"" + file.getAbsolutePath() + "\"" + " *.* \""
+						+ dir.getAbsolutePath() + "\"";
+				Runtime.getRuntime().exec(command);
+				System.out.println(command);
+
+				file.delete();
+
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("/ProjectDetail.do?PId="
+								+ project.getId());
+				dispatcher.forward(request, response);
+			} catch (FileUploadException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void processSingleFile(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		if (ServletFileUpload.isMultipartContent(request)) {
+			FileItemFactory factory = new DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			try {
+				List items = upload.parseRequest(request);
+				String fileName = ((FileItem) (items.get(0))).getFieldName();
+				String sessionId = request.getSession().getId();
 				String tempFilePath = "tempFiles\\" + sessionId + "\\"
 						+ fileName;
 				File dir = new File("tempFiles\\" + sessionId);
@@ -84,30 +160,20 @@ public class UploadFile extends HttpServlet {
 				if (file.exists()) {
 					file.delete();
 				}
-
 				try {
 					((FileItem) (items.get(0))).write(file);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				System.out.println("tempFiles\\" + sessionId + "\\"
-						+ fileName);
-
 				DetectEngine engine = new DetectEngine();
-
 				engine.reportFromFile("tempFiles\\" + sessionId + "\\"
 						+ fileName);
-
 				HttpSession session = request.getSession();
 				session.setAttribute("reports", engine.getReports());
-
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/showReports.jsp");
 				dispatcher.forward(request, response);
 			} catch (FileUploadException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -144,5 +210,4 @@ public class UploadFile extends HttpServlet {
 	public void init() throws ServletException {
 		// Put your code here
 	}
-
 }

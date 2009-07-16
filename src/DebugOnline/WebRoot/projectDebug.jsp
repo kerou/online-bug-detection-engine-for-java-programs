@@ -87,7 +87,7 @@
 										}
 									%>
                               <td align="center"><%=i + 1%></td>
-                              <td><a href="projectDetail.do?PId="><%=project.getName()%></a></td>
+                              <td><a href="ProjectDetail.do?PId=<%=project.getId()%>"><%=project.getName()%></a></td>
                               <td align="center"><%=project.getCreateaAt()%></td>
                             </tr>
                             <%

@@ -1,36 +1,28 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page language="java" import="Utils.*"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	Project project = (Project) request.getSession().getAttribute(
-			"project");
-	if (project == null) {
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/login.jsp");
-		dispatcher.forward(request, response);
-	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<base href="<%=basePath%>">
+
 		<title>Welcome to Debug Online Service</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/dtree.js"></script>
 	</head>
 
 	<body>
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Pesticide</a>
+					<a href="#">Pesticides</a>
 				</h1>
 				<h2>
 					by Baldur
@@ -60,78 +52,59 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Hi ~
-							<%
-							String username = (String) request.getSession().getAttribute(
-									"username");
-						%>
-							<%
-								if (username != null && !username.equals("")) {
-							%>
-							<%=username%>
-							<%
-								}
-							%>
+							Single File Bug Detect
 						</h2>
-						<h2>
-							Your Project
-						</h2>
-						<p>&nbsp;
-							
-
-						</p>
-						<p>&nbsp;
-							
-
-						</p>
-						<div class="loginBack">
-							<div>
-								<div class="loginPanel3">
-										<div
-											style="position: relative; float: left; margin-bottom: 10px; text-align: left;">
-											<p>
-												<a href="javascript: d.openAll();">open all</a> |
-												<a href="javascript: d.closeAll();">close all</a>
-											</p>
-											<script type="text/javascript">
-		<!--
-
-		d = new dTree('d');
-
-		<%for (int i = 0; i < project.getItemSize(); i++) {
-				ProjectItem item = project.getProjectItem(i);
-				if (item.getIsDir()) {%>
-				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="''"%>,<%="'" + item.getName() + "'"%>,<%="''"%>,<%="''"%>,<%="'img/folderopen.gif'"%>);
-				<%} else {%>
-				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="'FileDetail.do?Fid=" + item.getId() + "'"%>,"","_blank");
-				<%}
-			}%>
-		document.write(d);
-
-		//-->
-	</script>
-										</div>
-									  <div
-											style="width: 70%; position: relative; margin-bottom: 10px; text-align: center; float:right;">
-											<div class="buttonContainer">
-												<a href="uploadProject.jsp">Upload</a>											</div>
-									  <div class="buttonContainer">
-												<a href="modifyProject.jsp">Modify</a>											</div>
-									  <div class="buttonContainer">
-												<a href="CreateProjectReport.do">Debug</a>											</div>
-									  </div>
+						<h3>
+							1.you can upload a single file
+						</h3>
+						<div>
+							<form id="form2" method="post" action="UploadFile.do" enctype="MULTIPART/FORM-DATA">
+								<div class="loginPanel">
+									<div class="inputLabel">
+										file:
+									</div>
+									<div class="inputField">
+										<input name="upload" type="file" id="upload" />
+									</div>
+									<div class="inputButton">
+										<input type="submit" name="submit" id="submit" value="upload" />
 									</div>
 								</div>
-							</div>
+							</form>
 						</div>
+						<p>
+							&nbsp;
+						</p>
+						<h3>
+							2.you can type your code here
+						</h3>
+						<div class="codeContent">
+							<form id="form3" method="post" action="CreateSingleReport.do">
+								<div style="margin-bottom: 20px">
+									<textarea id="content2" name="content" cols="50" rows="30"
+										style="height: 100%; width: 100%;"></textarea>
+								</div>
+								<div>
+									<input type="submit" name="register" id="register"
+										value="submit" />
+								</div>
+							</form>
+						</div>
+						<p>
+							&nbsp;
+						</p>
+					</div>
 				</div>
-
 				<div id="secondaryContent">
 					<h3>
 						Hello
 						<%
-						if (username != null && !username.equals("")) {
+						String username = (String) request.getSession().getAttribute(
+								"username");
 					%>
+						<%
+							if (username != null && !username.equals("")) {
+						%>
 						<%=username%>
 						<%
 							} else {
@@ -160,13 +133,13 @@
 					</form>
 					<p></p>
 					<h3>
-						to be done
+						BBB
 					</h3>
 					<p>
 						aaa
 					</p>
 					<h3>
-						to be done
+						BBB
 					</h3>
 					<ul>
 						<li>
