@@ -1,9 +1,17 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="Utils.*"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+			"userInfo");
+	if (userInfo == null) {
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/login.jsp");
+		dispatcher.forward(request, response);
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -86,7 +94,7 @@
 									</div>
 									<div
 										style="width: 70%; position: relative; margin-bottom: 10px;">
-										<a href="projectDebug.jsp">link2</a>
+										<a href="ProjectDebug.do?Uid=<%=userInfo.getId()%>">link2</a>
 									</div>
 								</div>
 							</div>

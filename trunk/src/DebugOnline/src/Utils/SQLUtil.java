@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -148,12 +149,8 @@ public class SQLUtil {
 	}
 
 	public void createProject(Project project) {
-//		String sql = "insert into PROJECT(userId,name,create_at) values("
-//			+ project.userId + ",'" + project.getName() + "'," + "?)";
 		String sql = "insert into PROJECT(userId,name,create_at) values(?,?,?)";
 		try {
-			System.out.println(sql);
-			System.out.println(project.getTimestamp().toString());
 			PreparedStatement pstmt = connection.prepareStatement(sql,
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			
@@ -166,7 +163,7 @@ public class SQLUtil {
 			if (set.next()) {
 				project.setId(set.getInt(1));
 			}
-			System.out.println(project.getId());
+			project.processFileSystem();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -183,9 +180,33 @@ public class SQLUtil {
 				project.setCreateAt(set.getTimestamp(4).toString());
 				project.setTimestamp(set.getTimestamp(4));
 				project.setDate(set.getDate(4));
-
+				
+				project.processFileSystem();
 				return project;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Vector<Project> getProjectByUid(int uid) {
+		ResultSet set = executeQuery("select * from Project WHERE UserId=" + uid);
+		Vector<Project> projects=new Vector<Project>();
+		try {
+			while (set.next()) {
+				Project project = new Project();
+				project.setId(set.getInt(1));
+				project.setUserId(set.getInt(2));
+				project.setName(set.getString(3));
+				project.setCreateAt(set.getTimestamp(4).toString());
+				project.setTimestamp(set.getTimestamp(4));
+				project.setDate(set.getDate(4));
+				
+				project.processFileSystem();
+				projects.add(project);
+			}
+			return projects;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

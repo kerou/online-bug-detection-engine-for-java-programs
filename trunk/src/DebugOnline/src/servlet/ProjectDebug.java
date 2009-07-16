@@ -1,30 +1,24 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Utils.Project;
-import Utils.UserInfo;
+import Utils.SQLUtil;
 
-import Engine.DetectEngine;
-
-public class CreateProjectReport extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class ProjectDebug extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CreateProjectReport() {
+	public ProjectDebug() {
 		super();
 	}
 
@@ -52,39 +46,13 @@ public class CreateProjectReport extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
-				"userInfo");
-		Project project = (Project) request.getSession()
-				.getAttribute("project");
-
-		if (userInfo == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please login first");
-			RequestDispatcher dispatcher = request
-			.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
-		}
-		
-		if (project == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please select a project first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
-		}
-
-		int Uid = userInfo.getId();
-
-		String pName = String.valueOf(project.getId());
-
-		DetectEngine engine = new DetectEngine();
-		engine.reportFromProject(Uid, pName);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("reports", engine.getReports());
+		int Uid = Integer.parseInt(request.getParameter("Uid"));
+		System.out.println(Uid);
+		Vector<Project> projects = SQLUtil.getInstance().getProjectByUid(Uid);
+		request.getSession().setAttribute("projects", projects);
 
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/showReports.jsp");
+				.getRequestDispatcher("/projectDebug.jsp");
 		dispatcher.forward(request, response);
 	}
 
