@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="Utils.*"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -12,6 +13,7 @@
 		<TITLE>Welcome to the online bug detect engine</TITLE>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<link href="css/index.css" rel="stylesheet" type="text/css" />
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAof5fj_I99wLz9-SqIOKTPRTilKsiDiJUODilaQgPx7BmdpssmxQyYFiZLVSVmQWD4r-wYU8bNHbc4Q" type="text/javascript"></script>
 	</HEAD>
 	<BODY aLink=#ff0000 link=#0000cc topMargin=3 bgColor=#ffffff
 		text=#000000 vLink=#551a8b marginheight="3">
@@ -40,8 +42,15 @@
 
 		<DIV id=guser width="100%">
 			<NOBR>
-			<A href="index.jsp">Index</A>|
+			<%UserInfo userInfo=(UserInfo)request.getSession().getAttribute("userInfo"); %>
+			<%if(userInfo!=null){ %>
+			Hi~ <%=userInfo.getUsername() %>|
+			<A href="projectDebug.do">YourPage</A>|
+			<A href="Logout.do">Logout</A>|
+			<%}else{ %>
 			<A href="login.jsp">Login</A>
+			<%} %>
+			<A href="index.jsp">Index</A>|
 			</NOBR>
 		</DIV>
 

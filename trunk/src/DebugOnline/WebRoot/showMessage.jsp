@@ -85,6 +85,7 @@
 							if (message != null) {
 						%>
 						<%=username%>
+						<a href="Logout.do">logout</a>
 						<%
 							} else {
 						%>
