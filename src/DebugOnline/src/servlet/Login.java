@@ -52,8 +52,6 @@ public class Login extends HttpServlet {
 		String password=request.getParameter("password");
 		
 		SQLUtil sql=SQLUtil.getInstance();
-		System.out.println("************************");
-		System.out.println(sql.chechLogin(username, password));
 		if(sql.chechLogin(username, password)){
 			
 			UserInfo userInfo=SQLUtil.getInstance().getUserInfo(username, password);

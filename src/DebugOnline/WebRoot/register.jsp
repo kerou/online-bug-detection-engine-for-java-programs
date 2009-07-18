@@ -122,6 +122,7 @@
 							if (username != null && !username.equals("")) {
 						%>
 						<%=username%>
+						<a href="Logout.do">logout</a>
 						<%
 							} else {
 						%>
