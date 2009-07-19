@@ -1,9 +1,15 @@
 package Utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
 public class JavaUtil {
 	private static JavaUtil javaUtil;
@@ -46,7 +52,45 @@ public class JavaUtil {
 		}
 		return error;
 	}
-	
+	public boolean compileProject(String path)
+	{
+		try 
+		{
+			File batchFile=new File(path+"run.bat");
+			File dir=new File(path);
+			OutputStream out = new FileOutputStream(batchFile);
+			BufferedWriter rd = new BufferedWriter(new OutputStreamWriter(out,
+						"utf-8"));
+			
+			checkChildren(dir,rd);	
+			rd.write("set classpath="+dir.getAbsolutePath()+";");
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public void checkChildren(File file,BufferedWriter writer)
+	{
+		try
+		{
+			File[] files=file.listFiles();
+			for (int i=0;i<files.length;i++)
+			{
+				if (files[i].isDirectory())
+				{
+					checkChildren(files[i],writer);
+					writer.write(files[i].getAbsolutePath()+";");
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
 	private void processResultInfo(){
 		InputStream stdin=process.getInputStream();
 		InputStream stderr=process.getErrorStream();
