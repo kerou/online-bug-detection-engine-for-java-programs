@@ -82,7 +82,7 @@ public class Project {
 
 	public void processFileSystem() {
 		File root = new File("../userProjects/" + this.getUserId() + "/"
-				+ this.getId());
+				+ this.getId()+"/src/main/java");
 		if(!root.exists()){
 			root.mkdirs();
 		}
@@ -91,7 +91,7 @@ public class Project {
 		rootItem.setIsDir(true);
 		rootItem.setParent(-1);
 		rootItem.setPath("../userProjects/" + this.getUserId() + "/"
-				+ this.getId());
+				+ this.getId()+"/src/main/java");
 		rootItem.setName(root.getName());
 		rootItem.setFileType("dir");
 

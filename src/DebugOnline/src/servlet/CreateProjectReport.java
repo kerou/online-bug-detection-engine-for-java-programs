@@ -61,10 +61,10 @@ public class CreateProjectReport extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("message", "Please login first");
 			RequestDispatcher dispatcher = request
-			.getRequestDispatcher("/showMessage.jsp");
+					.getRequestDispatcher("/showMessage.jsp");
 			dispatcher.forward(request, response);
 		}
-		
+
 		if (project == null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("message", "Please select a project first");
@@ -73,12 +73,13 @@ public class CreateProjectReport extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
+		System.out.println("start parse project");
 		int Uid = userInfo.getId();
-
-		String pName = String.valueOf(project.getId());
+		String pName = project.getName();
+		int pid = project.getId();
 
 		DetectEngine engine = new DetectEngine();
-		engine.reportFromProject(Uid, pName);
+		engine.reportFromProject(Uid, pName, pid);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("reports", engine.getReports());

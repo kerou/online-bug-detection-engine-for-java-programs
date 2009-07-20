@@ -76,7 +76,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId,String projectName){
+	public void reportFromProject(int userId,String projectName,int Pid){
 	}
 
 	@Override
