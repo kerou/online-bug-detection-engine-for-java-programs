@@ -22,7 +22,7 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Pesticides</a>
+					<a href="#">Pesticide</a>
 				</h1>
 				<h2>
 					by Baldur
@@ -64,74 +64,90 @@
 										config
 									</div>
 									<div class="inputField">
-										<label>
-											<input type="radio" name="RadioGroup1" value="1"
-												id="RadioGroup1_0" />
-											aaq
-										</label>
-										<label>
-											<input type="radio" name="RadioGroup1" value="2"
-												id="RadioGroup1_1" />
-											aaq
-										</label>
+										ddddd
 									</div>
-								</div>
-								<p>
-									&nbsp;
+                                    <div class="inputLabel">
+										config
+									</div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                    <div class="inputLabel">
+										config
+									</div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                    <div class="inputLabel">
+										config
+									</div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                </div>
+								<p>&nbsp;
+									
 								</p>
 								<h3>
 									FindBugs Config
 								</h3>
 								<div class="loginPanel">
-									<div class="inputLabel">
-										config:
+                                <div class="inputLabel">
+										config
+								  </div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                    <div class="inputLabel">
+										config
 									</div>
 									<div class="inputField">
-										<label>
-											<input type="radio" name="RadioGroup1" value="1"
-												id="RadioGroup1_0" />
-											aaq
-										</label>
-										<label>
-											<input type="radio" name="RadioGroup1" value="2"
-												id="RadioGroup1_1" />
-											aaq
-										</label>
+										ddddd
 									</div>
-								</div>
-								<p>
-									&nbsp;
+                                    <div class="inputLabel">
+										config
+									</div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                </div>
+                                
+<p>&nbsp;
+									
 								</p>
 								<h3>
 									PMD Config
 								</h3>
 								<div class="loginPanel">
-									<div class="inputLabel">
-										config:
+                                <div class="inputLabel">
+										config
 									</div>
 									<div class="inputField">
-										<label>
-											<input type="radio" name="RadioGroup1" value="1"
-												id="RadioGroup1_0" />
-											aaq
-										</label>
-										<label>
-											<input type="radio" name="RadioGroup1" value="2"
-												id="RadioGroup1_1" />
-											aaq
-										</label>
+										ddddd
 									</div>
-								</div>
-								<p>
-									&nbsp;
+                                    <div class="inputLabel">
+										config
+									</div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                    <div class="inputLabel">
+										config
+									</div>
+									<div class="inputField">
+										ddddd
+									</div>
+                                </div>
+				  <p>&nbsp;
+									
 								</p>
 								<div class="inputButton">
 									<input type="submit" name="submit2" id="submit2" value="submit" />
 								</div>
 							</form>
 						</div>
-						<p>
-							&nbsp;
+						<p>&nbsp;
+							
 						</p>
 					</div>
 				</div>

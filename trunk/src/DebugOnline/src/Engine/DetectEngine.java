@@ -45,9 +45,9 @@ public class DetectEngine extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId,String projectName){
+	public void reportFromProject(int userId,String projectName,int Pid){
 		for(int i=0;i<generators.size();i++){
-			generators.get(i).reportFromProject(userId, projectName);
+			generators.get(i).reportFromProject(userId, projectName,Pid);
 			
 			for(int j=0;j<generators.get(i).reports.size();j++){
 				reports.add(generators.get(i).reports.get(j));

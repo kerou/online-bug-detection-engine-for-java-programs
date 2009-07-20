@@ -67,6 +67,7 @@
 							<%if(projects!=null&&projects.size()!=0) {%>
 						<div class="loginBack">
 						<div class="loginPanel3">
+						<a href="createProject.jsp">create a new project</a>
                           <table cellspacing="0" cellpadding="3">
                             <tr>
                               <th> # </th>

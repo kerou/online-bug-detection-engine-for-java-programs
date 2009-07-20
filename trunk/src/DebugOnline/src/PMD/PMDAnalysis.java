@@ -91,11 +91,12 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId, String projectName) {
+	public void reportFromProject(int userId, String projectName, int Pid) {
 		System.out.println("start pmd project process");
 
 		String command = dirPath + "pmd.bat " + "../userProjects/" + userId
-				+ "/" + projectName + " " + type + " " + rules;
+				+ "/" + Pid + "/src/main/java/" + projectName + " " + type
+				+ " " + rules;
 
 		try {
 			process = Runtime.getRuntime().exec(command);
