@@ -66,6 +66,7 @@ public class JavaUtil {
 			System.out.println(file.getAbsolutePath());
 			try {
 				Process process3=Runtime.getRuntime().exec(command, env, file);
+				Debug.showConsole(process3);
 				process3.waitFor();
 			} catch (IOException e1) {
 				e1.printStackTrace();

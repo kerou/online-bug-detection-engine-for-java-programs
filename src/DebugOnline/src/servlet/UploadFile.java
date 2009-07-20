@@ -21,6 +21,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import Utils.Config;
+import Utils.Debug;
 import Utils.JavaUtil;
 import Utils.Project;
 import Utils.UserInfo;
@@ -134,7 +135,7 @@ public class UploadFile extends HttpServlet {
 				System.out.println(command);
 				Process process2 = Runtime.getRuntime()
 						.exec(command, null, dir);
-				System.out.println("3333");
+				Debug.showConsole(process2);
 				try {
 					process2.waitFor();
 				} catch (InterruptedException e) {
