@@ -11,7 +11,7 @@
 	<head>
 		<base href="<%=basePath%>">
 
-		<title>Welcome to Debug Online Service</title>
+		<title>Edit File</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
@@ -19,6 +19,16 @@
 	</head>
 
 	<body>
+	<jsp:plugin code="aaa.class" codebase="" type="bean">
+	<jsp:params name="line" value="<%=request.getParameter("line") %>">
+	</jsp:params>
+	<jsp:params name="Fid" value="<%=request.getParameter("Fid") %>">
+	</jsp:params>
+	<jsp:params name="Uid" value="<%=request.getParameter("Uid") %>">
+	</jsp:params>
+	<jsp:params name="content" value="<%=request.getParameter("content") %>">
+	</jsp:params>
+	</jsp:plugin>
 	<form id="form1" method="post" action="">
       <p>
         <textarea></textarea>
