@@ -7,100 +7,111 @@
 			+ path + "/";
 	UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
 			"userInfo");
-	if (userInfo == null) {
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/login.jsp");
-		dispatcher.forward(request, response);
-	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<base href="<%=basePath%>">
+<head>
+<base href="<%=basePath%>">
+<title>
+Welcome to Debug Online Service
+</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
 
-		<title>Welcome to Debug Online Service</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="default.css" rel="stylesheet" type="text/css" />
-	</head>
+<body>
+<div id="outer">
+<div id="header">
+<h1>
+<a href="#">
+Pesticides
+</a>
+</h1>
+<h2>
+by Baldur
+</h2>
+</div>
+<div id="menu">
+<ul>
+<li class="first">
+<a href="#" accesskey="1" title="">
+Home
+</a>
+</li>
+<li>
+<a href="searchPage" accesskey="2" title="">
+Search
+</a>
+</li>
+<li>
+<a href="debug" accesskey="3" title="">
+Debug
+</a>
+</li>
+<li>
+<a href="encyclopedia" accesskey="4" title="">
+Encyclopedia
+</a>
+</li>
+<li>
+<a href="contact" accesskey="5" title="">
+Contact Us
+</a>
+</li>
+</ul>
+</div>
+<div id="content">
+<div></div>
+<div id="primaryContentContainer">
+<div id="primaryContent">
+<h2>
+Please choose the debug mode
+</h2>
+<h3>
+1.find bugs in a single file
+</h3>
+<div>
+<div class="loginPanel">
+<div>
+<div
+	style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
+aaa
+</div>
+<div style="width: 70%; position: relative; margin-bottom: 10px;">
+<a href="singleDebug.jsp">
+link1
+</a>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;
 
-	<body>
-		<div id="outer">
-			<div id="header">
-				<h1>
-					<a href="#">Pesticides</a>
-				</h1>
-				<h2>
-					by Baldur
-				</h2>
-			</div>
-			<div id="menu">
-				<ul>
-					<li class="first">
-						<a href="#" accesskey="1" title="">Home</a>
-					</li>
-					<li>
-						<a href="searchPage" accesskey="2" title="">Search</a>
-					</li>
-					<li>
-						<a href="debug" accesskey="3" title="">Debug</a>
-					</li>
-					<li>
-						<a href="encyclopedia" accesskey="4" title="">Encyclopedia</a>
-					</li>
-					<li>
-						<a href="contact" accesskey="5" title="">Contact Us</a>
-					</li>
-				</ul>
-			</div>
-			<div id="content">
-				<div></div>
-				<div id="primaryContentContainer">
-					<div id="primaryContent">
-						<h2>
-							Please choose the debug mode
-						</h2>
-						<h3>
-							1.find bugs in a single file
-						</h3>
-						<div>
-							<div class="loginPanel">
-								<div>
-									<div
-										style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
-										aaa
-									</div>
-									<div
-										style="width: 70%; position: relative; margin-bottom: 10px;">
-										<a href="singleDebug.jsp">link1</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<p>
-							&nbsp;
-						</p>
-						<h3>
-							2.find bugs involved in a project
-						</h3>
-						<div>
-							<div class="loginPanel">
-								<div>
-									<div
-										style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
-										aaa
-									</div>
-									<div
-										style="width: 70%; position: relative; margin-bottom: 10px;">
-										<a href="ProjectDebug.do?Uid=<%=userInfo.getId()%>">link2</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<p>
-							&nbsp;
+</p>
+<%if(userInfo!=null){ %>
+        <h3>
+            2.find bugs involved in a project
+        </h3>
+        <div>
+            <div class="loginPanel">
+                <div>
+                    <div
+                        style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
+                        aaa
+                    </div>
+                    <div
+                        style="width: 70%; position: relative; margin-bottom: 10px;">
+                        <a href="ProjectDebug.do?Uid=<%=userInfo.getId()%>">link2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;
+ <%} %>   
+							
 						</p>
 					</div>
 				</div>
