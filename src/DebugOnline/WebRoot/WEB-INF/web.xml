@@ -73,6 +73,20 @@
     <servlet-name>FileDetail</servlet-name>
     <servlet-class>servlet.FileDetail</servlet-class>
   </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>EditFile</servlet-name>
+    <servlet-class>servlet.EditFile</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>DeleteFile</servlet-name>
+    <servlet-class>servlet.DeleteFile</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -124,6 +138,14 @@
   <servlet-mapping>
     <servlet-name>FileDetail</servlet-name>
     <url-pattern>/FileDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditFile</servlet-name>
+    <url-pattern>/EditFile.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteFile</servlet-name>
+    <url-pattern>/DeleteFile.do</url-pattern>
   </servlet-mapping>
  <welcome-file-list>
   <welcome-file>index.jsp</welcome-file>
