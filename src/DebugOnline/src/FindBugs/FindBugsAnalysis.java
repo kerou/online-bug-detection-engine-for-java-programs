@@ -20,9 +20,8 @@ public class FindBugsAnalysis extends ReportGenerator {
 	private String type;
 	private String rules;
 	private XMLParser parser;
-
-	private String tempFilePath = "temp.java";
-	private String tempClassFilePath="JavaUtil.class";
+	private String tempFilePath = "findbugsBin\\bin\\temp.java";
+	private String tempClassFilePath="findbugsBin\\bin\\Debug.class";
 
 	public FindBugsAnalysis() {
 		this.parser=new XMLParser(XMLSettings.FindBugs);
@@ -37,8 +36,9 @@ public class FindBugsAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromString(String src,String sessionId) {
-		System.out.print("xxx");
+	public void reportFromString(String src,String sessionId) 
+	{
+		//System.out.print("xxx");
 		File file = new File(tempFilePath);
 		if (file.exists()) {
 			file.delete();
@@ -66,7 +66,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 			System.out.print("abc");
 			System.out.println("start findbugs process");
 			
-			process = Runtime.getRuntime().exec(
+			process = Runtime.getRuntime().exec(dirPath+
 					 "findbugs.bat -textui -xml:withMessages " + path + "");
 			process();
 			System.out.println("findbugs process finished");
@@ -76,7 +76,23 @@ public class FindBugsAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromProject(int userId,String projectName,int Pid){
+	public void reportFromProject(int userId,String projectName,int Pid)
+	{
+		
+		System.out.println("start findbugs project process");
+		String command = dirPath + "findbugs.bat -textui -xml:withMessages " + "..\\userProjects\\" + userId
+				+ "\\" + Pid + "\\target\\classes";
+
+		try {
+			process = Runtime.getRuntime().exec(command);
+			System.out.println("execute " + command);
+			process();
+			System.out.println("findbugs project process finished");
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 
 	@Override

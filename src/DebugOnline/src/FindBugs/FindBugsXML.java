@@ -58,22 +58,50 @@ public class FindBugsXML implements XMLParserInterface {
 			System.out.println(bugs.getLength());
 			for (int i = 0; i < bugs.getLength(); i++) 
 			{
+				
 				Element bugElement=(Element)bugs.item(i);
-				Report report = new Report();
+				//System.out.println(bugElement.getElementsByTagName("SourceLine").getLength());
+				for (int j=0;j<bugElement.getElementsByTagName("SourceLine").getLength();j++)
+				{
+					if (bugElement.getElementsByTagName("SourceLine").item(j).getParentNode().equals(bugElement))
+					{
+						Report report = new Report();
+						report.setPriority(Integer.parseInt(bugElement.getAttribute("priority")));
+						report.setInfo(bugElement.getElementsByTagName("ShortMessage").item(0).getTextContent());
+						
+						report.setFilePath(bugElement.getElementsByTagName("Class").item(0).getAttributes().item(0).getTextContent());
+						//System.out.println(bugElement.getElementsByTagName("SourceLine").item(j).getAttributes().getNamedItem("start"));
+						if (bugElement.getElementsByTagName("SourceLine").item(j).getAttributes().getNamedItem("start")==null)
+						{
+							//System.out.println(bugElement.getElementsByTagName("SourceLine").item(0).getAttributes().getNamedItem("start").getTextContent());
+							report.setLine(Integer.parseInt(bugElement.getElementsByTagName("SourceLine").item(0).getAttributes().getNamedItem("start").getTextContent()));
+						}
+						else
+						{
+							//System.out.println(bugElement.getElementsByTagName("SourceLine").item(j).getAttributes().getNamedItem("start").getTextContent());
+							report.setLine(Integer.parseInt(bugElement.getElementsByTagName("SourceLine").item(j).getAttributes().getNamedItem("start").getTextContent()));
+						}
+						/*System.out.println(bugElement.getElementsByTagName("SourceLine").item(j).getAttributes().item(1));
+						
+						
+						
+						
+						System.out.print("xxx ");
+						System.out.print(report.filePath+" ");
+						System.out.print(report.info+" ");
+						System.out.print(report.line+" ");
+						System.out.print(report.priority+" ");
+						*/
+						
+						reports.add(report);
+					}
+				}
+				
+				//report.setLine(Integer.parseInt(((Element)(bugElement.getElementsByTagName("SourceLine").item(3)))
+								//.getAttribute("start")));
 				
 				
-				report.setPriority(Integer.parseInt(bugElement.getAttribute("priority")));
-				report.setInfo(bugElement.getElementsByTagName("ShortMessage").item(0).getTextContent());
-				report.setLine(Integer.parseInt(((Element)(bugElement.getElementsByTagName("SourceLine").item(3)))
-								.getAttribute("start")));
 				
-				report.setFilePath(bugElement.getElementsByTagName("Class").item(0).getAttributes().item(0).getTextContent());
-				reports.add(report);
-				System.out.print("xxx ");
-				System.out.print(report.filePath+" ");
-				System.out.print(report.info+" ");
-				System.out.print(report.line+" ");
-				System.out.print(report.priority+" ");
 			}
 			
 			

@@ -38,8 +38,11 @@ public class JavaUtil {
 	public boolean compile(String path) {
 		try {
 			System.out.println("start compileing");
+			System.out.println("start compileing");
 			process = Runtime.getRuntime().exec("javac " + path);
+			System.out.println("start compileing");
 			processResultInfo();
+			System.out.println("start compileing");
 			if (!error) {
 				System.out.println("compile successed");
 			} else {
