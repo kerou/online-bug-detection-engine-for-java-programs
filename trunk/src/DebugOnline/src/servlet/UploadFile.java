@@ -66,7 +66,6 @@ public class UploadFile extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("uoloadFule:" + request.getParameter("uploadType"));
 		// int type = Integer.parseInt(request.getParameter("uploadType"));
 		int type = 1;
 		switch (type) {
@@ -86,8 +85,6 @@ public class UploadFile extends HttpServlet {
 		Project project = (Project) request.getSession()
 				.getAttribute("project");
 
-		System.out.println(userInfo == null);
-		System.out.println(project == null);
 		if (userInfo == null) {
 			request.getSession().setAttribute("message", "please login first");
 			RequestDispatcher dispatcher = request
@@ -128,14 +125,11 @@ public class UploadFile extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				System.out.println("222222");
 				// 解压缩，删除压缩文件。
 				String command = "\"" + Config.WinrarDir + "/WinRAR.exe\" x "
 						+ "\"" + file.getAbsolutePath() + "\"";
-				System.out.println(command);
 				Process process2 = Runtime.getRuntime()
 						.exec(command, null, dir);
-				Debug.showConsole(process2);
 				try {
 					process2.waitFor();
 				} catch (InterruptedException e) {

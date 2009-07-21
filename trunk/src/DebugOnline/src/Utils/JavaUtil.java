@@ -62,8 +62,6 @@ public class JavaUtil {
 			String[] env = { "JAVA_HOME="+Config.JAVAHOME, "M2_HOME=" + Config.M2HOME,
 					"M2=%M2_HOME%\bin", "MAVEN_OPTS=" + Config.M2OPTS };
 			String[] command = { "\"" + Config.MavenBin + "\"", "compile" };
-			System.out.println(command[0]+" "+command[1]);
-			System.out.println(file.getAbsolutePath());
 			try {
 				Process process3=Runtime.getRuntime().exec(command, env, file);
 				Debug.showConsole(process3);

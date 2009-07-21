@@ -63,7 +63,6 @@ public class SQLUtil {
 
 	public ResultSet executeQuery(String sql) {
 		ResultSet set = null;
-		System.out.println();
 		try {
 			set = statement.executeQuery(sql);
 		} catch (SQLException ex) {

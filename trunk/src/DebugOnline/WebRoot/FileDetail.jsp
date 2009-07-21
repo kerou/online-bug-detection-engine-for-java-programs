@@ -19,23 +19,12 @@
 	</head>
 
 	<body>
-	<jsp:plugin code="aaa.class" codebase="" type="bean">
-	<jsp:params name="line" value="<%=request.getParameter("line") %>">
-	</jsp:params>
-	<jsp:params name="Fid" value="<%=request.getParameter("Fid") %>">
-	</jsp:params>
-	<jsp:params name="Uid" value="<%=request.getParameter("Uid") %>">
-	</jsp:params>
-	<jsp:params name="content" value="<%=request.getParameter("content") %>">
-	</jsp:params>
-	</jsp:plugin>
-	<form id="form1" method="post" action="">
-      <p>
-        <textarea></textarea>
-      </p>
-      <p><input type="submit" name="Submit" id="Submit" value="submit" />
-        <input type="cancel" name="Submit2" id="Submit2" value="cancel" />
-      </p>
-	</form>
-</body>
+		<applet codebase="./classes" code="TestApplet.class" name="TestApplet"
+			width="320" height="240">
+			<param name="line" value="<%=request.getAttribute("line")%>">
+			<param name="Fid" value="<%=request.getAttribute("Fid")%>">
+			<param name="Uid" value="<%=request.getAttribute("Uid")%>">
+			<param name="content" value="<%=request.getAttribute("content")%>">
+		</applet>
+	</body>
 </html>

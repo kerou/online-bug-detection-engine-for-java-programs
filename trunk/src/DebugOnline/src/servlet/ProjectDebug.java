@@ -47,7 +47,6 @@ public class ProjectDebug extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int Uid = Integer.parseInt(request.getParameter("Uid"));
-		System.out.println(Uid);
 		Vector<Project> projects = SQLUtil.getInstance().getProjectByUid(Uid);
 		request.getSession().setAttribute("projects", projects);
 
