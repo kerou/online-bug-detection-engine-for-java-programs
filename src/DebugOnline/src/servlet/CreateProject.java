@@ -66,7 +66,6 @@ public class CreateProject extends HttpServlet {
 		String desc = request.getParameter("desc");
 		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 		Timestamp time = new Timestamp(date.getTime());
-		System.out.println(time.toString());
 
 		SQLUtil sql = SQLUtil.getInstance();
 

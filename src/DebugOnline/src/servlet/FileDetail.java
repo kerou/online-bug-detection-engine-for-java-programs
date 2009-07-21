@@ -53,8 +53,8 @@ public class FileDetail extends HttpServlet {
 				"userInfo");
 		Project project = (Project) request.getSession()
 				.getAttribute("project");
-		int Fid = Integer.parseInt(request.getParameter("Fid"));
-		int line = Integer.parseInt(request.getParameter("line"));
+		String Fid = request.getParameter("Fid");
+		String line = request.getParameter("line");
 
 		if (userInfo == null) {
 			HttpSession session = request.getSession();
@@ -72,15 +72,15 @@ public class FileDetail extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		if (Fid == 0) {
+		if (Fid == null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("message", "Please select a file first");
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/showMessage.jsp");
 			dispatcher.forward(request, response);
 		}
-
-		String path = project.getProjectItem(Fid).getPath();
+		
+		String path = project.getProjectItem(Integer.parseInt(Fid)).getPath();
 		BufferedReader reader = null;
 		StringBuffer buffer = new StringBuffer("");
 		reader = new BufferedReader(new FileReader(path));
@@ -91,14 +91,18 @@ public class FileDetail extends HttpServlet {
 		if (reader != null) {
 			reader.close();
 		}
-
-		request.setAttribute("line", line);
+		
+		int lineN=0;
+		if(line!=null){
+			lineN=Integer.parseInt(line);
+		}
+		request.setAttribute("line", lineN);
 		request.setAttribute("content", buffer.toString());
 		request.setAttribute("Fid", Fid);
 		request.setAttribute("Uid", userInfo.getId());
 
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/fileDetail.jsp");
+				.getRequestDispatcher("/FileDetail.jsp");
 		dispatcher.forward(request, response);
 	}
 

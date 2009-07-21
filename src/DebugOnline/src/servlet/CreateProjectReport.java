@@ -73,7 +73,6 @@ public class CreateProjectReport extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		System.out.println("start parse project");
 		int Uid = userInfo.getId();
 		String pName = project.getName();
 		int pid = project.getId();

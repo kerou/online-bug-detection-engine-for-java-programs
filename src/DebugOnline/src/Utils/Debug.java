@@ -16,8 +16,6 @@ public class Debug {
 			while ((s = reader.readLine()) != null) {
 				if (s.length() != 0) {
 					sb.append(s + "\n");
-				} else {
-					System.out.println("length==0");
 				}
 			}
 		} catch (IOException e) {
