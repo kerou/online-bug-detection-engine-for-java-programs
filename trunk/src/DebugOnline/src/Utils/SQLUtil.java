@@ -142,6 +142,16 @@ public class SQLUtil {
 			if (set.next()) {
 				userInfo.setId(set.getInt(1));
 			}
+			String sql2 = "insert into UserConfig(userId,PMDConfig,FBConfig) values("
+				+userInfo.getId()
+				+ ","
+				+ "'"
+				+ 0000000000000
+				+ "',"
+				+ "'"
+				+ 11
+				+ ")";
+		statement.execute(sql2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -152,11 +162,11 @@ public class SQLUtil {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql,
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			
+
 			pstmt.setInt(1, project.getUserId());
 			pstmt.setString(2, project.getName());
 			pstmt.setDate(3, project.getDate());
-			
+
 			pstmt.executeUpdate();
 			ResultSet set = pstmt.getGeneratedKeys();
 			if (set.next()) {
@@ -179,7 +189,7 @@ public class SQLUtil {
 				project.setCreateAt(set.getTimestamp(4).toString());
 				project.setTimestamp(set.getTimestamp(4));
 				project.setDate(set.getDate(4));
-				
+
 				project.processFileSystem();
 				return project;
 			}
@@ -188,10 +198,11 @@ public class SQLUtil {
 		}
 		return null;
 	}
-	
+
 	public Vector<Project> getProjectByUid(int uid) {
-		ResultSet set = executeQuery("select * from Project WHERE UserId=" + uid);
-		Vector<Project> projects=new Vector<Project>();
+		ResultSet set = executeQuery("select * from Project WHERE UserId="
+				+ uid);
+		Vector<Project> projects = new Vector<Project>();
 		try {
 			while (set.next()) {
 				Project project = new Project();
@@ -201,7 +212,7 @@ public class SQLUtil {
 				project.setCreateAt(set.getTimestamp(4).toString());
 				project.setTimestamp(set.getTimestamp(4));
 				project.setDate(set.getDate(4));
-				
+
 				project.processFileSystem();
 				projects.add(project);
 			}
@@ -218,14 +229,14 @@ public class SQLUtil {
 		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 		Timestamp time = new Timestamp(date.getTime());
 		System.out.println(time.toString());
-		
+
 		Project project = new Project();
 		project.setUserId(1);
 		project.setName("ddddd");
 		project.setCreateAt(time.toString());
 		project.setTimestamp(time);
 		project.setDate(date);
-		
+
 		sql.createProject(project);
 	}
 }

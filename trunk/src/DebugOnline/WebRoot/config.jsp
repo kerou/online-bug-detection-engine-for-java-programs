@@ -55,98 +55,89 @@
 							Config
 						</h2>
 						<div>
-							<form id="form2" method="post" action="config.do">
-								<h3>
-									Customer Config
-								</h3>
-								<div class="loginPanel">
-									<div class="inputLabel">
-										config
-									</div>
+							<form id="form2" method="post" action="PMDConfig.do">
+								<h3>PMD Config								</h3>
+							  <div class="loginPanel">
+                                <div class="inputLabel">
+										Enable
+							    </div>
 									<div class="inputField">
 										ddddd
 									</div>
-                                    <div class="inputLabel">
-										config
-									</div>
+<div class="inputLabel">
+										RuleSet
+								</div>
 									<div class="inputField">
-										ddddd
+									  <input type="checkbox" name="checkbox" id="checkbox" />
+									  <input type="checkbox" name="checkbox2" id="checkbox2" />
+									  <input type="checkbox" name="checkbox3" id="checkbox3" />
+									  <input type="checkbox" name="checkbox4" id="checkbox4" />
 									</div>
-                                    <div class="inputLabel">
-										config
-									</div>
-									<div class="inputField">
-										ddddd
-									</div>
-                                    <div class="inputLabel">
-										config
-									</div>
-									<div class="inputField">
-										ddddd
-									</div>
-                                </div>
-								<p>&nbsp;
+                                    <div class="inputLabel"></div>
+							<div class="inputField">
+							  <input type="checkbox" name="checkbox5" id="checkbox5" />
+							  <input type="checkbox" name="checkbox6" id="checkbox6" />
+							  <input type="checkbox" name="checkbox7" id="checkbox7" />
+							  <input type="checkbox" name="checkbox8" id="checkbox8" />
+							</div>
+                                    <div class="inputLabel"></div>
+							<div class="inputField">
+							  <input type="checkbox" name="checkbox9" id="checkbox9" />
+							  <input type="checkbox" name="checkbox10" id="checkbox10" />
+							  <input type="checkbox" name="checkbox11" id="checkbox11" />
+							  <input type="checkbox" name="checkbox12" id="checkbox12" />
+							</div>
+                              </div>
+							  <div class="inputButton">
+									<input type="submit" name="submit2" id="submit2" value="submit" />
+							  </div>
+                          </form>
+                                
+<p>&nbsp;
 									
-								</p>
+						  </p>
+                                <form id="form2" method="post" action="FindBugsConfig.do">
 								<h3>
 									FindBugs Config
 								</h3>
 								<div class="loginPanel">
                                 <div class="inputLabel">
-										config
+										Enable
 								  </div>
 									<div class="inputField">
-										ddddd
+									    <label>
+								        <input type="radio" name="Enable" value="0" id="Enable_0" />
+									      Yes
+									    </label>
+									    <label>
+				                <input type="radio" name="Enable" value="1" id="Enable_1" />
+									      No</label>
+									    <br />
+								      </p>
 									</div>
                                     <div class="inputLabel">
-										config
+										Strength
 									</div>
 									<div class="inputField">
-										ddddd
+									    <label>
+								        <input type="radio" name="strength" value="1" id="RadioGroup1_0" />
+									      单选</label>
+									    <label>
+								        <input type="radio" name="strength" value="2" id="RadioGroup1_1" />
+									      单选</label>
+									    <label>
+								        <input type="radio" name="strength" value="3" id="RadioGroup1_2" />
+									      单选</label>
+									    <br />
+								      </p>
 									</div>
-                                    <div class="inputLabel">
-										config
-									</div>
-									<div class="inputField">
-										ddddd
-									</div>
-                                </div>
-                                
-<p>&nbsp;
-									
-								</p>
-								<h3>
-									PMD Config
-								</h3>
-								<div class="loginPanel">
-                                <div class="inputLabel">
-										config
-									</div>
-									<div class="inputField">
-										ddddd
-									</div>
-                                    <div class="inputLabel">
-										config
-									</div>
-									<div class="inputField">
-										ddddd
-									</div>
-                                    <div class="inputLabel">
-										config
-									</div>
-									<div class="inputField">
-										ddddd
-									</div>
-                                </div>
-				  <p>&nbsp;
-									
-								</p>
-								<div class="inputButton">
+                                  </div>
+				  <div class="inputButton">
 									<input type="submit" name="submit2" id="submit2" value="submit" />
 								</div>
 							</form>
 						</div>
-						<p>&nbsp;
+					  <p>&nbsp;
 							
 						</p>
 					</div>
@@ -161,7 +152,7 @@
 						<%
 							if (username != null && !username.equals("")) {
 						%>
-						<%=username%>
+					  <%=username%>
 						<a href="Logout.do">logout</a>
 						<%
 							} else {
