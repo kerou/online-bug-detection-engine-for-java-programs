@@ -22,46 +22,43 @@ CREATE TABLE `User`
 )Type=MyISAM;
 
 #-----------------------------------------------------------------------------
-#-- project
+#-- Project
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `project`;
+DROP TABLE IF EXISTS `Project`;
 
 
-CREATE TABLE `project`
+CREATE TABLE `Project`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`userId` INTEGER,
 	`name` VARCHAR(255),
 	`create_at` DATETIME,
 	PRIMARY KEY (`id`),
-	INDEX `project_FI_1` (`userId`),
-	CONSTRAINT `project_FK_1`
+	INDEX `Project_FI_1` (`userId`),
+	CONSTRAINT `Project_FK_1`
 		FOREIGN KEY (`userId`)
 		REFERENCES `User` (`id`)
 )Type=MyISAM;
 
 #-----------------------------------------------------------------------------
-#-- PMDConfig
+#-- UserConfig
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `PMDConfig`;
+DROP TABLE IF EXISTS `UserConfig`;
 
 
-CREATE TABLE `PMDConfig`
+CREATE TABLE `UserConfig`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`userId` INTEGER,
-	`RuleId` INTEGER,
+	`PMDConfig` VARCHAR(255),
+	`FBConfig` VARCHAR(255),
 	PRIMARY KEY (`id`),
-	INDEX `PMDConfig_FI_1` (`userId`),
-	CONSTRAINT `PMDConfig_FK_1`
+	INDEX `UserConfig_FI_1` (`userId`),
+	CONSTRAINT `UserConfig_FK_1`
 		FOREIGN KEY (`userId`)
-		REFERENCES `User` (`id`),
-	INDEX `PMDConfig_FI_2` (`RuleId`),
-	CONSTRAINT `PMDConfig_FK_2`
-		FOREIGN KEY (`RuleId`)
-		REFERENCES `PMDRules` (`id`)
+		REFERENCES `User` (`id`)
 )Type=MyISAM;
 
 #-----------------------------------------------------------------------------
@@ -75,8 +72,22 @@ CREATE TABLE `PMDRules`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255),
-	`customer` INTEGER,
 	`RulePath` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=MyISAM;
+
+#-----------------------------------------------------------------------------
+#-- RulesStat
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `RulesStat`;
+
+
+CREATE TABLE `RulesStat`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255),
+	`count` INTEGER,
 	PRIMARY KEY (`id`)
 )Type=MyISAM;
 
