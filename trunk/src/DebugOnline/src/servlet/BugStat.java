@@ -1,30 +1,26 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import Utils.Project;
-import Utils.UserInfo;
+import Utils.BugStatis;
+import Utils.SQLUtil;
 
-import Engine.DetectEngine;
-
-public class CreateProjectReport extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class BugStat extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CreateProjectReport() {
+	public BugStat() {
 		super();
 	}
 
@@ -52,39 +48,27 @@ public class CreateProjectReport extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
-				"userInfo");
-		Project project = (Project) request.getSession()
-				.getAttribute("project");
+		String sql = "SELECT * FROM rulesstat";
+		ResultSet rs = SQLUtil.getInstance().executeQuery(sql);
+		Vector<BugStatis> bugstat = new Vector<BugStatis>();
+		try {
+			while (rs.next()) {
+				BugStatis bug = new BugStatis();
+				bug.id = rs.getInt(1);
+				bug.name = rs.getString(2);
+				bug.category = rs.getString(3);
+				bug.type = rs.getString(4);
+				bug.count = rs.getInt(5);
 
-		if (userInfo == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please login first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
+				bugstat.add(bug);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
-		if (project == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please select a project first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
-		}
-
-		int Uid = userInfo.getId();
-		String pName = project.getName();
-		int pid = project.getId();
-
-		DetectEngine engine = new DetectEngine();
-		engine.reportFromProject(Uid, pName, pid,userInfo);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("reports", engine.getReports());
+		request.setAttribute("bugstat", bugstat);
 
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/showReports.jsp");
+				.getRequestDispatcher("/BugStat.jsp");
 		dispatcher.forward(request, response);
 	}
 

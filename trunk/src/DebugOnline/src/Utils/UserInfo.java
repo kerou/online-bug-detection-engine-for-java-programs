@@ -1,5 +1,7 @@
 package Utils;
 
+import java.util.Vector;
+
 import Utils.UserInfoInterface;
 
 public class UserInfo implements UserInfoInterface {
@@ -10,9 +12,16 @@ public class UserInfo implements UserInfoInterface {
 	private String userName;
 	private String passWord;
 	private String email;
+	public Vector<String> PMDRuleSets;
+	public String FBStrength;
+	public boolean isPMD;
+	public boolean isFB;
+	public Vector<String> tools;
 
 	public UserInfo() {
 		clear();
+		PMDRuleSets=new Vector<String>();
+		tools=new Vector<String>();
 	}
 
 	public void clear() {

@@ -18,6 +18,7 @@ public class FindBugsXML implements XMLParserInterface {
 
 	public String input;
 	public Vector<Report> reports;
+	public String parseType;
 	
 	public FindBugsXML(){
 		reports=new Vector<Report>();
@@ -39,6 +40,11 @@ public class FindBugsXML implements XMLParserInterface {
 	public Vector<Report> getReports() {	
 		return reports;
 	}
+
+	public void SetParseType(String parseType) {
+		this.parseType=parseType;
+	}
+
 
 	public void parse() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -83,15 +89,14 @@ public class FindBugsXML implements XMLParserInterface {
 						}
 						/*System.out.println(bugElement.getElementsByTagName("SourceLine").item(j).getAttributes().item(1));
 						
-						
-						
-						
 						System.out.print("xxx ");
 						System.out.print(report.filePath+" ");
 						System.out.print(report.info+" ");
 						System.out.print(report.line+" ");
 						System.out.print(report.priority+" ");
 						*/
+						report.tool="FindBugs";
+						report.type=parseType;
 						
 						reports.add(report);
 					}

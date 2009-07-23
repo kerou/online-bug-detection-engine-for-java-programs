@@ -153,6 +153,7 @@ public class UploadFile extends HttpServlet {
 	private void processSingleFile(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		if (ServletFileUpload.isMultipartContent(request)) {
+			UserInfo userInfo=(UserInfo)request.getSession().getAttribute("userInfo");
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
@@ -176,7 +177,7 @@ public class UploadFile extends HttpServlet {
 				}
 				DetectEngine engine = new DetectEngine();
 				engine.reportFromFile("tempFiles\\" + sessionId + "\\"
-						+ fileName);
+						+ fileName, userInfo);
 				HttpSession session = request.getSession();
 				session.setAttribute("reports", engine.getReports());
 				RequestDispatcher dispatcher = request

@@ -111,6 +111,7 @@ public class SQLUtil {
 						userInfo.setSchool(set.getString(4));
 						userInfo.setSex(set.getInt(5));
 						userInfo.setEmail(set.getString(6));
+						processRules(userInfo);
 						return userInfo;
 					}
 				}
@@ -119,6 +120,38 @@ public class SQLUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private void processRules(UserInfo userInfo) {
+		ResultSet rs = this
+				.executeQuery("SELECT * FROM UserConfig WHERE userId = "
+						+ userInfo.getId());
+		String pmd = "";
+		String fb = "";
+		try {
+			while (rs.next()) {
+				pmd = rs.getString("PMDConfig");
+				fb = rs.getString("FBConfig");
+			}
+			userInfo.isPMD = (pmd.charAt(0) == '1');
+			userInfo.isFB = (fb.charAt(0) == '1');
+
+			for (int i = 0; i < Config.PMDRules.length-1; i++) {
+				if (pmd.charAt(i + 1) == '1') {
+					userInfo.PMDRuleSets.add(Config.PMDRules[i]);
+				}
+			}
+			// process fb config
+
+			if (userInfo.isPMD) {
+				userInfo.tools.add("PMD");
+			}
+			if (userInfo.isFB) {
+				userInfo.tools.add("FindBugs");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void createUser(UserInfo userInfo) {
@@ -142,16 +175,40 @@ public class SQLUtil {
 			if (set.next()) {
 				userInfo.setId(set.getInt(1));
 			}
+
+			// config for fb
+			StringBuffer sb2 = new StringBuffer("");
+			// enable
+			sb2.append("1");
+			sb2.append("1");
+
+			// config for pmd
+			StringBuffer sb = new StringBuffer("");
+			// enable
+			sb.append("1");
+			for (int i = 0; i < 29; i++) {
+				if (i == 3) {
+					// basic rule
+					sb.append("1");
+					continue;
+				}
+				if (i == 22) {
+					// naming rule
+					sb.append("1");
+					continue;
+				}
+				sb.append("0");
+			}
+
 			String sql2 = "insert into UserConfig(userId,PMDConfig,FBConfig) values("
-				+userInfo.getId()
-				+ ","
-				+ "'"
-				+ 0000000000000
-				+ "',"
-				+ "'"
-				+ 11
-				+ ")";
-		statement.execute(sql2);
+					+ userInfo.getId()
+					+ ","
+					+ "'"
+					+ sb.toString()
+					+ "',"
+					+ "'"
+					+ sb2.toString() + ")";
+			statement.execute(sql2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -8,6 +8,7 @@ import PMD.PMDXML;
 public class XMLParser implements XMLParserInterface {
 
 	public int type;
+	public String parseType;
 	public String input;
 	Vector<Report> reports;
 
@@ -48,6 +49,7 @@ public class XMLParser implements XMLParserInterface {
 	private void processPMD() {
 		PMDXML pmdxml=new PMDXML();
 		pmdxml.SetInput(input);
+		pmdxml.SetParseType(parseType);
 		pmdxml.parse();
 		
 		for(int i=0;i<pmdxml.reports.size();i++){
@@ -59,10 +61,15 @@ public class XMLParser implements XMLParserInterface {
 	private void processFindBugs() {
 		FindBugsXML fbxml=new FindBugsXML();
 		fbxml.SetInput(input);
+		fbxml.SetParseType(parseType);
 		fbxml.parse();
 		
 		for(int i=0;i<fbxml.reports.size();i++){
 			this.reports.add(fbxml.reports.get(i));
 		}
+	}
+
+	public void SetParseType(String parseType) {
+		this.parseType=parseType;
 	}
 }

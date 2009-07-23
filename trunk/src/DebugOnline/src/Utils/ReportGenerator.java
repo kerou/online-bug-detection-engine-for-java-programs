@@ -4,6 +4,7 @@ import java.util.Vector;
 
 public class ReportGenerator {
 	
+	public String name;
 	public String result;
 	public String toolType;
 	public Vector<Report> reports;
@@ -16,13 +17,13 @@ public class ReportGenerator {
 		this.toolType=type;
 	}
 	
-	public void reportFromString(String src,String SessionId){
+	public void reportFromString(String src,String SessionId,UserInfo userInfo){
 	}
 	
-	public void reportFromFile(String path){
+	public void reportFromFile(String path,UserInfo userInfo){
 	}
 	
-	public void reportFromProject(int userId,String projectName,int Pid){
+	public void reportFromProject(int userId,String projectName,int Pid,UserInfo userInfo){
 	}
 	
 	public void process(){

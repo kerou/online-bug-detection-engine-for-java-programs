@@ -18,6 +18,7 @@ public class PMDXML implements XMLParserInterface {
 
 	public String input;
 	public Vector<Report> reports;
+	public String parseType;
 
 	public PMDXML() {
 		reports = new Vector<Report>();
@@ -39,6 +40,11 @@ public class PMDXML implements XMLParserInterface {
 	public Vector<Report> getReports() {
 		return reports;
 	}
+
+	public void SetParseType(String parseType) {
+		this.parseType=parseType;
+	}
+
 
 	public void parse() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -67,6 +73,8 @@ public class PMDXML implements XMLParserInterface {
 							.getAttribute("priority")));
 					report.setRule(violation.getAttribute("rule"));
 					report.setRuleSet(violation.getAttribute("ruleset"));
+					report.tool="PMD";
+					report.type=parseType;
 
 					reports.add(report);
 				}
