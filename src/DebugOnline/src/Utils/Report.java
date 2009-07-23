@@ -7,6 +7,8 @@ public class Report {
 	public String info;
 	public String rule;
 	public String ruleSet;
+	public String tool;
+	public String type;
 
 	public Report() {
 	}

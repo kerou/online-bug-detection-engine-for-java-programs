@@ -72,7 +72,23 @@ CREATE TABLE `PMDRules`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255),
-	`RulePath` VARCHAR(255),
+	`ruleSet` VARCHAR(255),
+	`rulePath` VARCHAR(255),
+	PRIMARY KEY (`id`)
+)Type=MyISAM;
+
+#-----------------------------------------------------------------------------
+#-- FBRules
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `FBRules`;
+
+
+CREATE TABLE `FBRules`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255),
+	`category` VARCHAR(255),
 	PRIMARY KEY (`id`)
 )Type=MyISAM;
 
@@ -87,6 +103,9 @@ CREATE TABLE `RulesStat`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255),
+	`category` VARCHAR(255),
+	`type` VARCHAR(255),
+	`tool` VARCHAR(255),
 	`count` INTEGER,
 	PRIMARY KEY (`id`)
 )Type=MyISAM;

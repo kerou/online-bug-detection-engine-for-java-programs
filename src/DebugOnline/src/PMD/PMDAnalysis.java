@@ -22,11 +22,13 @@ public class PMDAnalysis extends ReportGenerator {
 	private String type;
 	private String rules;
 	private XMLParser parser;
+	private String parseType;
 
 	public PMDAnalysis() {
+		this.name = "PMD";
 		this.parser = new XMLParser(XMLSettings.PMD);
 		setType("xml");
-		setRules("rulesets/naming.xml");
+		setRules("rulesets/naming.xml rulesets/basic.xml");
 	}
 
 	public void setType(String type) {
@@ -38,7 +40,7 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromString(String src, String sessionId) {
+	public void reportFromString(String src, String sessionId, UserInfo userInfo) {
 		String fileName = getFileName(src);
 		String tempFilePath = "tempFiles\\" + sessionId + "\\" + fileName
 				+ ".java";
@@ -58,7 +60,7 @@ public class PMDAnalysis extends ReportGenerator {
 			rd.close();
 			out.close();
 
-			reportFromFile(tempFilePath);
+			reportFromFile(tempFilePath, userInfo);
 			file.delete();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -74,15 +76,22 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void reportFromFile(String path) {
+	public void reportFromFile(String path, UserInfo userInfo) {
 		try {
 			System.out.println("start pmd process");
+			if (userInfo != null) {
+				processRules(userInfo);
+				if (!userInfo.isPMD) {
+					return;
+				}
+			}
 
 			String command = dirPath + "pmd.bat " + path + " " + type + " "
 					+ rules;
 
 			process = Runtime.getRuntime().exec(command);
 			System.out.println("execute " + command);
+			parseType="single";
 			process();
 			System.out.println("pmd process finished");
 		} catch (IOException e) {
@@ -90,9 +99,23 @@ public class PMDAnalysis extends ReportGenerator {
 		}
 	}
 
+	private void processRules(UserInfo userInfo) {
+		StringBuffer sb = new StringBuffer("");
+		for (int i = 0; i < userInfo.PMDRuleSets.size(); i++) {
+			sb.append(Config.getPMDRulePath(userInfo.PMDRuleSets.get(i))+" ");
+		}
+	}
+
 	@Override
-	public void reportFromProject(int userId, String projectName, int Pid) {
+	public void reportFromProject(int userId, String projectName, int Pid,
+			UserInfo userInfo) {
 		System.out.println("start pmd project process");
+		if (userInfo != null) {
+			processRules(userInfo);
+			if (!userInfo.isPMD) {
+				return;
+			}
+		}
 
 		String command = dirPath + "pmd.bat " + "../userProjects/" + userId
 				+ "/" + Pid + "/src/main/java/" + projectName + " " + type
@@ -101,6 +124,7 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			process = Runtime.getRuntime().exec(command);
 			System.out.println("execute " + command);
+			parseType="project";
 			process();
 			System.out.println("pmd project process finished");
 		} catch (IOException e) {
@@ -126,6 +150,7 @@ public class PMDAnalysis extends ReportGenerator {
 			}
 			result = sb.toString();
 			parser.SetInput(result);
+			parser.SetParseType(parseType);
 			parser.parse();
 			reports = parser.getReports();
 		} catch (IOException e) {

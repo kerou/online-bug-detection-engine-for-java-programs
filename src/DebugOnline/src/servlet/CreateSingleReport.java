@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Utils.UserInfo;
+
 import Engine.DetectEngine;
 
 /**
@@ -51,9 +53,10 @@ public class CreateSingleReport extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String input=request.getParameter("content");
+		UserInfo userInfo=(UserInfo)request.getSession().getAttribute("UserInfo");
 		
 		DetectEngine engine=new DetectEngine();
-		engine.reportFromString(input,request.getSession().getId());
+		engine.reportFromString(input,request.getSession().getId(),userInfo);
 		
 		HttpSession session=request.getSession();
 		session.setAttribute("reports", engine.getReports());

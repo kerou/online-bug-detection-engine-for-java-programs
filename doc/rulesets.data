@@ -1,0 +1,29 @@
+Android Rules:android.xml
+Basic JSF rules:basic-jsf.xml
+Basic JSP rules:basic-jsp.xml
+Basic Rules:basic.xml
+Braces Rules:braces.xml
+Clone Implementation Rules:clone.xml
+Code Size Rules:codesize.xml
+Controversial Rules:controversial.xml
+Coupling Rules:coupling.xml
+Design Rules:design.xml
+Finalizer Rules:finalizers.xml
+Import Statement Rules:imports.xml
+J2EE Rules:je22.xml
+JavaBean Rule:javaneans.xml
+JUnit Rules:junit.xml
+Jakarta Commons Logging Rules:looging-jakarta-commons.xml
+Java Logging Rules:logging-java.xml
+Migration Rules:migrating.xml
+Migration13:migrating_to_13.xml
+Migration14:migrating_to_14.xml
+Migration15:migrating_to_15.xml
+MigratingToJava4:migrating_to_junit4.xml
+Naming Rules:naming.xml
+Optimization Rules:optimizations.xml
+Strict Exception Rules:scratchpad.xml
+String and StringBuffer Rules:strings.xml
+Security Code Guidelines:sunsecure.xml
+Type Resolution Rules:typersolution.xml
+Unused Code Rules:unusedcode.xml
