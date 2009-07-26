@@ -19,12 +19,9 @@
 	</head>
 
 	<body>
-		<applet codebase="./classes" code="TestApplet.class" name="TestApplet"
-			width="320" height="240">
-			<param name="line" value="<%=request.getAttribute("line")%>">
-			<param name="Fid" value="<%=request.getAttribute("Fid")%>">
-			<param name="Uid" value="<%=request.getAttribute("Uid")%>">
-			<param name="content" value="<%=request.getAttribute("content")%>">
+		<applet code="EditorApplet" archive="EditorApplet.jar" width="700" height="500">
+			<param name="line" value="<%=request.getParameter("line")%>">
+			<param name="Fid" value="<%=request.getParameter("Fid")%>">
 		</applet>
 	</body>
 </html>

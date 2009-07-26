@@ -16,6 +16,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
+        <link href="css/index.css" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
@@ -50,44 +51,38 @@
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
-							Please login
-						</h2>
-						<div>
-							<form id="form2" method="post" action="Login.do">
-								<div class="loginPanel">
-									<div class="inputLabel">
-										username:
-									</div>
-									<div class="inputField">
-										<input name="username" type="text" id="username" />
-									</div>
-									<div class="inputLabel">
-										password:
-									</div>
-									<div class="inputField">
-										<input type="password" name="password" id="password" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="login" />
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="loginPanel">
-							<form id="form3" method="post" action="GoRegister.do">
-								<div>
-									If you don't have an account please....
-								</div>
-								<div>
-									<input type="submit" name="register" id="register"
-										value="register" />
-								</div>
-							</form>
-						</div>
-						<p>&nbsp;
-							
-						</p>
-					</div>
+							Welcome to the onlinde bug detection engine</h2>
+						<div></div>
+				        <table cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <tr valign="top">
+                              <td class="navigateGrid"><a href="debug.jsp" target="_blank"> <img src="images/bugs/01.png"
+									width="64" height="64"
+									onmouseover="this.src = 'images/bugs/05.png'"
+                                    onmouseout="this.src = 'images/bugs/01.png'" /> </a> </td>
+                              <td class="navigateGrid"><a href="encyclopedia.jsp" target="_blank"><img src="images/bugs/02.png"
+									width="64" height="64" 
+									onmouseover="this.src= 'images/bugs/06.png'"
+									onmouseout="this.src= 'images/bugs/02.png'" /> </a> </td>
+                              <td class="navigateGrid"><a href="BugStat.do" target="_blank"><img src="images/bugs/03.png"
+									width="64" height="64"
+									onmouseover="this.src= 'images/bugs/07.png'"
+									onmouseout="this.src= 'images/bugs/03.png'" /> </a> </td>
+                              <td class="navigateGrid"><a href="Help.jsp" target="_blank"><img src="images/bugs/04.png"
+									width="64" height="64" 
+									onmouseover="this.src= 'images/bugs/08.png'"
+									onmouseout="this.src= 'images/bugs/04.png'" /> </a> </td>
+                            </tr>
+                            <tr valign="bottom">
+                              <td class="navigateGrid"><a href="debug.jsp" target="_blank">Bug Detect</a> </td>
+                              <td class="navigateGrid"><a href="encyclopedia.jsp" target="_blank">Encyclopedia</a> </td>
+                              <td class="navigateGrid"><a href="BugStat.do" target="_blank">Statistics</a> </td>
+                              <td class="navigateGrid"><a href="Help.jsp" target="_blank">Help</a> </td>
+                            </tr>
+                          </tbody>
+                        </table>
+				        <p>&nbsp;						</p>
+				  </div>
 				</div>
 				<div id="secondaryContent">
 					<h3>

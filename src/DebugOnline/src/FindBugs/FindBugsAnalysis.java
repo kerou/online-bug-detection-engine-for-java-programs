@@ -40,6 +40,9 @@ public class FindBugsAnalysis extends ReportGenerator {
 
 	@Override
 	public void reportFromString(String src, String sessionId, UserInfo userInfo) {
+		if (userInfo == null) {
+			return;
+		}
 		File file = new File(tempFilePath);
 		if (file.exists()) {
 			file.delete();

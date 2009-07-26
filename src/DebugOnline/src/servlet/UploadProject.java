@@ -35,7 +35,7 @@ import Utils.UserInfo;
 
 import Engine.DetectEngine;
 
-public class UploadFile extends HttpServlet {
+public class UploadProject extends HttpServlet {
 
 	/**
 	 * 
@@ -45,7 +45,7 @@ public class UploadFile extends HttpServlet {
 	/**
 	 * Constructor of the object.
 	 */
-	public UploadFile() {
+	public UploadProject() {
 		super();
 	}
 
@@ -73,26 +73,48 @@ public class UploadFile extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		processSingleFile(request, response);
+		processProjectFile(request, response);
 	}
 
-	private void processSingleFile(HttpServletRequest request,
+	private void processProjectFile(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+				"userInfo");
+		Project project = (Project) request.getSession()
+				.getAttribute("project");
+
+		if (userInfo == null) {
+			request.getSession().setAttribute("message", "please login first");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/showMessage.jsp");
+			dispatcher.forward(request, response);
+		}
+		if (project == null) {
+			request.getSession().setAttribute("message",
+					"please choose a project first");
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/showMessage.jsp");
+			dispatcher.forward(request, response);
+		}
 		if (ServletFileUpload.isMultipartContent(request)) {
-			UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
-					"userInfo");
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			try {
 				List items = upload.parseRequest(request);
 				String fileName = ((FileItem) (items.get(0))).getFieldName();
-				String sessionId = request.getSession().getId();
-				File dir = new File("tempFiles\\" + sessionId);
+				String tempFilePath = "../userProjects/" + userInfo.getId()
+						+ "/" + project.getId() + "/src/main/java/"
+						+ project.getName() + "/" + fileName + ".rar";
+				File dir = new File("../userProjects/" + userInfo.getId() + "/"
+						+ project.getId() + "/src/main/java/"
+						+ project.getName());
 				if (!dir.exists()) {
 					dir.mkdirs();
+				} else {
+					dir.delete();
+					dir.mkdirs();
 				}
-				File file = new File("tempFiles\\" + sessionId + "\\"
-						+ fileName);
+				File file = new File(tempFilePath);
 				if (file.exists()) {
 					file.delete();
 				}
@@ -101,23 +123,24 @@ public class UploadFile extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
-				String classFileName = getClassFileName("tempFiles\\"
-						+ sessionId + "\\" + fileName);
-				String tempFilePath = "tempFiles\\" + sessionId + "\\"
-						+ classFileName + ".java";
-				File file2 = new File(tempFilePath);
-				FileUtils.copyFile(file, file2);
-				JavaUtil.getInstance().compile(tempFilePath);
-				System.out.println(JavaUtil.getInstance().getResult());
-
-				DetectEngine engine = new DetectEngine();
-				engine.reportFromFile("tempFiles\\" + sessionId + "\\"
-						+ classFileName + ".java", userInfo);
-				HttpSession session = request.getSession();
-				session.setAttribute("reports", engine.getReports());
+				// 解压缩，删除压缩文件。
+				String command = "\"" + Config.WinrarDir + "/WinRAR.exe\" x "
+						+ "\"" + file.getAbsolutePath() + "\"";
+				Process process2 = Runtime.getRuntime()
+						.exec(command, null, dir);
+				try {
+					process2.waitFor();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				file.delete();
+				File mavenDir = new File("../userProjects/" + userInfo.getId()
+						+ "/" + project.getId());
+				JavaUtil.getInstance().compileProject(
+						mavenDir.getAbsolutePath());
 				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/showReports.jsp");
+						.getRequestDispatcher("/ProjectDetail.do?PId="
+								+ project.getId());
 				dispatcher.forward(request, response);
 			} catch (FileUploadException e) {
 				e.printStackTrace();

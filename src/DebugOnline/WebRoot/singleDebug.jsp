@@ -68,7 +68,6 @@
 										<input type="submit" name="submit" id="submit" value="upload" />
 									</div>
 								</div>
-                                <input type="hidden" name="UploadType" id="UploadType" value="0"/>
 							</form>
 						</div>
 						<p>&nbsp;
