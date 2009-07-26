@@ -55,14 +55,13 @@
 						<h3>
 							upload your project in zip or tgz mode</h3>
 						<div>
-					  <form id="form2" method="post" action="UploadFile.do" enctype="MULTIPART/FORM-DATA">
+					  <form id="form2" method="post" action="UploadProject.do" enctype="MULTIPART/FORM-DATA">
 								<div class="loginPanel">
 									<div class="inputLabel">
 										file:
 									</div>
 									<div class="inputField">
 										<input name="upload" type="file" id="upload" />
-                                        <input name="uploadType" type="hidden" id="uploadType" value="1"/>
 									</div>
 									<div class="inputButton">
 										<input type="submit" name="submit" id="submit" value="upload" />

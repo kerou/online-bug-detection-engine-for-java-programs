@@ -102,7 +102,7 @@
 				if (item.getIsDir()) {%>
 				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="''"%>,<%="'" + item.getName() + "'"%>,<%="''"%>,<%="''"%>,<%="'img/folderopen.gif'"%>);
 				<%} else {%>
-				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="'FileDetail.do?Fid=" + item.getId() + "'"%>,"","_blank");
+				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="'FileDetail.jsp?Fid=" + item.getId() + "&line=0'"%>,"","_blank");
 				<%}
 			}%>
 		document.write(d);

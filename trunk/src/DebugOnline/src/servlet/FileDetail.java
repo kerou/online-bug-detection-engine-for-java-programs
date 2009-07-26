@@ -1,10 +1,10 @@
 package servlet;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
+import java.io.ObjectOutputStream;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -79,31 +79,35 @@ public class FileDetail extends HttpServlet {
 					.getRequestDispatcher("/showMessage.jsp");
 			dispatcher.forward(request, response);
 		}
-		
+
 		String path = project.getProjectItem(Integer.parseInt(Fid)).getPath();
+		System.out.println(path);
 		BufferedReader reader = null;
 		StringBuffer buffer = new StringBuffer("");
 		reader = new BufferedReader(new FileReader(path));
 		String lineContent;
 		while ((lineContent = reader.readLine()) != null) {
+			System.out.println(lineContent);
 			buffer.append(lineContent + "\n");
 		}
 		if (reader != null) {
 			reader.close();
 		}
-		
-		int lineN=0;
-		if(line!=null){
-			lineN=Integer.parseInt(line);
-		}
-		request.setAttribute("line", lineN);
-		request.setAttribute("content", buffer.toString());
-		request.setAttribute("Fid", Fid);
-		request.setAttribute("Uid", userInfo.getId());
 
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/FileDetail.jsp");
-		dispatcher.forward(request, response);
+		int lineN = 0;
+		if (line != null) {
+			lineN = Integer.parseInt(line);
+		}
+		System.out.println(buffer.toString());
+
+		response.setContentType("text/plain");
+		response.setHeader("Pragma", "no-cache");
+		DataOutputStream oos = new DataOutputStream(response.getOutputStream());
+		System.out.println("now sending");
+		oos.writeUTF(buffer.toString());
+		oos.flush();
+		oos.close();
+		System.out.println("finish sending");
 	}
 
 	/**

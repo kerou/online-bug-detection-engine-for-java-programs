@@ -99,11 +99,11 @@
 									onmouseover="this.src = 'images/bugs/05.png'"
                                     onmouseout="this.src = 'images/bugs/01.png'">							</A>						</TD>
 				  <TD class="navigateGrid">
-							<A href="encylopedia.jsp" target=_blank><img src="images/bugs/02.png"
+							<A href="encyclopedia.jsp" target=_blank><img src="images/bugs/02.png"
 									width="64" height="64" 
 									onmouseover="this.src= 'images/bugs/06.png'"
 									onmouseout="this.src= 'images/bugs/02.png'">							</A>						</TD>
-				  <TD class="navigateGrid">
+		  <TD class="navigateGrid">
 							<A href="BugStat.do" target=_blank><img src="images/bugs/03.png"
 									width="64" height="64"
 									onmouseover="this.src= 'images/bugs/07.png'"
@@ -118,8 +118,8 @@
 						<TD class="navigateGrid">
 							<A href="debug.jsp" target=_blank>Bug Detect</A>						</TD>
 				  <TD class="navigateGrid">
-							<A href="encylopedia.jsp" target=_blank>Encyclopedia</A>						</TD>
-				  <TD class="navigateGrid">
+							<A href="encyclopedia.jsp" target=_blank>Encyclopedia</A>						</TD>
+		  <TD class="navigateGrid">
 							<A href="BugStat.do" target=_blank>Statistics</A>						</TD>
 		  <TD class="navigateGrid">
 							<A href="Help.jsp" target=_blank>Help</A>						</TD>
