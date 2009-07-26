@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Braces Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Braces_Rules"></a><h2>Braces Rules</h2>
+				
+  
+The Braces Ruleset contains a collection of braces rules.
+  
+
+   
+	
+	<div class="subsection"><a name="IfStmtsMustUseBraces"></a><h3>IfStmtsMustUseBraces</h3>
+		<p>Since: PMD 1.0</p>
+		<p>
+Avoid using if statements without using curly braces.
+     </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                   
+//IfStatement[count(*) &amp;lt; 3][not(Statement/Block)]
+                   
+               </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+ public class Foo {
+   public void bar() {
+     int x = 0;
+     if (foo) x++;
+   }
+ }
+ 
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="WhileLoopsMustUseBraces"></a><h3>WhileLoopsMustUseBraces</h3>
+		<p>Since: PMD 0.7</p>
+		<p>
+Avoid using 'while' statements without using curly braces.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//WhileStatement[not(Statement/Block)]
+
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public void doSomething() {
+  while (true)
+      x++;
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+      
+	
+	<div class="subsection"><a name="IfElseStmtsMustUseBraces"></a><h3>IfElseStmtsMustUseBraces</h3>
+		<p>Since: PMD 0.2</p>
+		<p>
+Avoid using if..else statements without using curly braces.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//Statement
+ [parent::IfStatement[@Else='true']]
+ [not(child::Block)]
+ [not(child::IfStatement)]
+ 
+                 </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+ public void doSomething() {
+   // this is OK
+   if (foo) x++;
+   // but this is not
+   if (foo)
+       x=x+1;
+   else
+       x=x-1;
+ }
+
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+     
+	
+	<div class="subsection"><a name="ForLoopsMustUseBraces"></a><h3>ForLoopsMustUseBraces</h3>
+		<p>Since: PMD 0.7</p>
+		<p>
+Avoid using 'for' statements without using curly braces.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+ 
+//ForStatement[not(Statement/Block)]
+ 
+                 </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public void foo() {
+ for (int i=0; i&lt;42;i++)
+   foo();
+}
+
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

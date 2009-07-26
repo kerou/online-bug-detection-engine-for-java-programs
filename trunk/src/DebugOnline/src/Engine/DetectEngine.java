@@ -20,7 +20,7 @@ public class DetectEngine extends ReportGenerator {
 		PMDAnalysis pmd = new PMDAnalysis();
 		FindBugsAnalysis findBugs = new FindBugsAnalysis();
 
-		// generators.add(pmd);
+		generators.add(pmd);
 		generators.add(findBugs);
 	}
 
@@ -70,7 +70,9 @@ public class DetectEngine extends ReportGenerator {
 			ResultSet rs = SQLUtil.getInstance().executeQuery(sql1);
 			try {
 				if (rs.next()) {
-					rs.updateInt("count", rs.getInt("count") + 1);
+					int update = rs.getInt("count") + 1;
+					rs.updateInt("count", update);
+					rs.updateRow();
 				} else {
 					String sql2 = "INSERT INTO rulesstat(name,category,type,tool,count) VALUES('"
 							+ reports.get(i).rule

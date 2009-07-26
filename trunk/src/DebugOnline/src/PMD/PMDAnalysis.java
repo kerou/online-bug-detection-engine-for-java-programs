@@ -18,7 +18,7 @@ import Utils.*;
 public class PMDAnalysis extends ReportGenerator {
 
 	private Process process;
-	private String dirPath = "pmdBin/bin/";
+	private String dirPath = "pmdBin\\bin\\";
 	private String type;
 	private String rules;
 	private XMLParser parser;
@@ -80,18 +80,18 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			System.out.println("start pmd process");
 			if (userInfo != null) {
-				processRules(userInfo);
 				if (!userInfo.isPMD) {
 					return;
 				}
+				processRules(userInfo);
 			}
 
 			String command = dirPath + "pmd.bat " + path + " " + type + " "
 					+ rules;
 
+			System.out.println("execute: " + command);
 			process = Runtime.getRuntime().exec(command);
-			System.out.println("execute " + command);
-			parseType="single";
+			parseType = "single";
 			process();
 			System.out.println("pmd process finished");
 		} catch (IOException e) {
@@ -102,8 +102,16 @@ public class PMDAnalysis extends ReportGenerator {
 	private void processRules(UserInfo userInfo) {
 		StringBuffer sb = new StringBuffer("");
 		for (int i = 0; i < userInfo.PMDRuleSets.size(); i++) {
-			sb.append(Config.getPMDRulePath(userInfo.PMDRuleSets.get(i))+" ");
+			if (i == userInfo.PMDRuleSets.size() - 1) {
+				sb.append("rulesets/"
+						+ Config.getPMDRulePath(userInfo.PMDRuleSets.get(i)));
+			} else {
+				sb.append("rulesets/"
+						+ Config.getPMDRulePath(userInfo.PMDRuleSets.get(i))
+						+ ",");
+			}
 		}
+		this.setRules(sb.toString());
 	}
 
 	@Override
@@ -123,8 +131,7 @@ public class PMDAnalysis extends ReportGenerator {
 
 		try {
 			process = Runtime.getRuntime().exec(command);
-			System.out.println("execute " + command);
-			parseType="project";
+			parseType = "project";
 			process();
 			System.out.println("pmd project process finished");
 		} catch (IOException e) {
@@ -143,12 +150,18 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			while ((s = reader.readLine()) != null) {
 				if (s.length() != 0) {
-					sb.append(s);
+					sb.append(s+"\n");
 				} else {
 					System.out.println("length==0");
 				}
 			}
+			try {
+				process.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			result = sb.toString();
+			System.out.println(result);
 			parser.SetInput(result);
 			parser.SetParseType(parseType);
 			parser.parse();
@@ -160,7 +173,33 @@ public class PMDAnalysis extends ReportGenerator {
 
 	public static void main(String[] args) {
 		PMDAnalysis pmd = new PMDAnalysis();
-		System.out.println("&&&&" + pmd.getFileName("public class asdasdasd{}")
-				+ "%%%%");
+		pmd.setRules("rulesets/android.xml," +
+				"rulesets/basic-jsf.xml," +
+				"rulesets/basic-jsp.xml," +
+				"rulesets/basic.xml," +
+				"rulesets/braces.xml," +
+				"rulesets/clone.xml," +
+				"rulesets/codesize.xml," +
+				"rulesets/controversial.xml," +
+				"rulesets/coupling.xml," +
+				"rulesets/design.xml," +
+				"rulesets/finalizers.xml," +
+				"rulesets/imports.xml," +
+				"rulesets/j2ee.xml," +
+				"rulesets/javabeans.xml," +
+				"rulesets/junit.xml," +
+				"rulesets/logging-jakarta-commons.xml," +
+				"rulesets/logging-java.xml," +
+				"rulesets/migrating.xml," +
+				"rulesets/migrating_to_13.xml," +
+				"rulesets/migrating_to_14.xml," +
+				"rulesets/migrating_to_15.xml," +
+				"rulesets/migrating_to_junit4.xml," +
+				"rulesets/naming.xml," +
+				"rulesets/optimizations.xml," +
+				"rulesets/scratchpad.xml," +
+				"rulesets/strings.xml," +
+				"rulesets/sunsecure.xml");
+		pmd.reportFromFile("upload", null);
 	}
 }

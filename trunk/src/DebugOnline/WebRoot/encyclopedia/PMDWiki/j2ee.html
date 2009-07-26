@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: J2EE Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="J2EE_Rules"></a><h2>J2EE Rules</h2>
+				
+
+  
+    These are rules for J2EE
+  
+
+  
+	
+	<div class="subsection"><a name="UseProperClassLoader"></a><h3>UseProperClassLoader</h3>
+		<p>Since: PMD 3.7</p>
+		<p>
+    In J2EE getClassLoader() might not work as expected.  Use Thread.currentThread().getContextClassLoader() instead.
+   </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//PrimarySuffix[@Image='getClassLoader']
+ 
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+ ClassLoader cl = Bar.class.getClassLoader();
+}
+
+  
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="MDBAndSessionBeanNamingConvention"></a><h3>MDBAndSessionBeanNamingConvention</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+        The EJB Specification state that any MessageDrivenBean or SessionBean should be suffixed by Bean.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+//TypeDeclaration/ClassOrInterfaceDeclaration
+[
+    (
+        (./ImplementsList/ClassOrInterfaceType[ends-with(@Image,'SessionBean')])
+        or
+        (./ImplementsList/ClassOrInterfaceType[ends-with(@Image,'MessageDrivenBean')])
+    )
+    and
+    not
+    (
+        ends-with(@Image,'Bean')
+    )
+]
+             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Proper name */
+            public class SomeBean implements SessionBean{}
+            
+        
+            </pre></div>
+  
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad name */
+            public class MissingTheProperSuffix implements SessionBean {}
+            
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="RemoteSessionInterfaceNamingConvention"></a><h3>RemoteSessionInterfaceNamingConvention</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+        Remote Home interface of a Session EJB should be suffixed by 'Home'.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//ClassOrInterfaceDeclaration
+[
+    (
+        (./ExtendsList/ClassOrInterfaceType[ends-with(@Image,'EJBHome')])
+    )
+    and
+    not
+    (
+        ends-with(@Image,'Home')
+    )
+]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Proper name */
+            public interface MyBeautifulHome extends javax.ejb.EJBHome {}
+            
+        
+            </pre></div>
+  
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad name */
+            public interface MissingProperSuffix extends javax.ejb.EJBHome {}
+            
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="LocalInterfaceSessionNamingConvention"></a><h3>LocalInterfaceSessionNamingConvention</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+        The Local Interface of a Session EJB should be suffixed by 'Local'.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//ClassOrInterfaceDeclaration
+[
+    (
+        (./ExtendsList/ClassOrInterfaceType[ends-with(@Image,'EJBLocalObject')])
+    )
+    and
+    not
+    (
+        ends-with(@Image,'Local')
+    )
+]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Proper name */
+            public interface MyLocal extends javax.ejb.EJBLocalObject {}
+            
+        
+            </pre></div>
+  
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad name */
+            public interface MissingProperSuffix extends javax.ejb.EJBLocalObject {}
+            
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="LocalHomeNamingConvention"></a><h3>LocalHomeNamingConvention</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+        The Local Home interface of a Session EJB should be suffixed by 'LocalHome'.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//ClassOrInterfaceDeclaration
+[
+    (
+        (./ExtendsList/ClassOrInterfaceType[ends-with(@Image,'EJBLocalHome')])
+    )
+    and
+    not
+    (
+        ends-with(@Image,'LocalHome')
+    )
+]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Proper name */
+            public interface MyBeautifulLocalHome extends javax.ejb.EJBLocalHome {}
+            
+        
+            </pre></div>
+  
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad name */
+            public interface MissingProperSuffix extends javax.ejb.EJBLocalHome {}
+            
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="RemoteInterfaceNamingConvention"></a><h3>RemoteInterfaceNamingConvention</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+        Remote Interface of a Session EJB should NOT be suffixed.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//ClassOrInterfaceDeclaration
+[
+    (
+        (./ExtendsList/ClassOrInterfaceType[ends-with(@Image,'EJBObject')])
+    )
+    and
+    (
+        ends-with(@Image,'Session')
+        or
+        ends-with(@Image,'EJB')
+        or
+        ends-with(@Image,'Bean')
+    )
+]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad Session suffix */
+            public interface BadSuffixSession extends javax.ejb.EJBObject {}
+            
+        
+            </pre></div>
+  
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad EJB suffix */
+            public interface BadSuffixEJB extends javax.ejb.EJBObject {}
+            
+        
+            </pre></div>
+  
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+            /* Bad Bean suffix */
+            public interface BadSuffixBean extends javax.ejb.EJBObject {}
+            
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="DoNotCallSystemExit"></a><h3>DoNotCallSystemExit</h3>
+		<p>Since: PMD 4.1</p>
+		<p>Web applications should not call System.exit(), since only the web container or the
+application server should stop the JVM.
+	</p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+//Name[starts-with(@Image,'System.exit')]
+    		</pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    		
+public class Foo {
+    public void bar() {
+        // NEVER DO THIS IN A APP SERVER !!!
+        System.exit(0);
+    }
+}
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="StaticEJBFieldShouldBeFinal"></a><h3>StaticEJBFieldShouldBeFinal</h3>
+		<p>Since: PMD 4.1</p>
+		<p>
+According to the J2EE specification (p.494), an EJB should not have any static fields
+with write access. However, static read only fields are allowed. This ensures proper
+behavior especially when instances are distributed by the container on several JREs.
+    	</p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+//ClassOrInterfaceDeclaration[
+    (
+    (./ImplementsList/ClassOrInterfaceType[ends-with(@Image,'SessionBean')])
+    or
+    (./ImplementsList/ClassOrInterfaceType[ends-with(@Image,'EJBHome')])
+    or
+    (./ImplementsList/ClassOrInterfaceType[ends-with(@Image,'EJBLocalObject')])
+    or
+    (./ImplementsList/ClassOrInterfaceType[ends-with(@Image,'EJBLocalHome')])
+    or
+    (./ExtendsList/ClassOrInterfaceType[ends-with(@Image,'EJBObject')])
+    )
+    and
+    (./ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration[
+         (./FieldDeclaration[@Static = 'true'])
+         and
+         (./FieldDeclaration[@Final = 'false'])
+    ])
+]
+    		 </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+public class SomeEJB extends EJBObject implements EJBLocalHome {
+	private static int BAD_STATIC_FIELD;
+
+	private static final int GOOD_STATIC_FIELD;
+}
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+	
+	
+	<div class="subsection"><a name="DoNotUseThreads"></a><h3>DoNotUseThreads</h3>
+		<p>Since: PMD 4.1</p>
+		<p>
+            
+                The J2EE specification explicitly forbid use of threads.
+            
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+                        //ClassOrInterfaceType[@Image = 'Thread' or @Image = 'Runnable']
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            	
+            // This is not allowed
+            public class UsingThread extends Thread {
+
+            }
+			// Neither this,
+			public class OtherThread implements Runnable {
+				// Nor this ...
+				public void methode() {
+					Runnable thread = new Thread(); thread.run();
+				}
+			}
+				
+		
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

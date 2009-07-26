@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Finalizer Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Finalizer_Rules"></a><h2>Finalizer Rules</h2>
+				
+
+  
+These rules deal with different problems that can occur with finalizers.
+  
+
+    
+	
+	<div class="subsection"><a name="EmptyFinalizer"></a><h3>EmptyFinalizer</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+If the finalize() method is empty, then it does not need to exist.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//MethodDeclaration[MethodDeclarator[@Image='finalize'][not(FormalParameters/*)]]
+  /Block[count(*)=0]
+
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+   protected void finalize() {}
+}
+
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="FinalizeOnlyCallsSuperFinalize"></a><h3>FinalizeOnlyCallsSuperFinalize</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+If the finalize() is implemented, it should do something besides just calling
+super.finalize().
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//MethodDeclaration[MethodDeclarator[@Image="finalize"][not(FormalParameters/*)]]
+   /Block[count(BlockStatement)=1]
+     /BlockStatement[
+       Statement/StatementExpression/PrimaryExpression
+      /PrimaryPrefix[@Image="finalize"]
+      ]
+
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+           
+public class Foo {
+   protected void finalize() {
+     super.finalize();
+   }
+}
+           
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+	
+	<div class="subsection"><a name="FinalizeOverloaded"></a><h3>FinalizeOverloaded</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+Methods named finalize() should not have parameters.  It is
+confusing and probably a bug to overload finalize().  It will
+not be called by the VM.
+   </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//MethodDeclaration
+ /MethodDeclarator[@Image='finalize'][FormalParameters[count(*)&amp;gt;0]]
+
+            </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+   // this is confusing and probably a bug
+   protected void finalize(int a) {
+   }
+}
+
+   
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="FinalizeDoesNotCallSuperFinalize"></a><h3>FinalizeDoesNotCallSuperFinalize</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+If the finalize() is implemented, its last action should be to call super.finalize.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+
+//MethodDeclaration[MethodDeclarator[@Image='finalize'][not(FormalParameters/*)]]
+   /Block
+      /BlockStatement[last()]
+      [not(Statement/StatementExpression/PrimaryExpression/PrimaryPrefix[@Image='finalize'])]
+      [not(Statement/TryStatement/FinallyStatement
+       /Block/BlockStatement/Statement/StatementExpression
+        /PrimaryExpression/PrimaryPrefix[@Image='finalize'])]
+
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+   protected void finalize() {
+       something();
+       // neglected to call super.finalize()
+   }
+}
+
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="FinalizeShouldBeProtected"></a><h3>FinalizeShouldBeProtected</h3>
+		<p>Since: PMD 1.1</p>
+		<p>
+If you override finalize(), make it protected.  If you make
+ it public, other classes may call it.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//MethodDeclaration[@Protected="false"]
+  /MethodDeclarator[@Image="finalize"]
+  [not(FormalParameters/*)]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+public class Foo {
+ public void finalize() {
+  // do something
+ }
+}
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+    
+	
+	<div class="subsection"><a name="AvoidCallingFinalize"></a><h3>AvoidCallingFinalize</h3>
+		<p>Since: PMD 3.0</p>
+		<p>
+Object.finalize() is called by the garbage collector on an object when garbage collection determines
+that there are no more references to the object.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/AvoidCallingFinalize.html">net.sourceforge.pmd.rules.AvoidCallingFinalize</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+ void foo() {
+  Bar b = new Bar();
+  b.finalize();
+ }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+ 
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

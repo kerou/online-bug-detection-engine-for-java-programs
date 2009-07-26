@@ -1,0 +1,738 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Migration Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Migration_Rules"></a><h2>Migration Rules</h2>
+				
+
+  
+Contains rules about migrating from one JDK version to another.  Don't use these rules directly,
+      rather, use a wrapper ruleset such as migrating_to_13.xml.
+  
+
+
+	
+	<div class="subsection"><a name="ReplaceVectorWithList"></a><h3>ReplaceVectorWithList</h3>
+		<p>Since: PMD 3.4</p>
+		<p>
+  Consider replacing Vector usages with the newer java.util.ArrayList if expensive threadsafe operation is not required.
+  </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//Type/ReferenceType/ClassOrInterfaceType[@Image='Vector']
+ 
+    </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+ void bar() {
+    Vector v = new Vector();
+ }
+}
+
+  
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ReplaceHashtableWithMap"></a><h3>ReplaceHashtableWithMap</h3>
+		<p>Since: PMD 3.4</p>
+		<p>
+      Consider replacing this Hashtable with the newer java.util.Map
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+    
+//Type/ReferenceType/ClassOrInterfaceType[@Image='Hashtable']
+     
+        </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+    public class Foo {
+     void bar() {
+        Hashtable h = new Hashtable();
+     }
+    }
+    
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ReplaceEnumerationWithIterator"></a><h3>ReplaceEnumerationWithIterator</h3>
+		<p>Since: PMD 3.4</p>
+		<p>
+      Consider replacing this Enumeration with the newer java.util.Iterator
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+    
+//ImplementsList/ClassOrInterfaceType[@Image='Enumeration']
+     
+        </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+public class Foo implements Enumeration {
+    private int x = 42;
+    public boolean hasMoreElements() {
+        return true;
+    }
+    public Object nextElement() {
+        return String.valueOf(i++);
+    }
+}
+    
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AvoidEnumAsIdentifier"></a><h3>AvoidEnumAsIdentifier</h3>
+		<p>Since: PMD 3.4</p>
+		<p>Finds all places where 'enum' is used as an identifier.</p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//VariableDeclaratorId[@Image='enum']
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+    public class A {
+        public  class foo {
+            String enum = "foo";
+        }
+    }
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AvoidAssertAsIdentifier"></a><h3>AvoidAssertAsIdentifier</h3>
+		<p>Since: PMD 3.4</p>
+		<p>Finds all places where 'assert' is used as an identifier.</p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//VariableDeclaratorId[@Image='assert']
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+    public class A {
+        public  class foo {
+            String assert = "foo";
+        }
+    }
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="IntegerInstantiation"></a><h3>IntegerInstantiation</h3>
+		<p>Since: PMD 3.5</p>
+		<p>In JDK 1.5, calling new Integer() causes memory allocation.  Integer.valueOf() is more memory friendly.</p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//PrimaryPrefix
+ /AllocationExpression
+  [not (ArrayDimsAndInits)
+   and (ClassOrInterfaceType/@Image='Integer'
+    or ClassOrInterfaceType/@Image='java.lang.Integer')]
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+public class Foo {
+ private Integer i = new Integer(0); // change to Integer i = Integer.valueOf(0);
+}
+   
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+	
+	
+	<div class="subsection"><a name="ByteInstantiation"></a><h3>ByteInstantiation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+              In JDK 1.5, calling new Byte() causes memory allocation. Byte.valueOf() is more memory friendly.
+          </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+          
+//PrimaryPrefix/AllocationExpression
+[not (ArrayDimsAndInits)
+and (ClassOrInterfaceType/@Image='Byte'
+or ClassOrInterfaceType/@Image='java.lang.Byte')]
+          
+          </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+private Byte i = new Byte(0); // change to Byte i =
+Byte.valueOf(0);
+}
+
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ShortInstantiation"></a><h3>ShortInstantiation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>In JDK 1.5, calling new Short() causes memory allocation. Short.valueOf() is more memory friendly.
+          </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//PrimaryPrefix
+/AllocationExpression
+[not (ArrayDimsAndInits)
+and (ClassOrInterfaceType/@Image='Short'
+or ClassOrInterfaceType/@Image='java.lang.Short')]
+
+          </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+private Short i = new Short(0); // change to Short i =
+Short.valueOf(0);
+}
+
+          
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+	
+	<div class="subsection"><a name="LongInstantiation"></a><h3>LongInstantiation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>In JDK 1.5, calling new Long() causes memory allocation. Long.valueOf() is more memory friendly.</p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//PrimaryPrefix
+/AllocationExpression
+[not (ArrayDimsAndInits)
+and (ClassOrInterfaceType/@Image='Long'
+or ClassOrInterfaceType/@Image='java.lang.Long')]
+
+    </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+private Long i = new Long(0); // change to Long i =
+Long.valueOf(0);
+}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+    
+	
+	<div class="subsection"><a name="JUnit4TestShouldUseBeforeAnnotation"></a><h3>JUnit4TestShouldUseBeforeAnnotation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+In JUnit 3, the setUp method was used to set up all data entities required in running tests. JUnit 4 skips the setUp method 
+and executes all methods annotated with @Before before all tests
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//ClassOrInterfaceBodyDeclaration[MethodDeclaration/MethodDeclarator[@Image='setUp']]
+[count(Annotation/MarkerAnnotation/Name[@Image='Before'])=0]
+
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class MyTest {
+    public void setUp() {
+        bad();
+    }
+}
+public class MyTest2 {
+    @Before public void setUp() {
+        good();
+    }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+	
+	<div class="subsection"><a name="JUnit4TestShouldUseAfterAnnotation"></a><h3>JUnit4TestShouldUseAfterAnnotation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+In JUnit 3, the tearDown method was used to clean up all data entities required in running tests. JUnit 4 skips the tearDown method 
+and executes all methods annotated with @After after running each test
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//ClassOrInterfaceBodyDeclaration[MethodDeclaration/MethodDeclarator[@Image='tearDown']]
+[count(Annotation/MarkerAnnotation/Name[@Image='After'])=0]
+
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class MyTest {
+    public void tearDown() {
+        bad();
+    }
+}
+public class MyTest2 {
+    @After public void tearDown() {
+        good();
+    }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+	
+	<div class="subsection"><a name="JUnit4TestShouldUseTestAnnotation"></a><h3>JUnit4TestShouldUseTestAnnotation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+In JUnit 3, the framework executed all methods which started with the word test as a unit test. In JUnit 4, only methods annotated
+with the @Test annotation are executed.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//ClassOrInterfaceBodyDeclaration[MethodDeclaration/MethodDeclarator[starts-with(@Image,'test')]]
+[count(Annotation//Name[@Image='Test'])=0]
+
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class MyTest {
+    public void testBad() {
+        doSomething();
+    }
+
+	@Test
+    public void testGood() {
+        doSomething();
+    }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+	
+	<div class="subsection"><a name="JUnit4SuitesShouldUseSuiteAnnotation"></a><h3>JUnit4SuitesShouldUseSuiteAnnotation</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+In JUnit 3, test suites are indicated by the suite() method. In JUnit 4, suites are indicated
+through the @RunWith(Suite.class) annotation.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//ClassOrInterfaceBodyDeclaration[MethodDeclaration/MethodDeclarator[@Image='suite']]
+[MethodDeclaration/ResultType/Type/ReferenceType/ClassOrInterfaceType[@Image='Test' or @Image = 'junit.framework.Test']]
+[not(MethodDeclaration/Block//ClassOrInterfaceType[@Image='JUnit4TestAdapter'])]
+
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class BadExample extends TestCase{
+
+    public static Test suite(){
+    	return new Suite();
+    }
+}
+
+@RunWith(Suite.class)
+@SuiteClasses( { TestOne.class, TestTwo.class })
+public class GoodTest {
+}
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+    
+	
+	<div class="subsection"><a name="JUnitUseExpected"></a><h3>JUnitUseExpected</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/migration/JUnitUseExpected.html">net.sourceforge.pmd.rules.migration.JUnitUseExpected</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class MyTest {
+	@Test
+    public void testBad() {
+        try {
+            doSomething();
+            fail("should have thrown an exception");
+        } catch (Exception e) {
+        }
+    }
+
+	@Test(expected=Exception.class)
+    public void testGood() {
+        doSomething();
+    }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

@@ -1,26 +1,86 @@
 /*
-Navicat MySQL Data Transfer
-Source Host     : localhost:3306
-Source Database : onlinedebug
-Target Host     : localhost:3306
-Target Database : onlinedebug
-Date: 2009-07-24 16:22:12
+MySQL Data Transfer
+Source Host: localhost
+Source Database: onlinedebug
+Target Host: localhost
+Target Database: onlinedebug
+Date: 2009-7-25 14:14:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for fbrules
 -- ----------------------------
-DROP TABLE IF EXISTS `fbrules`;
 CREATE TABLE `fbrules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=369 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `category` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=369 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of fbrules
+-- Table structure for pmdrules
+-- ----------------------------
+CREATE TABLE `pmdrules` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `ruleSet` varchar(255) default NULL,
+  `rulePath` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=252 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for project
+-- ----------------------------
+CREATE TABLE `project` (
+  `id` int(11) NOT NULL auto_increment,
+  `userId` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `create_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `Project_FI_1` (`userId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for rulesstat
+-- ----------------------------
+CREATE TABLE `rulesstat` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `category` varchar(255) default NULL,
+  `type` varchar(255) default NULL,
+  `tool` varchar(255) default NULL,
+  `count` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(255) default NULL,
+  `password` varchar(255) default NULL,
+  `school` varchar(255) default NULL,
+  `sex` int(11) default NULL,
+  `email` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for userconfig
+-- ----------------------------
+CREATE TABLE `userconfig` (
+  `id` int(11) NOT NULL auto_increment,
+  `userId` int(11) default NULL,
+  `PMDConfig` varchar(255) default NULL,
+  `FBConfig` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `UserConfig_FI_1` (`userId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records 
 -- ----------------------------
 INSERT INTO `fbrules` VALUES ('1', 'AM_CREATES_EMPTY_JAR_FILE_ENTRY', 'Bad practice');
 INSERT INTO `fbrules` VALUES ('2', 'AM_CREATES_EMPTY_ZIP_FILE_ENTRY', 'Bad practice');
@@ -390,106 +450,254 @@ INSERT INTO `fbrules` VALUES ('365', 'UCF_USELESS_CONTROL_FLOW', 'Dodgy');
 INSERT INTO `fbrules` VALUES ('366', 'UCF_USELESS_CONTROL_FLOW_NEXT_LINE', 'Dodgy');
 INSERT INTO `fbrules` VALUES ('367', 'UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR', 'Dodgy');
 INSERT INTO `fbrules` VALUES ('368', 'XFB_XML_FACTORY_BYPASS', 'Dodgy');
-
--- ----------------------------
--- Table structure for pmdconfig
--- ----------------------------
-DROP TABLE IF EXISTS `pmdconfig`;
-CREATE TABLE `pmdconfig` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) DEFAULT NULL,
-  `RuleId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `PMDConfig_FI_1` (`userId`),
-  KEY `PMDConfig_FI_2` (`RuleId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of pmdconfig
--- ----------------------------
-
--- ----------------------------
--- Table structure for pmdrules
--- ----------------------------
-DROP TABLE IF EXISTS `pmdrules`;
-CREATE TABLE `pmdrules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `ruleSet` varchar(255) DEFAULT NULL,
-  `rulePath` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of pmdrules
--- ----------------------------
-
--- ----------------------------
--- Table structure for project
--- ----------------------------
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE `project` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `Project_FI_1` (`userId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of project
--- ----------------------------
-
--- ----------------------------
--- Table structure for rulesstat
--- ----------------------------
-DROP TABLE IF EXISTS `rulesstat`;
-CREATE TABLE `rulesstat` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `tool` varchar(255) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of rulesstat
--- ----------------------------
-
--- ----------------------------
--- Table structure for user
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `school` varchar(255) DEFAULT NULL,
-  `sex` int(11) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-
--- ----------------------------
--- Table structure for userconfig
--- ----------------------------
-DROP TABLE IF EXISTS `userconfig`;
-CREATE TABLE `userconfig` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) DEFAULT NULL,
-  `PMDConfig` varchar(255) DEFAULT NULL,
-  `FBConfig` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `UserConfig_FI_1` (`userId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of userconfig
--- ----------------------------
+INSERT INTO `pmdrules` VALUES ('1', 'CallSuperFirst', 'Android Rules', 'android.xml');
+INSERT INTO `pmdrules` VALUES ('2', 'CallSuperLast', 'Android Rules', 'android.xml');
+INSERT INTO `pmdrules` VALUES ('3', 'ProtectLogD', 'Android Rules', 'android.xml');
+INSERT INTO `pmdrules` VALUES ('4', 'ProtectLogV', 'Android Rules', 'android.xml');
+INSERT INTO `pmdrules` VALUES ('5', 'DontNestJsfInJstlIteration', 'Basic JSF rules', 'basic-jsf.xml');
+INSERT INTO `pmdrules` VALUES ('6', 'NoLongScripts', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('7', 'NoScriptlets', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('8', 'NoInlineStyleInformation', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('9', 'NoClassAttribute', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('10', 'NoJspForward', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('11', 'IframeMissingSrcAttribute', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('12', 'NoHtmlComments', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('13', 'DuplicateJspImports', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('14', 'JspEncoding', 'Basic JSP rules', 'basic-jsp.xml');
+INSERT INTO `pmdrules` VALUES ('15', 'EmptyCatchBlock', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('16', 'EmptyIfStmt', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('17', 'EmptyWhileStmt', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('18', 'EmptyTryBlock', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('19', 'EmptyFinallyBlock', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('20', 'EmptySwitchStatements', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('21', 'JumbledIncrementer', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('22', 'ForLoopShouldBeWhileLoop', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('23', 'UnnecessaryConversionTemporary', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('24', 'OverrideBothEqualsAndHashcode', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('25', 'DoubleCheckedLocking', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('26', 'ReturnFromFinallyBlock', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('27', 'EmptySynchronizedBlock', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('28', 'UnnecessaryReturn', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('29', 'EmptyStaticInitializer', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('30', 'UnconditionalIfStatement', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('31', 'EmptyStatementNotInLoop', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('32', 'BooleanInstantiation', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('33', 'UnnecessaryFinalModifier', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('34', 'CollapsibleIfStatements', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('35', 'UselessOverridingMethod', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('36', 'ClassCastExceptionWithToArray', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('37', 'AvoidDecimalLiteralsInBigDecimalConstructor', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('38', 'UselessOperationOnImmutable', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('39', 'MisplacedNullCheck', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('40', 'UnusedNullCheckInEquals', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('41', 'AvoidThreadGroup', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('42', 'BrokenNullCheck', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('43', 'BigIntegerInstantiation', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('44', 'AvoidUsingOctalValues', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('45', 'AvoidUsingHardCodedIP', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('46', 'CheckResultSet', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('47', 'AvoidMultipleUnaryOperators', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('48', 'EmptyInitializer', 'Basic Rules', 'basic.xml');
+INSERT INTO `pmdrules` VALUES ('49', 'IfStmtsMustUseBraces', 'Braces Rules', 'braces.xml');
+INSERT INTO `pmdrules` VALUES ('50', 'WhileLoopsMustUseBraces', 'Braces Rules', 'braces.xml');
+INSERT INTO `pmdrules` VALUES ('51', 'IfElseStmtsMustUseBraces', 'Braces Rules', 'braces.xml');
+INSERT INTO `pmdrules` VALUES ('52', 'ForLoopsMustUseBraces', 'Braces Rules', 'braces.xml');
+INSERT INTO `pmdrules` VALUES ('53', 'ProperCloneImplementation', 'Clone Implementation Rules', 'clone.xml');
+INSERT INTO `pmdrules` VALUES ('54', 'CloneThrowsCloneNotSupportedException', 'Clone Implementation Rules', 'clone.xml');
+INSERT INTO `pmdrules` VALUES ('55', 'CloneMethodMustImplementCloneable', 'Clone Implementation Rules', 'clone.xml');
+INSERT INTO `pmdrules` VALUES ('56', 'NPathComplexity', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('57', 'ExcessiveMethodLength', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('58', 'ExcessiveParameterList', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('59', 'ExcessiveClassLength', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('60', 'CyclomaticComplexity', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('61', 'ExcessivePublicCount', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('62', 'TooManyFields', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('63', 'NcssMethodCount', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('64', 'NcssTypeCount', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('65', 'NcssConstructorCount', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('66', 'TooManyMethods', 'Code Size Rules', 'codesize.xml');
+INSERT INTO `pmdrules` VALUES ('67', 'UnnecessaryConstructor', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('68', 'NullAssignment', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('69', 'OnlyOneReturn', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('70', 'UnusedModifier', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('71', 'AssignmentInOperand', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('72', 'AtLeastOneConstructor', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('73', 'DontImportSun', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('74', 'SuspiciousOctalEscape', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('75', 'CallSuperInConstructor', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('76', 'UnnecessaryParentheses', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('77', 'DefaultPackage', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('78', 'BooleanInversion', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('79', 'DataflowAnomalyAnalysis', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('80', 'AvoidFinalLocalVariable', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('81', 'AvoidUsingShortType', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('82', 'AvoidUsingVolatile', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('83', 'AvoidUsingNativeCode', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('84', 'AvoidAccessibilityAlteration', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('85', 'DoNotCallGarbageCollectionExplicitly', 'Controversial Rules', 'controversial.xml');
+INSERT INTO `pmdrules` VALUES ('86', 'CouplingBetweenObjects', 'Coupling Rules', 'coupling.xml');
+INSERT INTO `pmdrules` VALUES ('87', 'ExcessiveImports', 'Coupling Rules', 'coupling.xml');
+INSERT INTO `pmdrules` VALUES ('88', 'LooseCoupling', 'Coupling Rules', 'coupling.xml');
+INSERT INTO `pmdrules` VALUES ('89', 'UseSingleton', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('90', 'SimplifyBooleanReturns', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('91', 'SimplifyBooleanExpressions', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('92', 'SwitchStmtsShouldHaveDefault', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('93', 'AvoidDeeplyNestedIfStmts', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('94', 'AvoidReassigningParameters', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('95', 'SwitchDensity', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('96', 'ConstructorCallsOverridableMethod', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('97', 'AccessorClassGeneration', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('98', 'FinalFieldCouldBeStatic', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('99', 'CloseResource', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('100', 'NonStaticInitializer', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('101', 'DefaultLabelNotLastInSwitchStmt', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('102', 'NonCaseLabelInSwitchStatement', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('103', 'OptimizableToArrayCall', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('104', 'BadComparison', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('105', 'EqualsNull', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('106', 'ConfusingTernary', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('107', 'InstantiationToGetClass', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('108', 'IdempotentOperations', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('109', 'SimpleDateFormatNeedsLocale', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('110', 'ImmutableField', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('111', 'UseLocaleWithCaseConversions', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('112', 'AvoidProtectedFieldInFinalClass', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('113', 'AssignmentToNonFinalStatic', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('114', 'MissingStaticMethodInNonInstantiatableClass', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('115', 'AvoidSynchronizedAtMethodLevel', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('116', 'MissingBreakInSwitch', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('117', 'UseNotifyAllInsteadOfNotify', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('118', 'AvoidInstanceofChecksInCatchClause', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('119', 'AbstractClassWithoutAbstractMethod', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('120', 'SimplifyConditional', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('121', 'CompareObjectsWithEquals', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('122', 'PositionLiteralsFirstInComparisons', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('123', 'UnnecessaryLocalBeforeReturn', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('124', 'NonThreadSafeSingleton', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('125', 'UncommentedEmptyMethod', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('126', 'UncommentedEmptyConstructor', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('127', 'AvoidConstantsInterface', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('128', 'UnsynchronizedStaticDateFormatter', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('129', 'PreserveStackTrace', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('130', 'UseCollectionIsEmpty', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('131', 'ClassWithOnlyPrivateConstructorsShouldBeFinal', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('132', 'EmptyMethodInAbstractClassShouldBeAbstract', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('133', 'SingularField', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('134', 'ReturnEmptyArrayRatherThanNull', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('135', 'AbstractClassWithoutAnyMethod', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('136', 'TooFewBranchesForASwitchStatement', 'Design Rules', 'design.xml');
+INSERT INTO `pmdrules` VALUES ('137', 'EmptyFinalizer', 'Finalizer Rules', 'finalizers.xml');
+INSERT INTO `pmdrules` VALUES ('138', 'FinalizeOnlyCallsSuperFinalize', 'Finalizer Rules', 'finalizers.xml');
+INSERT INTO `pmdrules` VALUES ('139', 'FinalizeOverloaded', 'Finalizer Rules', 'finalizers.xml');
+INSERT INTO `pmdrules` VALUES ('140', 'FinalizeDoesNotCallSuperFinalize', 'Finalizer Rules', 'finalizers.xml');
+INSERT INTO `pmdrules` VALUES ('141', 'FinalizeShouldBeProtected', 'Finalizer Rules', 'finalizers.xml');
+INSERT INTO `pmdrules` VALUES ('142', 'AvoidCallingFinalize', 'Finalizer Rules', 'finalizers.xml');
+INSERT INTO `pmdrules` VALUES ('143', 'DuplicateImports', 'Import Statement Rules', 'imports.xml');
+INSERT INTO `pmdrules` VALUES ('144', 'DontImportJavaLang', 'Import Statement Rules', 'imports.xml');
+INSERT INTO `pmdrules` VALUES ('145', 'UnusedImports', 'Import Statement Rules', 'imports.xml');
+INSERT INTO `pmdrules` VALUES ('146', 'ImportFromSamePackage', 'Import Statement Rules', 'imports.xml');
+INSERT INTO `pmdrules` VALUES ('147', 'TooManyStaticImports', 'Import Statement Rules', 'imports.xml');
+INSERT INTO `pmdrules` VALUES ('148', 'UseProperClassLoader', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('149', 'MDBAndSessionBeanNamingConvention', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('150', 'RemoteSessionInterfaceNamingConvention', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('151', 'LocalInterfaceSessionNamingConvention', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('152', 'LocalHomeNamingConvention', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('153', 'RemoteInterfaceNamingConvention', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('154', 'DoNotCallSystemExit', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('155', 'StaticEJBFieldShouldBeFinal', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('156', 'DoNotUseThreads', 'J2EE Rules', 'je22.xml');
+INSERT INTO `pmdrules` VALUES ('157', 'BeanMembersShouldSerialize', 'JavaBean Rules', 'javaneans.xml');
+INSERT INTO `pmdrules` VALUES ('158', 'MissingSerialVersionUID', 'JavaBean Rules', 'javaneans.xml');
+INSERT INTO `pmdrules` VALUES ('159', 'JUnitStaticSuite', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('160', 'JUnitSpelling', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('161', 'JUnitAssertionsShouldIncludeMessage', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('162', 'JUnitTestsShouldIncludeAssert', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('163', 'TestClassWithoutTestCases', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('164', 'UnnecessaryBooleanAssertion', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('165', 'UseAssertEqualsInsteadOfAssertTrue', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('166', 'UseAssertSameInsteadOfAssertTrue', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('167', 'UseAssertNullInsteadOfAssertTrue', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('168', 'SimplifyBooleanAssertion', 'JUnit Rules', 'junit.xml');
+INSERT INTO `pmdrules` VALUES ('169', 'UseCorrectExceptionLogging', 'Jakarta Commons Logging Rules', 'looging-jakarta-commons.xml');
+INSERT INTO `pmdrules` VALUES ('170', 'ProperLogger', 'Jakarta Commons Logging Rules', 'looging-jakarta-commons.xml');
+INSERT INTO `pmdrules` VALUES ('171', 'MoreThanOneLogger', 'Java Logging Rules', 'logging-java.xml');
+INSERT INTO `pmdrules` VALUES ('172', 'LoggerIsNotStaticFinal', 'Java Logging Rules', 'logging-java.xml');
+INSERT INTO `pmdrules` VALUES ('173', 'SystemPrintln', 'Java Logging Rules', 'logging-java.xml');
+INSERT INTO `pmdrules` VALUES ('174', 'AvoidPrintStackTrace', 'Java Logging Rules', 'logging-java.xml');
+INSERT INTO `pmdrules` VALUES ('175', 'ReplaceVectorWithList', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('176', 'ReplaceHashtableWithMap', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('177', 'ReplaceEnumerationWithIterator', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('178', 'AvoidEnumAsIdentifier', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('179', 'AvoidAssertAsIdentifier', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('180', 'IntegerInstantiation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('181', 'ByteInstantiation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('182', 'ShortInstantiation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('183', 'LongInstantiation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('184', 'JUnit4TestShouldUseBeforeAnnotation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('185', 'JUnit4TestShouldUseAfterAnnotation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('186', 'JUnit4TestShouldUseTestAnnotation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('187', 'JUnit4SuitesShouldUseSuiteAnnotation', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('188', 'JUnitUseExpected', 'Migration Rules', 'migrating.xml');
+INSERT INTO `pmdrules` VALUES ('189', 'ShortVariable', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('190', 'LongVariable', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('191', 'ShortMethodName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('192', 'VariableNamingConventions', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('193', 'MethodNamingConventions', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('194', 'ClassNamingConventions', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('195', 'AbstractNaming', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('196', 'AvoidDollarSigns', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('197', 'MethodWithSameNameAsEnclosingClass', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('198', 'SuspiciousHashcodeMethodName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('199', 'SuspiciousConstantFieldName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('200', 'SuspiciousEqualsMethodName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('201', 'AvoidFieldNameMatchingTypeName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('202', 'AvoidFieldNameMatchingMethodName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('203', 'NoPackage', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('204', 'PackageCase', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('205', 'MisleadingVariableName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('206', 'BooleanGetMethodName', 'Naming Rules', 'naming.xml');
+INSERT INTO `pmdrules` VALUES ('207', 'LocalVariableCouldBeFinal', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('208', 'MethodArgumentCouldBeFinal', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('209', 'AvoidInstantiatingObjectsInLoops', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('210', 'UseArrayListInsteadOfVector', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('211', 'SimplifyStartsWith', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('212', 'UseStringBufferForStringAppends', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('213', 'UseArraysAsList', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('214', 'AvoidArrayLoops', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('215', 'UnnecessaryWrapperObjectCreation', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('216', 'AddEmptyString', 'Optimization Rules', 'optimizations.xml');
+INSERT INTO `pmdrules` VALUES ('217', 'AvoidCatchingThrowable', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('218', 'SignatureDeclareThrowsException', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('219', 'ExceptionAsFlowControl', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('220', 'AvoidCatchingNPE', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('221', 'AvoidThrowingRawExceptionTypes', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('222', 'AvoidThrowingNullPointerException', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('223', 'AvoidRethrowingException', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('224', 'DoNotExtendJavaLangError', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('225', 'DoNotThrowExceptionInFinally', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('226', 'AvoidThrowingNewInstanceOfSameException', 'Strict Exception Rules', 'scratchpad.xml');
+INSERT INTO `pmdrules` VALUES ('227', 'AvoidDuplicateLiterals', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('228', 'StringInstantiation', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('229', 'StringToString', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('230', 'InefficientStringBuffering', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('231', 'UnnecessaryCaseChange', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('232', 'UseStringBufferLength', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('233', 'AppendCharacterWithChar', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('234', 'ConsecutiveLiteralAppends', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('235', 'UseIndexOfChar', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('236', 'InefficientEmptyStringCheck', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('237', 'InsufficientStringBufferDeclaration', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('238', 'UselessStringValueOf', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('239', 'StringBufferInstantiationWithChar', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('240', 'UseEqualsToCompareStrings', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('241', 'AvoidStringBufferField', 'String and StringBuffer Rules', 'strings.xml');
+INSERT INTO `pmdrules` VALUES ('242', 'MethodReturnsInternalArray', 'Security Code Guidelines', 'sunsecure.xml');
+INSERT INTO `pmdrules` VALUES ('243', 'ArrayIsStoredDirectly', 'Security Code Guidelines', 'sunsecure.xml');
+INSERT INTO `pmdrules` VALUES ('244', 'LooseCoupling', 'Type Resolution Rules', 'typersolution.xml');
+INSERT INTO `pmdrules` VALUES ('245', 'CloneMethodMustImplementCloneable', 'Type Resolution Rules', 'typersolution.xml');
+INSERT INTO `pmdrules` VALUES ('246', 'UnusedImports', 'Type Resolution Rules', 'typersolution.xml');
+INSERT INTO `pmdrules` VALUES ('247', 'SignatureDeclareThrowsException', 'Type Resolution Rules', 'typersolution.xml');
+INSERT INTO `pmdrules` VALUES ('248', 'UnusedPrivateField', 'Unused Code Rules', 'unusedcode.xml');
+INSERT INTO `pmdrules` VALUES ('249', 'UnusedLocalVariable', 'Unused Code Rules', 'unusedcode.xml');
+INSERT INTO `pmdrules` VALUES ('250', 'UnusedPrivateMethod', 'Unused Code Rules', 'unusedcode.xml');
+INSERT INTO `pmdrules` VALUES ('251', 'UnusedFormalParameter', 'Unused Code Rules', 'unusedcode.xml');

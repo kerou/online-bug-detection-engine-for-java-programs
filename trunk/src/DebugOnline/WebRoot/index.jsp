@@ -18,12 +18,10 @@
 	<BODY aLink=#ff0000 link=#0000cc topMargin=3 bgColor=#ffffff
 		text=#000000 vLink=#551a8b marginheight="3">
 		<DIV id=gbar>
-			<NOBR>
-			<A class=gb1 href="">Search</A>
-			<A class=gb1 href="">Bug Detect</A>
-			<A class=gb1 href="">Bug Encyclopedia</A>
+			<NOBR><A class=gb1 href="debug.jsp">Bug Detect</A>
+			<A class=gb1 href="encyclopedia.jsp">Bug Encyclopedia</A>
 			<A class=gb1 href=""></A>
-			<DIV id=gbi>
+<DIV id=gbi>
 				<DIV class=gb2>
 					<DIV class=gbd>
 					</DIV>
@@ -40,18 +38,17 @@
 			</NOBR>
 		</DIV>
 
-		<DIV id=guser width="100%">
+<DIV id=guser width="100%">
 			<NOBR>
 			<%UserInfo userInfo=(UserInfo)request.getSession().getAttribute("userInfo"); %>
 			<%if(userInfo!=null){ %>
 			Hi~ <%=userInfo.getUsername() %>|
-			<A href="projectDebug.do">YourPage</A>|
+			<A href="customer.jsp">YourPage</A>|
 			<A href="Logout.do">Logout</A>|
 			<%}else{ %>
 			<A href="login.jsp">Login</A>
 			<%} %>
-			<A href="index.jsp">Index</A>|
-			</NOBR>
+			<A href="index2.jsp">Index</A>|			</NOBR>
 		</DIV>
 
 		<DIV style="LEFT: 0px" class=gbh>
@@ -62,7 +59,7 @@
 		<CENTER>
 		<BR id=lgpd clear=all>
 		<A href="" target=_blank> <IMG id=logo title="" border=0 alt=""
-				src="images/logo.png" width=306 height=134> </A>
+				src="images/logo.jpg" width=306 height=134> </A>
 		<BR>
 		<BR>
 		<FORM name=f action="/search">
@@ -97,62 +94,49 @@
 				<TBODY>
 					<TR vAlign=top>
 						<TD class="navigateGrid">
-							<A href="" target=_blank> <img src="images/bugs/01.png"
+							<A href="debug.jsp" target=_blank> <img src="images/bugs/01.png"
 									width="64" height="64"
 									onmouseover="this.src = 'images/bugs/05.png'"
-                                    onmouseout="this.src = 'images/bugs/01.png'">
-							</A>
-						</TD>
-						<TD class="navigateGrid">
-							<A href="" target=_blank><img src="images/bugs/02.png"
+                                    onmouseout="this.src = 'images/bugs/01.png'">							</A>						</TD>
+				  <TD class="navigateGrid">
+							<A href="encylopedia.jsp" target=_blank><img src="images/bugs/02.png"
 									width="64" height="64" 
 									onmouseover="this.src= 'images/bugs/06.png'"
-									onmouseout="this.src= 'images/bugs/02.png'">
-							</A>
-						</TD>
-						<TD class="navigateGrid">
-							<A href="" target=_blank><img src="images/bugs/03.png"
+									onmouseout="this.src= 'images/bugs/02.png'">							</A>						</TD>
+				  <TD class="navigateGrid">
+							<A href="BugStat.do" target=_blank><img src="images/bugs/03.png"
 									width="64" height="64"
 									onmouseover="this.src= 'images/bugs/07.png'"
-									onmouseout="this.src= 'images/bugs/03.png'">
-							</A>
-						</TD>
-						<TD class="navigateGrid">
-							<A href="" target=_blank><img src="images/bugs/04.png"
+									onmouseout="this.src= 'images/bugs/03.png'">							</A>						</TD>
+				  <TD class="navigateGrid">
+							<A href="Help.jsp" target=_blank><img src="images/bugs/04.png"
 									width="64" height="64" 
 									onmouseover="this.src= 'images/bugs/08.png'"
-									onmouseout="this.src= 'images/bugs/04.png'">
-							</A>
-						</TD>
-					</TR>
+									onmouseout="this.src= 'images/bugs/04.png'">							</A>						</TD>
+				  </TR>
 					<TR vAlign=bottom>
 						<TD class="navigateGrid">
 							<A href="debug.jsp" target=_blank>Bug Detect</A>						</TD>
 				  <TD class="navigateGrid">
 							<A href="encylopedia.jsp" target=_blank>Encyclopedia</A>						</TD>
 				  <TD class="navigateGrid">
-							<A href="" target=_blank>Bug Wiki</A>
-						</TD>
-						<TD class="navigateGrid">
-							<A href="" target=_blank>Help</A>
-						</TD>
-					</TR>
+							<A href="BugStat.do" target=_blank>Statistics</A>						</TD>
+		  <TD class="navigateGrid">
+							<A href="Help.jsp" target=_blank>Help</A>						</TD>
+				  </TR>
 				</TBODY>
 			</TABLE>
 			<div>
 				<p>
 					<BR>
 					<FONT size=-1>
-					<A href="" target=_blank>What can u do with Pesticides？</A></FONT>
-				</p>
+					<A href="Help.jsp" target=_blank>What can u do with Pesticides？</A></FONT>				</p>
 				<p>
 					<FONT size=-1>
-					<A href="">User Manual</A> -
-					<A href="">Bug Encyclopedia</A> -
-					<A href="">Wikipedia</A>
-					</FONT>
-				</p>
-				<P>
+					<A href="Help.jsp">User Manual</A> -
+					<A href="encylopedia.jsp">Bug Encyclopedia</A> -
+					<a href="BugStat.do">Statistics</a> </FONT>				</p>
+<P>
 					<FONT size=-1>©2009 -
 					<A href="http://stap.sjtu.eud.cn">STAP@SJTU</A> -
 					</FONT>

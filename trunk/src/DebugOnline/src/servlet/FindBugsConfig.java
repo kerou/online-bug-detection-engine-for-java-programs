@@ -59,9 +59,11 @@ public class FindBugsConfig extends HttpServlet {
 		String enable = request.getParameter("enable");
 		String strength = request.getParameter("strength");
 		String result = enable + strength;
-		String sql = "UPDATE UserConfig SET FBconfig ='" + enable+result
+		String sql = "UPDATE UserConfig SET FBconfig ='" + result
 				+ "' WHERE userId=" + Uid;
+		System.out.println(sql);
 		SQLUtil.getInstance().execute(sql);
+		SQLUtil.updateRules(userInfo, result, "FindBugs");
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("/config.jsp");
 		dispatcher.forward(request, response);
