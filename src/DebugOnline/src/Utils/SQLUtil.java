@@ -48,7 +48,7 @@ public class SQLUtil {
 					username, password);
 			statement = connection.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
+					ResultSet.CONCUR_UPDATABLE);
 			return true;
 		} catch (SQLException ex) {
 			Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null,
@@ -63,6 +63,8 @@ public class SQLUtil {
 
 	public ResultSet executeQuery(String sql) {
 		ResultSet set = null;
+		System.out.println(statement==null);
+		System.out.println(sql);
 		try {
 			set = statement.executeQuery(sql);
 		} catch (SQLException ex) {
@@ -122,6 +124,35 @@ public class SQLUtil {
 		return null;
 	}
 
+	public static void updateRules(UserInfo userInfo, String rulesets,
+			String toolType) {
+		if (toolType.equals("PMD")) {
+			userInfo.tools.remove("PMD");
+			userInfo.PMDRuleSets.clear();
+			if(rulesets.charAt(0)=='1'){
+				for (int i = 0; i < Config.PMDRules.length - 1; i++) {
+					if (rulesets.charAt(i + 1) == '1') {
+						userInfo.PMDRuleSets.add(Config.PMDRules[i]);
+					}
+				}
+				userInfo.isPMD=true;
+				userInfo.tools.add("PMD");
+			}else{
+				userInfo.isPMD=false;
+			}
+		}
+
+		if (toolType.equals("FindBugs")) {
+			userInfo.tools.remove("FindBugs");
+			if(rulesets.charAt(0)=='1'){
+				userInfo.isFB=true;
+				userInfo.tools.add("FindBugs");
+			}else{
+				userInfo.isFB=false;
+			}
+		}
+	}
+
 	private void processRules(UserInfo userInfo) {
 		ResultSet rs = this
 				.executeQuery("SELECT * FROM UserConfig WHERE userId = "
@@ -136,7 +167,7 @@ public class SQLUtil {
 			userInfo.isPMD = (pmd.charAt(0) == '1');
 			userInfo.isFB = (fb.charAt(0) == '1');
 
-			for (int i = 0; i < Config.PMDRules.length-1; i++) {
+			for (int i = 0; i < Config.PMDRules.length - 1; i++) {
 				if (pmd.charAt(i + 1) == '1') {
 					userInfo.PMDRuleSets.add(Config.PMDRules[i]);
 				}
@@ -180,7 +211,7 @@ public class SQLUtil {
 			StringBuffer sb2 = new StringBuffer("");
 			// enable
 			sb2.append("1");
-			sb2.append("1");
+			sb2.append("2");
 
 			// config for pmd
 			StringBuffer sb = new StringBuffer("");
@@ -205,9 +236,8 @@ public class SQLUtil {
 					+ ","
 					+ "'"
 					+ sb.toString()
-					+ "',"
-					+ "'"
-					+ sb2.toString() + ")";
+					+ "','"
+					+ sb2.toString() + "')";
 			statement.execute(sql2);
 		} catch (SQLException e) {
 			e.printStackTrace();

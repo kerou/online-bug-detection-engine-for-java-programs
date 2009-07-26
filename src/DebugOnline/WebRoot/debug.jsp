@@ -27,7 +27,7 @@ Welcome to Debug Online Service
 <div id="header">
 <h1>
 <a href="#">
-Pesticides
+Bugcide
 </a>
 </h1>
 <h2>
@@ -37,30 +37,20 @@ by Baldur
 <div id="menu">
 <ul>
 <li class="first">
-<a href="#" accesskey="1" title="">
-Home
-</a>
-</li>
+<a href="index2.jsp" accesskey="1" title="">
+Home</a></li>
 <li>
-<a href="searchPage" accesskey="2" title="">
-Search
-</a>
-</li>
+<a href="BugStat.do" accesskey="2" title="">
+Statistics</a></li>
 <li>
-<a href="debug" accesskey="3" title="">
-Debug
-</a>
-</li>
+<a href="debug.jsp" accesskey="3" title="">
+Debug</a></li>
 <li>
-<a href="encyclopedia" accesskey="4" title="">
-Encyclopedia
-</a>
-</li>
+<a href="encyclopedia.jsp" accesskey="4" title="">
+Encyclopedia</a></li>
 <li>
-<a href="contact" accesskey="5" title="">
-Contact Us
-</a>
-</li>
+<a href="contact.jsp" accesskey="5" title="">
+Contact Us</a></li>
 </ul>
 </div>
 <div id="content">

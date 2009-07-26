@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: JUnit Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="JUnit_Rules"></a><h2>JUnit Rules</h2>
+				
+  
+These rules deal with different problems that can occur with JUnit tests.
+  
+
+    
+	
+	<div class="subsection"><a name="JUnitStaticSuite"></a><h3>JUnitStaticSuite</h3>
+		<p>Since: PMD 1.0</p>
+		<p>
+The suite() method in a JUnit test needs to be both public and static.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                
+//MethodDeclaration[not(@Static='true') or not(@Public='true')]
+[MethodDeclarator/@Image='suite']
+[MethodDeclarator/FormalParameters/@ParameterCount=0]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+                
+            </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+import junit.framework.*;
+public class Foo extends TestCase {
+ public void suite() {} // oops, should be static
+ private static void suite() {} // oops, should be public
+}
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+  
+	
+	<div class="subsection"><a name="JUnitSpelling"></a><h3>JUnitSpelling</h3>
+		<p>Since: PMD 1.0</p>
+		<p>
+Some JUnit framework methods are easy to misspell.
+    </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+              
+//MethodDeclarator[(not(@Image = 'setUp')
+ and translate(@Image, 'SETuP', 'setUp') = 'setUp')
+ or (not(@Image = 'tearDown')
+ and translate(@Image, 'TEARdOWN', 'tearDown') = 'tearDown')]
+ [FormalParameters[count(*) = 0]]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+              
+          </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+import junit.framework.*;
+public class Foo extends TestCase {
+ public void setup() {} // oops, should be setUp
+ public void TearDown() {} // oops, should be tearDown
+}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="JUnitAssertionsShouldIncludeMessage"></a><h3>JUnitAssertionsShouldIncludeMessage</h3>
+		<p>Since: PMD 1.04</p>
+		<p>
+JUnit assertions should include a message - i.e., use the three argument version of
+assertEquals(), not the two argument version.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/junit/JUnitAssertionsShouldIncludeMessage.html">net.sourceforge.pmd.rules.junit.JUnitAssertionsShouldIncludeMessage</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+public class Foo extends TestCase {
+ public void testSomething() {
+  assertEquals("foo", "bar");
+  // Use the form:
+  // assertEquals("Foo does not equals bar", "foo", "bar");
+  // instead
+ }
+}
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="JUnitTestsShouldIncludeAssert"></a><h3>JUnitTestsShouldIncludeAssert</h3>
+		<p>Since: PMD 2.0</p>
+		<p>
+JUnit tests should include at least one assertion.  This makes the tests more robust, and
+ using assert with messages provide the developer a clearer idea of what the test does.
+        </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.html">net.sourceforge.pmd.rules.junit.JUnitTestsShouldContainAsserts</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+public class Foo extends TestCase {
+  public void testSomething() {
+      Bar b = findBar();
+  // This is better than having a NullPointerException
+  // assertNotNull("bar not found", b);
+  b.work();
+  }
+}
+    
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="TestClassWithoutTestCases"></a><h3>TestClassWithoutTestCases</h3>
+		<p>Since: PMD 3.0</p>
+		<p>
+Test classes end with the suffix Test. Having a non-test class with that name is
+not a good practice, since most people will assume it is a test case. Test
+classes have test methods named testXXX.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/junit/TestClassWithoutTestCases.html">net.sourceforge.pmd.rules.junit.TestClassWithoutTestCases</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+//Consider changing the name of the class if it is not a test
+//Consider adding test methods if it is a test
+public class CarTest {
+   public static void main(String[] args) {
+    // do something
+   }
+   // code
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="UnnecessaryBooleanAssertion"></a><h3>UnnecessaryBooleanAssertion</h3>
+		<p>Since: PMD 3.0</p>
+		<p>
+A JUnit test assertion with a boolean literal is unnecessary since it always will eval to the same thing.
+Consider using flow control (in case of assertTrue(false) or similar) or simply removing
+statements like assertTrue(true) and assertFalse(false).  If you just want a test to halt, use the fail method.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+    
+//StatementExpression
+[
+.//Name[@Image='assertTrue' or  @Image='assertFalse']
+and
+PrimaryExpression/PrimarySuffix/Arguments/ArgumentList
+ /Expression/PrimaryExpression/PrimaryPrefix
+  /Literal/BooleanLiteral
+or
+(
+.//Name[@Image='assertTrue' or  @Image='assertFalse']
+and
+PrimaryExpression/PrimarySuffix/Arguments/ArgumentList
+ /Expression/UnaryExpressionNotPlusMinus[@Image='!']
+/PrimaryExpression/PrimaryPrefix[Literal/BooleanLiteral or Name[count(../../*)=1]])
+]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class SimpleTest extends TestCase {
+ public void testX() {
+  // Why on earth would you write this?
+  assertTrue(true);
+ }
+}
+
+          
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="UseAssertEqualsInsteadOfAssertTrue"></a><h3>UseAssertEqualsInsteadOfAssertTrue</h3>
+		<p>Since: PMD 3.1</p>
+		<p>
+This rule detects JUnit assertions in object equality. These assertions
+should be made by more specific methods, like assertEquals.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                
+//PrimaryExpression[
+    PrimaryPrefix/Name[@Image = 'assertTrue']
+][
+    PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Name
+    [ends-with(@Image, '.equals')]
+]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+ 
+            </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class FooTest extends TestCase {
+ void testCode() {
+  Object a, b;
+  assertTrue(a.equals(b)); // bad usage
+  assertEquals(?a should equals b?, a, b); // good usage
+ }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+   
+	
+	<div class="subsection"><a name="UseAssertSameInsteadOfAssertTrue"></a><h3>UseAssertSameInsteadOfAssertTrue</h3>
+		<p>Since: PMD 3.1</p>
+		<p>
+This rule detects JUnit assertions in object references equality. These assertions
+should be made by more specific methods, like assertSame, assertNotSame.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                
+//PrimaryExpression[
+    PrimaryPrefix/Name
+     [@Image = 'assertTrue' or @Image = 'assertFalse']
+]
+[PrimarySuffix/Arguments
+ /ArgumentList/Expression
+ /EqualityExpression[count(.//NullLiteral) = 0]]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+ 
+            </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class FooTest extends TestCase {
+ void testCode() {
+  Object a, b;
+  assertTrue(a==b); // bad usage
+  assertSame(a, b);  // good usage
+ }
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="UseAssertNullInsteadOfAssertTrue"></a><h3>UseAssertNullInsteadOfAssertTrue</h3>
+		<p>Since: PMD 3.5</p>
+		<p>
+ This rule detects JUnit assertions in object references equality. These assertions
+ should be made by more specific methods, like assertNull, assertNotNull.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                 
+//PrimaryExpression[
+ PrimaryPrefix/Name[@Image = 'assertTrue' or @Image = 'assertFalse']
+][
+ PrimarySuffix/Arguments/ArgumentList[
+  Expression/EqualityExpression/PrimaryExpression/PrimaryPrefix/Literal/NullLiteral
+ ]
+]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+  
+             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+ public class FooTest extends TestCase {
+  void testCode() {
+   Object a = doSomething();
+   assertTrue(a==null); // bad usage
+   assertNull(a);  // good usage
+   assertTrue(a != null); // bad usage
+   assertNotNull(a);  // good usage
+  }
+ }
+ 
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="SimplifyBooleanAssertion"></a><h3>SimplifyBooleanAssertion</h3>
+		<p>Since: PMD 3.6</p>
+		<p>
+Avoid negation in an assertTrue or assertFalse test.
+For example, rephrase:
+assertTrue(!expr);
+as:
+assertFalse(expr);
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+    
+//StatementExpression
+[
+.//Name[@Image='assertTrue' or  @Image='assertFalse']
+and
+PrimaryExpression/PrimarySuffix/Arguments/ArgumentList
+ /Expression/UnaryExpressionNotPlusMinus[@Image='!']
+/PrimaryExpression/PrimaryPrefix
+]
+[ancestor::ClassOrInterfaceDeclaration[//ClassOrInterfaceType[typeof(@Image, 'junit.framework.TestCase','TestCase')] or //MarkerAnnotation/Name[typeof(@Image, 'org.junit.Test', 'Test')]]]
+
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class SimpleTest extends TestCase {
+ public void testX() {
+  assertTrue("not empty", !r.isEmpty()); // replace with assertFalse("not empty", r.isEmpty())
+  assertFalse(!r.isEmpty()); // replace with assertTrue(r.isEmpty())
+ }
+}
+
+          
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

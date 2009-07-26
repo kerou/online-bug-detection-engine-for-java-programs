@@ -58,7 +58,8 @@ public class BugStat extends HttpServlet {
 				bug.name = rs.getString(2);
 				bug.category = rs.getString(3);
 				bug.type = rs.getString(4);
-				bug.count = rs.getInt(5);
+				bug.tool=rs.getString(5);
+				bug.count = rs.getInt(6);
 
 				bugstat.add(bug);
 			}

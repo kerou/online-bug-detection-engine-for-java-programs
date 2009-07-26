@@ -22,8 +22,7 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Pesticides</a>
-				</h1>
+					<a href="#">Bugcide</a></h1>
 				<h2>
 					by Baldur
 				</h2>
@@ -31,10 +30,9 @@
 			<div id="menu">
 				<ul>
 					<li class="first">
-						<a href="#" accesskey="1" title="">Home</a>
-					</li>
+					  <a href="index2.jsp" accesskey="1" title="">Home</a>					</li>
 					<li>
-						<a href="searchPage.jsp" accesskey="2" title="">Search</a>
+						<a href="searchPage.jsp" accesskey="2" title="">Statistics</a>
 					</li>
 					<li>
 						<a href="debug.jsp" accesskey="3" title="">Debug</a>
@@ -86,8 +84,8 @@
 								</div>
 							</form>
 						</div>
-						<p>
-							&nbsp;
+						<p>&nbsp;
+							
 						</p>
 					</div>
 				</div>

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class BuildTable {
 	public static void main(String[] args) {
-		//processPMD("PMDData.data");
+		processPMD("PMDData.data");
 		processFB("FBData.data");
 	}
 

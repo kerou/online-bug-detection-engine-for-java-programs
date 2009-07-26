@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Clone Implementation Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Clone_Implementation_Rules"></a><h2>Clone Implementation Rules</h2>
+				
+  
+The Clone Implementation ruleset contains a collection of rules that find questionable usages of the clone() method.
+  
+
+    
+	
+	<div class="subsection"><a name="ProperCloneImplementation"></a><h3>ProperCloneImplementation</h3>
+		<p>Since: PMD 1.4</p>
+		<p>
+Object clone() should be implemented with super.clone().
+     </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                 
+//MethodDeclarator
+[@Image = 'clone']
+[count(FormalParameters/*) = 0]
+[count(../Block//*[
+    (self::AllocationExpression) and
+    (./ClassOrInterfaceType/@Image = ancestor::
+ClassOrInterfaceDeclaration[1]/@Image)
+  ])&amp;gt; 0
+]
+                
+             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+class Foo{
+    public Object clone(){
+        return new Foo(); // This is bad
+    }
+}
+
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="CloneThrowsCloneNotSupportedException"></a><h3>CloneThrowsCloneNotSupportedException</h3>
+		<p>Since: PMD 1.9</p>
+		<p>
+The method clone() should throw a CloneNotSupportedException.
+         </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                     
+//MethodDeclaration
+[
+MethodDeclarator/@Image = 'clone'
+and count(MethodDeclarator/FormalParameters/*) = 0
+and count(NameList/Name[contains
+(@Image,'CloneNotSupportedException')]) = 0
+]
+[
+../../../../ClassOrInterfaceDeclaration[@Final = 'false']
+]
+                     
+                 </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+             
+ public class MyClass implements Cloneable{
+     public Object clone() { // will cause an error
+          MyClass clone = (MyClass)super.clone();
+          return clone;
+     }
+ }
+    
+         
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="CloneMethodMustImplementCloneable"></a><h3>CloneMethodMustImplementCloneable</h3>
+		<p>Since: PMD 1.9</p>
+		<p>
+The method clone() should only be implemented if the class implements the Cloneable interface with the exception of a final method that only throws CloneNotSupportedException.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//ClassOrInterfaceDeclaration
+[not(./ImplementsList/ClassOrInterfaceType
+[@Image='Cloneable'])]
+/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration
+[MethodDeclaration
+[MethodDeclarator[@Image
+= 'clone' and count(FormalParameters/*) = 0]]
+[not((../MethodDeclaration[@Final = 'true'] or ancestor::ClassOrInterfaceDeclaration[1][@Final = 'true'])
+and Block[count(BlockStatement)=1]
+/BlockStatement/Statement/ThrowStatement/Expression
+/PrimaryExpression/PrimaryPrefix/AllocationExpression
+/ClassOrInterfaceType[@Image = 'CloneNotSupportedException'])]]
+
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+public class MyClass {
+ public Object clone() throws CloneNotSupportedException {
+  return foo;
+ }
+}
+   
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Security Code Guidelines</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Security_Code_Guidelines"></a><h2>Security Code Guidelines</h2>
+				
+  
+These rules check the security guidelines from Sun, published at http://java.sun.com/security/seccodeguide.html#gcg
+  
+
+    
+	
+	<div class="subsection"><a name="MethodReturnsInternalArray"></a><h3>MethodReturnsInternalArray</h3>
+		<p>Since: PMD 2.2</p>
+		<p>
+Exposing internal arrays directly allows the user to modify some code that could be critical.
+It is safer to return a copy of the array.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/sunsecure/MethodReturnsInternalArray.html">net.sourceforge.pmd.rules.sunsecure.MethodReturnsInternalArray</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+public class SecureSystem {
+  UserData [] ud;
+  public UserData [] getUserData() {
+      // Don't return directly the internal array, return a copy
+      return ud;
+  }
+}
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ArrayIsStoredDirectly"></a><h3>ArrayIsStoredDirectly</h3>
+		<p>Since: PMD 2.2</p>
+		<p>
+Constructors and methods receiving arrays should clone objects and store the copy.
+This prevents that future changes from the user affect the internal functionality.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/sunsecure/ArrayIsStoredDirectly.html">net.sourceforge.pmd.rules.sunsecure.ArrayIsStoredDirectly</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+public class Foo {
+ private String [] x;
+  public void foo (String [] param) {
+      // Don't do this, make a copy of the array at least
+      this.x=param;
+  }
+}
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

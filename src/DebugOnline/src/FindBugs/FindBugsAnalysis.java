@@ -40,7 +40,6 @@ public class FindBugsAnalysis extends ReportGenerator {
 
 	@Override
 	public void reportFromString(String src, String sessionId, UserInfo userInfo) {
-		// System.out.print("xxx");
 		File file = new File(tempFilePath);
 		if (file.exists()) {
 			file.delete();
@@ -65,7 +64,6 @@ public class FindBugsAnalysis extends ReportGenerator {
 	@Override
 	public void reportFromFile(String path, UserInfo userInfo) {
 		try {
-			System.out.print("abc");
 			System.out.println("start findbugs process");
 			if (userInfo != null) {
 				if (!userInfo.isFB) {
@@ -73,9 +71,11 @@ public class FindBugsAnalysis extends ReportGenerator {
 				}
 			}
 
-			process = Runtime.getRuntime().exec(
-					dirPath + "findbugs.bat -textui -xml:withMessages " + path
-							+ "");
+			String command = dirPath
+					+ "findbugs.bat -textui -xml:withMessages "
+					+ path.substring(0, path.lastIndexOf("\\"));
+			System.out.println("execute:" + command);
+			process = Runtime.getRuntime().exec(command);
 			process();
 			System.out.println("findbugs process finished");
 		} catch (IOException e) {
@@ -97,8 +97,8 @@ public class FindBugsAnalysis extends ReportGenerator {
 				+ "\\target\\classes";
 
 		try {
+			System.out.println("execute:" + command);
 			process = Runtime.getRuntime().exec(command);
-			System.out.println("execute " + command);
 			process();
 			System.out.println("findbugs project process finished");
 		} catch (IOException e) {
@@ -120,8 +120,13 @@ public class FindBugsAnalysis extends ReportGenerator {
 					sb.append(s);
 				}
 			}
-
+			try {
+				process.waitFor();
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 			result = sb.toString();
+			System.out.println(result);
 			parser.SetInput(result);
 			parser.parse();
 			reports = parser.getReports();

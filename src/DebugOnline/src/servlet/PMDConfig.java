@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,15 +58,27 @@ public class PMDConfig extends HttpServlet {
 		}
 		int Uid = userInfo.getId();
 		String enable = request.getParameter("enable");
-		String[] rules=request.getParameterValues("pmdRules");
-		StringBuffer sb=new StringBuffer("");
-		for(int i=0;i<rules.length;i++){
-			sb.append(rules[i]);
+		String[] rules = request.getParameterValues("pmdRules");
+		StringBuffer sb = new StringBuffer("");
+		boolean match = false;
+		for (int i = 0; i < 29; i++) {
+			for (int j = 0; j < rules.length; j++) {
+				if (rules[j].equals(String.valueOf(i + 1))) {
+					match = true;
+					break;
+				}
+			}
+			if (match == false) {
+				sb.append("0");
+			} else {
+				sb.append("1");
+			}
+			match=false;
 		}
-		String sql = "UPDATE UserCOnfig SET PMDconfig ='" + enable+sb.toString()
-				+ "' WHERE userId=" + Uid;
-		System.out.println("pmdconfig:"+sql);
+		String sql = "UPDATE UserCOnfig SET PMDconfig ='" + enable
+				+ sb.toString() + "' WHERE userId=" + Uid;
 		SQLUtil.getInstance().execute(sql);
+		SQLUtil.updateRules(userInfo, enable+sb.toString(), "PMD");
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("/customer.jsp");
 		dispatcher.forward(request, response);

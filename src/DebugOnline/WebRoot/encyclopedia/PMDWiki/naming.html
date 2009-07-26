@@ -1,0 +1,969 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Naming Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Naming_Rules"></a><h2>Naming Rules</h2>
+				
+  
+The Naming Ruleset contains a collection of rules about names - too long, too short, and so forth.
+  
+
+
+  
+	
+	<div class="subsection"><a name="ShortVariable"></a><h3>ShortVariable</h3>
+		<p>Since: PMD 0.3</p>
+		<p>
+Detects when a field, local, or parameter has a very short name.
+    </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//VariableDeclaratorId[string-length(@Image) &amp;lt; 3]
+ [not(ancestor::ForInit)]
+ [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Something {
+  private int q = 15; // VIOLATION - Field
+  public static void main( String as[] ) {  // VIOLATION - Formal
+    int r = 20 + q; // VIOLATION - Local
+    for (int i = 0; i &lt; 10; i++) { // Not a Violation (inside FOR)
+      r += q;
+    }
+  }
+}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+  
+	
+	<div class="subsection"><a name="LongVariable"></a><h3>LongVariable</h3>
+		<p>Since: PMD 0.3</p>
+		<p>
+Detects when a field, formal or local variable is declared with a long name.
+    </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//VariableDeclaratorId[string-length(@Image) &amp;gt; $minimum]
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Something {
+  int reallyLongIntName = -3;  // VIOLATION - Field
+  public static void main( String argumentsList[] ) { // VIOLATION - Formal
+    int otherReallyLongName = -5; // VIOLATION - Local
+    for (int interestingIntIndex = 0;  // VIOLATION - For
+             interestingIntIndex &lt; 10;
+             interestingIntIndex ++ ) {
+    }
+}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="b">
+                    <td>minimum</td>
+                    <td>17</td>
+                    <td>The variable length reporting threshold</td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+  
+	
+	<div class="subsection"><a name="ShortMethodName"></a><h3>ShortMethodName</h3>
+		<p>Since: PMD 0.3</p>
+		<p>
+Detects when very short method names are used.
+     </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//MethodDeclarator[string-length(@Image) &amp;lt; 3]
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class ShortMethod {
+  public void a( int i ) { // Violation
+  }
+}
+
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+    
+	
+	<div class="subsection"><a name="VariableNamingConventions"></a><h3>VariableNamingConventions</h3>
+		<p>Since: PMD 1.2</p>
+		<p>
+A variable naming conventions rule - customize this to your liking.  Currently, it
+ checks for final variables that should be fully capitalized and non-final variables
+ that should not include underscores.
+        </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/VariableNamingConventions.html">net.sourceforge.pmd.rules.VariableNamingConventions</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+ public static final int MY_NUM = 0;
+ public String myTest = "";
+ DataModule dmTest = new DataModule();
+}
+
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="a">
+                    <td>staticPrefix</td>
+                    <td></td>
+                    <td>A prefix for static variables</td>
+                    </tr>
+                
+                    <tr class="b">
+                    <td>staticSuffix</td>
+                    <td></td>
+                    <td>A suffix for static variables</td>
+                    </tr>
+                
+                    <tr class="a">
+                    <td>memberPrefix</td>
+                    <td></td>
+                    <td>A prefix for member variables</td>
+                    </tr>
+                
+                    <tr class="b">
+                    <td>memberSuffix</td>
+                    <td></td>
+                    <td>A suffix for member variables</td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="MethodNamingConventions"></a><h3>MethodNamingConventions</h3>
+		<p>Since: PMD 1.2</p>
+		<p>
+Method names should always begin with a lower case character, and should not contain underscores.
+          </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/MethodNamingConventions.html">net.sourceforge.pmd.rules.MethodNamingConventions</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+ public void fooStuff() {
+ }
+}
+
+          
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ClassNamingConventions"></a><h3>ClassNamingConventions</h3>
+		<p>Since: PMD 1.2</p>
+		<p>
+Class names should always begin with an upper case character.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/ClassNamingConventions.html">net.sourceforge.pmd.rules.ClassNamingConventions</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AbstractNaming"></a><h3>AbstractNaming</h3>
+		<p>Since: PMD 1.4</p>
+		<p>
+Abstract classes should be named 'AbstractXXX'.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//ClassOrInterfaceDeclaration
+ [@Abstract='true' and @Interface='false']
+ [not (starts-with(@Image,'Abstract'))]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public abstract class Foo { // should be AbstractFoo
+}
+
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AvoidDollarSigns"></a><h3>AvoidDollarSigns</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+Avoid using dollar signs in variable/method/class/interface names.
+       </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/naming/AvoidDollarSigns.html">net.sourceforge.pmd.rules.naming.AvoidDollarSigns</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+   
+ public class Fo$o {  // yikes!
+ }
+   
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="MethodWithSameNameAsEnclosingClass"></a><h3>MethodWithSameNameAsEnclosingClass</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+Non-constructor methods should not have the same name as the enclosing class.
+       </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/MethodWithSameNameAsEnclosingClass.html">net.sourceforge.pmd.rules.MethodWithSameNameAsEnclosingClass</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+public class MyClass {
+ // this is bad because it is a method
+ public void MyClass() {}
+ // this is OK because it is a constructor
+ public MyClass() {}
+}
+    
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="SuspiciousHashcodeMethodName"></a><h3>SuspiciousHashcodeMethodName</h3>
+		<p>Since: PMD 1.5</p>
+		<p>
+The method name and return type are suspiciously close to hashCode(), which
+may mean you are intending to override the hashCode() method.
+       </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/naming/SuspiciousHashcodeMethodName.html">net.sourceforge.pmd.rules.naming.SuspiciousHashcodeMethodName</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+public class Foo {
+ public int hashcode() {
+ // oops, this probably was supposed to be hashCode
+ }
+}
+    
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="SuspiciousConstantFieldName"></a><h3>SuspiciousConstantFieldName</h3>
+		<p>Since: PMD 2.0</p>
+		<p>
+A field name is all in uppercase characters, which in Sun's Java naming
+conventions indicate a constant. However, the field is not final.
+       </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//ClassOrInterfaceDeclaration[@Interface='false']
+ /ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration
+  [@Final='false']
+  [VariableDeclarator/VariableDeclaratorId[upper-case(@Image)=@Image]]
+ 
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+public class Foo {
+ // this is bad, since someone could accidentally
+ // do PI = 2.71828; which is actualy e
+ // final double PI = 3.16; is ok
+ double PI = 3.16;
+}
+    
+       
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="SuspiciousEqualsMethodName"></a><h3>SuspiciousEqualsMethodName</h3>
+		<p>Since: PMD 2.0</p>
+		<p>
+The method name and parameter number are suspiciously close to
+equals(Object), which may mean you are intending to override the equals(Object)
+method.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+        
+//MethodDeclarator[
+(
+@Image = 'equals'
+  and count(FormalParameters/*) = 1
+  and not (FormalParameters/FormalParameter/Type/ReferenceType/ClassOrInterfaceType
+   [@Image = 'Object' or @Image = 'java.lang.Object'])
+)
+or
+@Image='equal'
+ and count(FormalParameters/*) = 1
+ and (FormalParameters/FormalParameter/Type/ReferenceType/ClassOrInterfaceType
+  [@Image = 'Object' or @Image = 'java.lang.Object'])
+
+]
+        
+                    </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+        
+public class Foo {
+ public int equals(Object o) {
+ // oops, this probably was supposed to be boolean equals
+ }
+ public boolean equals(String s) {
+ // oops, this probably was supposed to be equals(Object)
+ }
+}
+        
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AvoidFieldNameMatchingTypeName"></a><h3>AvoidFieldNameMatchingTypeName</h3>
+		<p>Since: PMD 3.0</p>
+		<p>
+It is somewhat confusing to have a field name matching the declaring class name.
+This probably means that type and or field names could be more precise.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/AvoidFieldNameMatchingTypeName.html">net.sourceforge.pmd.rules.AvoidFieldNameMatchingTypeName</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo extends Bar {
+ // There's probably a better name for foo
+ int foo;
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AvoidFieldNameMatchingMethodName"></a><h3>AvoidFieldNameMatchingMethodName</h3>
+		<p>Since: PMD 3.0</p>
+		<p>
+It is somewhat confusing to have a field name with the same name as a method.
+While this is totally legal, having information (field) and actions (method) is
+not clear naming.
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/AvoidFieldNameMatchingMethodName.html">net.sourceforge.pmd.rules.AvoidFieldNameMatchingMethodName</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+public class Foo {
+	Object bar;
+	// bar is data or an action or both?
+	void bar() {
+	}
+}
+
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+
+
+    
+	
+	<div class="subsection"><a name="NoPackage"></a><h3>NoPackage</h3>
+		<p>Since: PMD 3.3</p>
+		<p>
+Detects when a class or interface does not have a package definition.
+    </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                  
+//ClassOrInterfaceDeclaration[count(preceding::PackageDeclaration) = 0]
+                  
+              </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+// no package declaration
+public class ClassInDefaultPackage {
+}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="PackageCase"></a><h3>PackageCase</h3>
+		<p>Since: PMD 3.3</p>
+		<p>
+    Detects when a package definition contains upper case characters.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                      
+//PackageDeclaration/Name[lower-case(@Image)!=@Image]
+                      
+                  </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+    
+package com.MyCompany;  // &lt;- should be lower case name
+public class SomeClass {
+}
+    
+        
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="MisleadingVariableName"></a><h3>MisleadingVariableName</h3>
+		<p>Since: PMD 3.4</p>
+		<p>
+Detects when a non-field has a name starting with 'm_'.  This usually
+indicates a field and thus is confusing.
+      </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//VariableDeclaratorId
+[starts-with(@Image, 'm_')]
+[not (../../../FieldDeclaration)]
+                    
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+  
+  public class Foo {
+    private int m_foo; // OK
+    public void bar(String m_baz) {  // Bad
+      int m_boz = 42; // Bad
+    }
+  }
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="BooleanGetMethodName"></a><h3>BooleanGetMethodName</h3>
+		<p>Since: PMD 4.0</p>
+		<p>
+Looks for methods named 'getX()' with 'boolean' as the return type. The convention
+is to name these methods 'isX()'.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                    
+//MethodDeclaration[
+MethodDeclarator[count(FormalParameters/FormalParameter) = 0 or $checkParameterizedMethods = 'true']
+                [starts-with(@Image, 'get')]
+and
+ResultType/Type/PrimitiveType[@Image = 'boolean']
+]
+
+                </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+            
+public boolean getFoo(); // bad
+public boolean isFoo(); // ok
+public boolean getFoo(boolean bar); // ok, unless checkParameterizedMethods=true
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="a">
+                    <td>checkParameterizedMethods</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

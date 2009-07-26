@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Import Statement Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Import_Statement_Rules"></a><h2>Import Statement Rules</h2>
+				
+
+  
+These rules deal with different problems that can occur with a class' import statements.
+  
+
+  
+	
+	<div class="subsection"><a name="DuplicateImports"></a><h3>DuplicateImports</h3>
+		<p>Since: PMD 0.5</p>
+		<p>
+    Avoid duplicate import statements.
+    </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/imports/DuplicateImportsRule.html">net.sourceforge.pmd.rules.imports.DuplicateImportsRule</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+import java.lang.String;
+import java.lang.*;
+public class Foo {}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+  
+	
+	<div class="subsection"><a name="DontImportJavaLang"></a><h3>DontImportJavaLang</h3>
+		<p>Since: PMD 0.5</p>
+		<p>
+Avoid importing anything from the package 'java.lang'.  These classes are automatically imported (JLS 7.5.3).
+    </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/imports/DontImportJavaLang.html">net.sourceforge.pmd.rules.imports.DontImportJavaLang</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+// this is bad
+import java.lang.String;
+public class Foo {}
+
+// --- in another source code file...
+
+// this is bad
+import java.lang.*;
+
+public class Foo {}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+  
+	
+	<div class="subsection"><a name="UnusedImports"></a><h3>UnusedImports</h3>
+		<p>Since: PMD 1.0</p>
+		<p>
+    Avoid unused import statements.
+    </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/imports/UnusedImportsRule.html">net.sourceforge.pmd.rules.imports.UnusedImportsRule</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+// this is bad
+import java.io.File;
+public class Foo {}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ImportFromSamePackage"></a><h3>ImportFromSamePackage</h3>
+		<p>Since: PMD 1.02</p>
+		<p>
+ No need to import a type that lives in the same package.
+     </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/imports/ImportFromSamePackageRule.html">net.sourceforge.pmd.rules.imports.ImportFromSamePackageRule</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+ package foo;
+ import foo.Buz; // no need for this
+ import foo.*; // or this
+ public class Bar{}
+ 
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+	
+	
+	<div class="subsection"><a name="TooManyStaticImports"></a><h3>TooManyStaticImports</h3>
+		<p>Since: PMD 4.1</p>
+		<p>
+If you overuse the static import feature, it can make your program unreadable and 
+unmaintainable, polluting its namespace with all the static members you import. 
+Readers of your code (including you, a few months after you wrote it) will not know 
+which class a static member comes from (Sun 1.5 Language Guide).
+		 </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+.[count(ImportDeclaration[@Static = 'true']) &amp;gt; $maximumStaticImports]
+	             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+import static Lennon;
+import static Ringo;
+import static George;
+import static Paul;
+import static Yoko; // Too much !
+		  
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="a">
+                    <td>maximumStaticImports</td>
+                    <td></td>
+                    <td>All static imports can be disallowed by setting this to 0</td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

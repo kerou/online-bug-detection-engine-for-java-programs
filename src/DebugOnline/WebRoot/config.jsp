@@ -22,7 +22,7 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Pesticide</a>
+					<a href="#">Bugcide</a>
 				</h1>
 				<h2>
 					by Baldur
@@ -34,9 +34,8 @@
 						<a href="#" accesskey="1" title="">Home</a>
 					</li>
 					<li>
-						<a href="searchPage.jsp" accesskey="2" title="">Search</a>
-					</li>
-					<li>
+						<a href="BugStat.do" accesskey="2" title="">Statistics</a>					</li>
+			  <li>
 						<a href="debug.jsp" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
@@ -62,69 +61,76 @@
 										Enable
 							    </div>
 									<div class="inputField">
-										ddddd
-									</div>
-<div class="inputLabel">
+                                      <label>
+                                      <input type="radio" name="enable" value="1" id="Enable_2" />
+                                        Yes </label>
+                                      <label>
+                                      <input type="radio" name="enable" value="0" id="Enable_3" />
+                                        No</label>
+                                      <br />
+                                      </p>
+                                    </div>
+						  <div class="inputLabel">
 										RuleSet
 								</div>
 									<div class="inputField">
-									  <input type="checkbox" name="pmdRules" id="checkbox1" />
+									  <input type="checkbox" name="pmdRules" id="checkbox1"  value="1"/>
 									  Android Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox2" />
+									  <input type="checkbox" name="pmdRules" id="checkbox2"  value="2" />
 									  Basic JSF rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox3" />
+									  <input type="checkbox" name="pmdRules" id="checkbox3"  value="3" />
 									  Basic JSP rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox4" />
+									  <input type="checkbox" name="pmdRules" id="checkbox4"  value="4" />
 									  Basic Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox5" />
+									  <input type="checkbox" name="pmdRules" id="checkbox5"  value="5" />
 									  Braces Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox6" />
+									  <input type="checkbox" name="pmdRules" id="checkbox6"  value="6" />
 									  Clone Implementation Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox7" />
+									  <input type="checkbox" name="pmdRules" id="checkbox7"  value="7" />
 									  Code Size Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox8" />
+									  <input type="checkbox" name="pmdRules" id="checkbox8"  value="8" />
 									  Controversial Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox9" />
+									  <input type="checkbox" name="pmdRules" id="checkbox9"  value="9" />
 									  Coupling Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox10" />
+									  <input type="checkbox" name="pmdRules" id="checkbox10"  value="10" />
 									  Design Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox11" />
+									  <input type="checkbox" name="pmdRules" id="checkbox11"  value="11" />
 									  Finalizer Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox12" />
+									  <input type="checkbox" name="pmdRules" id="checkbox12"  value="12" />
 									  Import Statement Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox13" />
+									  <input type="checkbox" name="pmdRules" id="checkbox13"  value="13" />
 									  J2EE Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox14" />
+									  <input type="checkbox" name="pmdRules" id="checkbox14"  value="14" />
 									  JavaBean Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox15" />
+									  <input type="checkbox" name="pmdRules" id="checkbox15"  value="15" />
 									  JUnit Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox16" />
+									  <input type="checkbox" name="pmdRules" id="checkbox16"  value="16" />
 									  Jakarta Commons Logging Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox17" />
+									  <input type="checkbox" name="pmdRules" id="checkbox17"  value="17" />
 									  Java Logging Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox18" />
+									  <input type="checkbox" name="pmdRules" id="checkbox18"  value="18" />
 									  Migration Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox19" />
+									  <input type="checkbox" name="pmdRules" id="checkbox19"  value="19" />
 									  Migration13<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox20" />
+									  <input type="checkbox" name="pmdRules" id="checkbox20"  value="20" />
 									  Migration14<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox21" />
+									  <input type="checkbox" name="pmdRules" id="checkbox21"  value="21" />
 									  Migration15<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox22" />
+									  <input type="checkbox" name="pmdRules" id="checkbox22"  value="22" />
 									  MigratingToJava4<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox23" />
+									  <input type="checkbox" name="pmdRules" id="checkbox23"  value="23" />
 									  Naming Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox24" />
+									  <input type="checkbox" name="pmdRules" id="checkbox24"  value="24" />
 									  Optimization Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox25" />
+									  <input type="checkbox" name="pmdRules" id="checkbox25"  value="25" />
 									  Strict Exception Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox26" />
+									  <input type="checkbox" name="pmdRules" id="checkbox26"  value="26" />
 									  String and StringBuffer Rules<br />
-									  <input type="checkbox" name="pmdRules" id="checkbox27" />
+									  <input type="checkbox" name="pmdRules" id="checkbox27"  value="27" />
 									  Security Code Guidelines<br />
-								      <input type="checkbox" name="pmdRules" id="checkbox28" />
+								      <input type="checkbox" name="pmdRules" id="checkbox28"  value="28" />
 							        Type Resolution Rules<br />
-								      <input type="checkbox" name="pmdRules" id="checkbox29" />
+								      <input type="checkbox" name="pmdRules" id="checkbox29"  value="29" />
 							        Unused Code Rules</div>
                                 </div>
 							  <div class="inputButton">
@@ -145,11 +151,11 @@
 								  </div>
 									<div class="inputField">
 									    <label>
-								        <input type="radio" name="Enable" value="0" id="Enable_0" />
+								        <input type="radio" name="enable" value="1" id="Enable_0" />
 									      Yes
 									    </label>
 									    <label>
-				                <input type="radio" name="Enable" value="1" id="Enable_1" />
+				                <input type="radio" name="enable" value="0" id="Enable_1" />
 									      No</label>
 									    <br />
 								      </p>
