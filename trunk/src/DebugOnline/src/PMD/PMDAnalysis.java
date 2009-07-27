@@ -150,7 +150,7 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			while ((s = reader.readLine()) != null) {
 				if (s.length() != 0) {
-					sb.append(s+"\n");
+					sb.append(s + "\n");
 				} else {
 					System.out.println("length==0");
 				}
@@ -173,33 +173,22 @@ public class PMDAnalysis extends ReportGenerator {
 
 	public static void main(String[] args) {
 		PMDAnalysis pmd = new PMDAnalysis();
-		pmd.setRules("rulesets/android.xml," +
-				"rulesets/basic-jsf.xml," +
-				"rulesets/basic-jsp.xml," +
-				"rulesets/basic.xml," +
-				"rulesets/braces.xml," +
-				"rulesets/clone.xml," +
-				"rulesets/codesize.xml," +
-				"rulesets/controversial.xml," +
-				"rulesets/coupling.xml," +
-				"rulesets/design.xml," +
-				"rulesets/finalizers.xml," +
-				"rulesets/imports.xml," +
-				"rulesets/j2ee.xml," +
-				"rulesets/javabeans.xml," +
-				"rulesets/junit.xml," +
-				"rulesets/logging-jakarta-commons.xml," +
-				"rulesets/logging-java.xml," +
-				"rulesets/migrating.xml," +
-				"rulesets/migrating_to_13.xml," +
-				"rulesets/migrating_to_14.xml," +
-				"rulesets/migrating_to_15.xml," +
-				"rulesets/migrating_to_junit4.xml," +
-				"rulesets/naming.xml," +
-				"rulesets/optimizations.xml," +
-				"rulesets/scratchpad.xml," +
-				"rulesets/strings.xml," +
-				"rulesets/sunsecure.xml");
+		pmd.setRules("rulesets/android.xml," + "rulesets/basic-jsf.xml,"
+				+ "rulesets/basic-jsp.xml," + "rulesets/basic.xml,"
+				+ "rulesets/braces.xml," + "rulesets/clone.xml,"
+				+ "rulesets/codesize.xml," + "rulesets/controversial.xml,"
+				+ "rulesets/coupling.xml," + "rulesets/design.xml,"
+				+ "rulesets/finalizers.xml," + "rulesets/imports.xml,"
+				+ "rulesets/j2ee.xml," + "rulesets/javabeans.xml,"
+				+ "rulesets/junit.xml,"
+				+ "rulesets/logging-jakarta-commons.xml,"
+				+ "rulesets/logging-java.xml," + "rulesets/migrating.xml,"
+				+ "rulesets/migrating_to_13.xml,"
+				+ "rulesets/migrating_to_14.xml,"
+				+ "rulesets/migrating_to_15.xml,"
+				+ "rulesets/migrating_to_junit4.xml," + "rulesets/naming.xml,"
+				+ "rulesets/optimizations.xml," + "rulesets/scratchpad.xml,"
+				+ "rulesets/strings.xml," + "rulesets/sunsecure.xml");
 		pmd.reportFromFile("upload", null);
 	}
 }

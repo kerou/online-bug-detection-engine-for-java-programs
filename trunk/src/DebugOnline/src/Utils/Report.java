@@ -61,7 +61,7 @@ public class Report {
 	}
 
 	public String getRuleSet() {
-		return this.ruleSet;
+		return this.ruleSet.replaceAll(" ", "_");
 	}
 
 	public void setRuleSet(String ruleSet) {

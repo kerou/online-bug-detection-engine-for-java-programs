@@ -22,6 +22,7 @@
 		<applet code="EditorApplet" archive="EditorApplet.jar" width="700" height="500">
 			<param name="line" value="<%=request.getParameter("line")%>">
 			<param name="Fid" value="<%=request.getParameter("Fid")%>">
+			<param name="path" value="<%=request.getParameter("path")%>">
 		</applet>
 	</body>
 </html>

@@ -1,15 +1,18 @@
 package servlet;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import Utils.Project;
 import Utils.UserInfo;
 
-public class DeleteFile extends HttpServlet {
+public class SaveFile extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public DeleteFile() {
+	public SaveFile() {
 		super();
 	}
 
@@ -55,23 +58,40 @@ public class DeleteFile extends HttpServlet {
 				.getAttribute("project");
 		String Fid = request.getParameter("Fid");
 		String path = request.getParameter("path");
+		String content = request.getParameter("content");
 		response.setContentType("text/plain");
 		response.setHeader("Pragma", "no-cache");
 		DataOutputStream oos = new DataOutputStream(response.getOutputStream());
 		if (path == null) {
 			path = project.getProjectItem(Integer.parseInt(Fid)).getPath();
 		}
-		deleteFile(path);
-		oos.writeUTF("successfully delete");
+		saveFile(path, content);
+		if (content == null) {
+			oos.writeUTF("the content is null");
+		} else {
+			oos.writeUTF("successfully saved");
+		}
 		oos.flush();
 		oos.close();
 		System.out.println("finish sending");
 	}
 
-	private void deleteFile(String path) {
+	private void saveFile(String path, String content) {
 		File file = new File(path);
-		if (file.exists()) {
-			file.delete();
+		OutputStream out;
+		try {
+			out = new FileOutputStream(file);
+			BufferedWriter rd = new BufferedWriter(new OutputStreamWriter(out,
+					"utf-8"));
+			rd.write(content);
+			rd.close();
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

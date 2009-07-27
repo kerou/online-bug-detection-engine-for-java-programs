@@ -7,4 +7,7 @@ public class BugStatis {
 	public String type;
 	public String tool;
 	public int count;
+	public String getCategory(){
+		return category.replaceAll(" ", "_");
+	}
 }

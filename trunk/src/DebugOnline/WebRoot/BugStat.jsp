@@ -32,10 +32,12 @@
 			<div id="menu">
 				<ul>
 					<li class="first">
-					  <a href="index2.jsp" accesskey="1" title="">Home</a>					</li>
+						<a href="index2.jsp" accesskey="1" title="">Home</a>
+					</li>
 					<li>
-						<a href="BugStat.do" accesskey="2" title="">Statistics</a>					</li>
-			  <li>
+						<a href="BugStat.do" accesskey="2" title="">Statistics</a>
+					</li>
+					<li>
 						<a href="debug.jsp" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
@@ -75,60 +77,30 @@
 								Vector<BugStatis> bugstat = (Vector<BugStatis>) request
 										.getAttribute("bugstat");
 							%>
-						
-						<table align="center" cellspacing="0" cellpadding="3">
-							<tr>
-								<th>
-									#
-								</th>
-								<th>
-									name
-								</th>
-								<th>
-									category
-								</th>
-								<th>
-									type
-								</th>
-								<th>
-									tool
-								</th>
-								<th>
-									count
-								</th>
-							</tr>
-							<%
-								for (int i = 0; i < bugstat.size(); i++) {
-							%>
-							<%
-								BugStatis bug = bugstat.get(i);
-							%>
-							<%
-								if (i % 2 == 0) {
-							%>
-							<tr bgcolor="lightgrey">
-								<%
-									} else {
-								%>
-							
-							<tr>
-								<%
-									}
-								%>
-								<td align="center"><%=bug.name%></td>
-								<td align="center"><%=bug.category%></td>
-								<td align="center"><%=bug.type%></td>
-								<td align="center"><%=bug.tool%></td>
-								<td align="center"><%=bug.count%></td>
-							</tr>
-							<%
-								}
-							%>
-						</table>
+
 						</p>
 						<div class="loginBack">
 							<div>
-								<div class="loginPanel3"></div>
+								<div class="loginPanel3">
+									<%
+										for (int i = 0; i < bugstat.size(); i++) {
+									%>
+									<%
+										BugStatis bug = bugstat.get(i);
+									%>
+									<%if(bug.tool.equals("PMD")){ %>
+									<h3><a href="encyclopedia/PMDWiki.html#<%=bug.getCategory()%>"><%=bug.name%>(<%=bug.category%>)</a>
+									</h3>
+									<% }else{%>
+									<h3><a href="encyclopedia/FindBugsWiki.html#<%=bug.name%>"><%=bug.name%>(<%=bug.category%>)</a>
+									</h3>
+									<%} %>
+									<li><%=bug.count%></li>
+									</tr>
+									<%
+										}
+									%>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -54,51 +54,43 @@ public class FileDetail extends HttpServlet {
 		Project project = (Project) request.getSession()
 				.getAttribute("project");
 		String Fid = request.getParameter("Fid");
-		String line = request.getParameter("line");
+		String path = request.getParameter("path");
 
-		if (userInfo == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please login first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
+		// if (userInfo == null) {
+		// HttpSession session = request.getSession();
+		// session.setAttribute("message", "Please login first");
+		// RequestDispatcher dispatcher = request
+		// .getRequestDispatcher("/showMessage.jsp");
+		// dispatcher.forward(request, response);
+		// }
+		// if (project == null) {
+		// HttpSession session = request.getSession();
+		// session.setAttribute("message", "Please select a project first");
+		// RequestDispatcher dispatcher = request
+		// .getRequestDispatcher("/showMessage.jsp");
+		// dispatcher.forward(request, response);
+		// }
+
+		// if (Fid == null) {
+		// HttpSession session = request.getSession();
+		// session.setAttribute("message", "Please select a file first");
+		// RequestDispatcher dispatcher = request
+		// .getRequestDispatcher("/showMessage.jsp");
+		// dispatcher.forward(request, response);
+		// }
+		if (path == null) {
+			path = project.getProjectItem(Integer.parseInt(Fid)).getPath();
 		}
-
-		if (project == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please select a project first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
-		}
-
-		if (Fid == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please select a file first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
-		}
-
-		String path = project.getProjectItem(Integer.parseInt(Fid)).getPath();
-		System.out.println(path);
 		BufferedReader reader = null;
 		StringBuffer buffer = new StringBuffer("");
 		reader = new BufferedReader(new FileReader(path));
 		String lineContent;
 		while ((lineContent = reader.readLine()) != null) {
-			System.out.println(lineContent);
 			buffer.append(lineContent + "\n");
 		}
 		if (reader != null) {
 			reader.close();
 		}
-
-		int lineN = 0;
-		if (line != null) {
-			lineN = Integer.parseInt(line);
-		}
-		System.out.println(buffer.toString());
 
 		response.setContentType("text/plain");
 		response.setHeader("Pragma", "no-cache");
