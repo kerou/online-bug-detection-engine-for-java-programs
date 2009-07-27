@@ -99,9 +99,8 @@ link1
                 </div>
             </div>
         </div>
-        <p>&nbsp;
- <%} %>   
-							
+        <p>&nbsp;<a href="customer.jsp">your customer Page</a>
+          <%} %>   
 						</p>
 					</div>
 				</div>

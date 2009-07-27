@@ -23,18 +23,21 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Bugcide</a>				</h1>
-		  <h2>
+					<a href="#">Bugcide</a>
+				</h1>
+				<h2>
 					by Baldur
 				</h2>
 			</div>
 			<div id="menu">
 				<ul>
 					<li class="first">
-					  <a href="index2.jsp" accesskey="1" title="">Home</a>					</li>
+						<a href="index2.jsp" accesskey="1" title="">Home</a>
+					</li>
 					<li>
-						<a href="BugStat.do" accesskey="2" title="">Statistics</a>					</li>
-			  <li>
+						<a href="BugStat.do" accesskey="2" title="">Statistics</a>
+					</li>
+					<li>
 						<a href="debug.jsp" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
@@ -53,55 +56,52 @@
 							Bug Detect Reports
 						</h2>
 						<div>
+							<p>
+								<%
+									Vector<Report> reports = (Vector<Report>) request.getSession()
+											.getAttribute("reports");
+								%>
+							</p>
+							<p>
+								&nbsp;
+							</p>
 							<%
-								Vector<Report> reports = (Vector<Report>) request.getSession()
-										.getAttribute("reports");
+								for (int i = 0; i < reports.size(); i++) {
 							%>
-							<table align="center" cellspacing="0" cellpadding="3">
-								<tr>
-									<th>
-										#
-									</th>
-									<th>
-										File
-									</th>
-									<th>
-										Line
-									</th>
-									<th>
-										Problem
-									</th>
-								</tr>
-								<%
-									for (int i = 0; i < reports.size(); i++) {
-								%>
-								<%
-									Report report = reports.get(i);
-								%>
-								<%
-									if (i % 2 == 0) {
-								%>
-								<tr bgcolor="lightgrey">
-									<%
-										} else {
-									%>
-								
-								<tr>
-									<%
-										}
-									%>
-									<td align="center"><%=i + 1%></td>
-									<td width="*%"><%=report.getFilePath()%></td>
-									<td align="center" width="5%"><%=report.getLine()%></td>
-									<td width="*"><%=report.getInfo()%></td>
-								</tr>
-								<%
-									}
-								%>
-							</table>
+							<%
+								Report report = reports.get(i);
+							%>
+							<h3><%=i + 1%>.
+								<a
+									href="FileDetail.jsp?line=<%=report.getLine()%>&&path=<%=report.getFilePath()%>"><%=report.getFilePath()%></a>
+							</h3>
+							<li>
+								Line:<%=report.getLine()%></li>
+							<%
+								if (report.tool.equals("PMD")) {
+							%>
+							<li>
+								Infomation:
+								<a href="encyclopedia/PMDWiki.html#<%=report.getRuleSet()%>"><%=report.getInfo()%></a>
+							</li>
+							<%
+								} else {
+							%>
+							<li>
+								Infomation:
+								<a href="encyclopedia/FindBugsWiki.html#<%=report.rule%>"><%=report.getInfo()%></a>
+							</li>
+							<%
+								}
+							%>
+							<p></p>
+							<%
+								}
+							%>
 						</div>
-						<p>&nbsp;
-							
+						<p>
+							&nbsp;
+
 						</p>
 					</div>
 				</div>

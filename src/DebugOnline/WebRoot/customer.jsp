@@ -57,7 +57,7 @@
 							if (username != null && !username.equals("")) {
 						%>
 						<%=username%>
-						<%
+					  <%
 							}
 						%></h2>
 						<h2>Welcome to your customer page 
@@ -106,7 +106,22 @@
                           </div>
                         </div>
 				      </div>
-					</div>
+                      <p>&nbsp;</p>
+                      <div class="loginBack">
+                        <div>
+                          <div class="loginPanel3">
+                            <div>
+                              <div
+										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/08.png" alt="ency" width="128" height="128" /></div>
+                              <div
+										style="width: 70%; position: relative; margin-bottom: 10px;">
+                                <p><a href="config.jsp">change your debug config</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+				      </div>
+				  </div>
 				</div>
                 
 				<div id="secondaryContent">

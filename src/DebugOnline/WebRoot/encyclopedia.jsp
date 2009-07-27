@@ -51,7 +51,7 @@
 						</h2>
 						<ul>
 							<li><a href="encyclopedia/PMDWiki.html">Bug Encyclopedia of PMD</a></li>
-							<li><a href="encyclopedia/FingBugsWiki.html">Bug Encyclopedia of FindBugs</a></li>
+							<li><a href="encyclopedia/FindBugsWiki.html">Bug Encyclopedia of FindBugs</a></li>
 						</ul>
 				  </div>
 				</div>
