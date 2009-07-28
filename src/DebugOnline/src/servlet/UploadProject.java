@@ -138,10 +138,7 @@ public class UploadProject extends HttpServlet {
 						+ "/" + project.getId());
 				JavaUtil.getInstance().compileProject(
 						mavenDir.getAbsolutePath());
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/ProjectDetail.do?PId="
-								+ project.getId());
-				dispatcher.forward(request, response);
+				response.sendRedirect("ProjectDetail.do?PId="+project.getId());
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			}

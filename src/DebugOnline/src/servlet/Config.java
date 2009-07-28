@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,17 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import Utils.SQLUtil;
 import Utils.UserInfo;
 
-public class Register extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Config extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Register() {
+	public Config() {
 		super();
 	}
 
@@ -32,10 +29,6 @@ public class Register extends HttpServlet {
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 		// Put your code here
-	}
-
-	public void insertMember() {
-
 	}
 
 	/**
@@ -54,39 +47,34 @@ public class Register extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String school = request.getParameter("school");
-		String sexString = request.getParameter("sex");
-		int sex = -1;
-		if (sexString.equals("0")) {
-			sex = 0;
-		} else {
-			if (sexString.equals("1")) {
-				sex = 1;
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+				"userInfo");
+		if (userInfo == null) {
+			response.sendRedirect("login.jsp");
+		}
+		int Uid = userInfo.getId();
+		ResultSet rs = SQLUtil.getInstance().executeQuery(
+				"SELECT * FROM Userconfig WHERE userId=" + Uid);
+		String pmdConfig = "";
+		String fbConfig = "";
+		try {
+			while (rs.next()) {
+				pmdConfig = rs.getString(3);
+				fbConfig = rs.getString(4);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		String email = request.getParameter("email");
-
-		UserInfo userInfo = new UserInfo();
-		userInfo.setUsername(username);
-		userInfo.setPassword(password);
-		userInfo.setSchool(school);
-		userInfo.setSex(sex);
-		userInfo.setEmail(email);
-
-		boolean check = SQLUtil.getInstance().createUser(userInfo);
-
-		if (!check) {
+		if (pmdConfig.equals("") || fbConfig.equals("")) {
 			response
-					.sendRedirect("showMessage.jsp?message='username alread existed'");
-		} else {
-			request.getSession().setAttribute("userInfo", userInfo);
-			request.getSession().setAttribute("username", username);
-
-			response.sendRedirect("customer.jsp");
+					.sendRedirect("showMessage.jsp?message=something wrong in database");
 		}
+		request.setAttribute("pmdConfig", pmdConfig);
+		request.setAttribute("fbConfig", fbConfig);
 
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("/config.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
