@@ -226,6 +226,17 @@ a:hover {
 	width: 200px;
 }
 
+.inputLabel5 {
+	position: relative;
+	float: left;
+	width: 300px;
+	clear:left;
+	background-color:#FF0000;
+	color:#FFFF00;
+	margin-top:10px;
+}
+
+
 .inputField2 {
 	position: relative;
 	width: 200px;
@@ -279,7 +290,10 @@ a:hover {
 }
 
 .inputButton {
+	position:relative;
+	clear:left;
 	margin-top: 10px;
+	padding-left:10px;
 }
 .dtree {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;

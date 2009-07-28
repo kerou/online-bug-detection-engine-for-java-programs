@@ -10,12 +10,94 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<base href="<%=basePath%>">
-
 		<title>Welcome to Debug Online Service</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+		function checkUsername(){
+			var username=document.getElementById("username").value;
+			var patrn=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
+			if(!patrn.test(username)){
+				document.getElementById("usernameerror").style.display="";
+			}else{
+				document.getElementById("usernameerror").style.display="none";
+			}
+		}
+		
+		function checkPassword1(){
+			var password1=document.getElementById("password1").value;
+			var patrn=/^[a-zA-Z0-9]{4,15}$/;
+			if(!patrn.test(password)){
+				document.getElementById("passworderror").style.display="";
+			}else{
+				document.getElementById("passworderror").style.display="none";
+			}
+			if(document.getElementById("password1").value!=document.getElementById("password2").value){
+					document.getElementById("passwordnotmatch").style.display="";
+			}else{
+					document.getElementById("passwordnotmatch").style.display="none";
+			}
+		}
+		
+		function checkPassword2(){
+			var password2=document.getElementById("password2").value;
+			var patrn=/^[a-zA-Z0-9]{4,15}$/;
+			if(!patrn.test(password2)){
+				document.getElementById("passworderror").style.display="";
+			}else{
+				document.getElementById("passworderror").style.display="none";
+			}
+			if(document.getElementById("password1").value!=document.getElementById("password2").value){
+					document.getElementById("passwordnotmatch").style.display="";
+			}else{
+					document.getElementById("passwordnotmatch").style.display="none";
+			}
+		}
+		
+		function checkEmail(){
+			var email=document.getElementById("email").value;
+			var patrn =/^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+			if(!patrn.test(email)){
+				document.getElementById("emailerror").style.display="";
+			}else{
+				document.getElementById("emailerror").style.display="none";
+			}
+		}
+		
+		function submitForm(){
+			if(document.getElementById("username").value==""){
+				alert("please enter username");
+			}else{
+				if(document.getElementById("password1").value==""){
+					alert("please enter password");
+				}else{
+					if(document.getElementById("password2").value==""){
+						alert("please enter password checked");
+					}else{
+						if(document.getElementById("school").value==""){
+							alert("please enter school");
+						}else{
+							if(document.getElementById("email").value==""){
+								alert("please enter email");
+							}else{
+								if(
+								   document.getElementById("usernameerror").style.display==""||
+								   document.getElementById("passworderror").style.display==""||
+								   document.getElementById("emailerror").style.display==""
+								){
+									alert("please correct the errors first");
+								}else{
+									document.getElementById("form2").submit();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+        </script>
 	</head>
 
 	<body>
@@ -58,32 +140,32 @@
 										username:
 									</div>
 									<div class="inputField2">
-										<input name="username" type="text" id="username" />
+										<input name="username" type="text" id="username" onpropertychange="checkUsername()"/>
 									</div>
 									<div class="inputLabel2">
 										choose a password:
 									</div>
 									<div class="inputField2">
-										<input type="password" name="password" id="password" />
+										<input type="password" name="password1" id="password1" onpropertychange="checkPassword1()"/>
 									</div>
 									<div class="inputLabel2">
 										re-enter password:
 									</div>
 									<div class="inputField2">
-										<input type="password" name="password" id="password" />
+										<input type="password" name="password2" id="password2" onpropertychange="checkPassword2()"/>
 									</div>
 									<div class="inputLabel2">
 										school
 									</div>
 									<div class="inputField2">
-										<input name="username" type="text" id="school" />
+										<input name="school" type="text" id="school" />
 									</div>
 									<div class="inputLabel2">
 										sex
 									</div>
-									<div class="inputField2">
+								  <div class="inputField2">
 							    <label>
-											<input type="radio" name="sex" value="0" id="M" />
+											<input type="radio" name="sex" value="0" id="M" checked="checked"/>
 											Male
 										</label>
 										<label>
@@ -93,20 +175,23 @@
 									</div>
 							  <div class="inputLabel2">
 										Email:
+								  </div>
+<div class="inputField2">
+										<input name="email" type="text" id="email" onpropertychange="checkEmail()"/>
 									</div>
-									<div class="inputField2">
-										<input name="username" type="text" id="email" />
-									</div>
-									<div class="inputButton">
-										<input type="submit" name="submit" id="submit" value="submit" />
-									</div>
-								</div>
+                                    							  <div class="inputLabel5" style="display:none" id="usernameerror">
+										username should only be consisted of numbers and letters. Its length should be between 5 and 15.</div>
+						                                          <div class="inputLabel5" style="display:none" id="passworderror">password should only be consisted of numbers and letters. Its length should be between 5 and 15.</div>
+								                              <div class="inputLabel5" style="display:none" id="passwordnotmatch">the two password can not match</div>
+									                              <div class="inputLabel5" style="display:none" id="emailerror">
+										something wrong with the pattern of the email address</div>
+									                              </div>
 							</form>
 						</div>
-						<p>&nbsp;
-							
-						</p>
-					</div>
+						<div class="inputButton">                          <input type="submit" name="submit" id="submit" value="submit" onclick="submitForm()"/>
+                        </div>
+						<p>&nbsp;						</p>
+				  </div>
 				</div>
 				<div id="secondaryContent">
 					<h3>

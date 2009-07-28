@@ -63,8 +63,6 @@ public class SQLUtil {
 
 	public ResultSet executeQuery(String sql) {
 		ResultSet set = null;
-		System.out.println(statement==null);
-		System.out.println(sql);
 		try {
 			set = statement.executeQuery(sql);
 		} catch (SQLException ex) {
@@ -77,7 +75,6 @@ public class SQLUtil {
 	public void execute(String sql) {
 		try {
 			statement.execute(sql);
-
 		} catch (SQLException ex) {
 			Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null,
 					ex);
@@ -129,26 +126,26 @@ public class SQLUtil {
 		if (toolType.equals("PMD")) {
 			userInfo.tools.remove("PMD");
 			userInfo.PMDRuleSets.clear();
-			if(rulesets.charAt(0)=='1'){
+			if (rulesets.charAt(0) == '1') {
 				for (int i = 0; i < Config.PMDRules.length - 1; i++) {
 					if (rulesets.charAt(i + 1) == '1') {
 						userInfo.PMDRuleSets.add(Config.PMDRules[i]);
 					}
 				}
-				userInfo.isPMD=true;
+				userInfo.isPMD = true;
 				userInfo.tools.add("PMD");
-			}else{
-				userInfo.isPMD=false;
+			} else {
+				userInfo.isPMD = false;
 			}
 		}
 
 		if (toolType.equals("FindBugs")) {
 			userInfo.tools.remove("FindBugs");
-			if(rulesets.charAt(0)=='1'){
-				userInfo.isFB=true;
+			if (rulesets.charAt(0) == '1') {
+				userInfo.isFB = true;
 				userInfo.tools.add("FindBugs");
-			}else{
-				userInfo.isFB=false;
+			} else {
+				userInfo.isFB = false;
 			}
 		}
 	}
@@ -185,7 +182,19 @@ public class SQLUtil {
 		}
 	}
 
-	public void createUser(UserInfo userInfo) {
+	public boolean createUser(UserInfo userInfo) {
+		String sql1 = "SELECT * FROM user WHERE username='"
+				+ userInfo.getUsername() + "'";
+		ResultSet set1 = this.executeQuery(sql1);
+		try {
+			if (set1.next()) {
+				return false;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+
 		String sql = "insert into USER(username,password,school,sex,email) values("
 				+ "'"
 				+ userInfo.getUsername()
@@ -239,8 +248,10 @@ public class SQLUtil {
 					+ "','"
 					+ sb2.toString() + "')";
 			statement.execute(sql2);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
