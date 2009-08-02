@@ -22,18 +22,21 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Bugcide</a>				</h1>
-		  <h2>
+					<a href="#">Bugcide</a>
+				</h1>
+				<h2>
 					by Baldur
 				</h2>
 			</div>
 			<div id="menu">
 				<ul>
 					<li class="first">
-					  <a href="index2.jsp" accesskey="1" title="">Home</a>					</li>
+						<a href="index2.jsp" accesskey="1" title="">Home</a>
+					</li>
 					<li>
-						<a href="BugStat.do" accesskey="2" title="">Statistics</a>					</li>
-			  <li>
+						<a href="BugStat.do" accesskey="2" title="">Statistics</a>
+					</li>
+					<li>
 						<a href="debug.jsp" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
@@ -66,8 +69,22 @@
 							%>
 						</h2>
 						<div></div>
-						<p>&nbsp;
-							
+						<p>
+							<%
+								String message = (String) request.getParameter("message");
+							%>
+							<%
+								if (message != null) {
+							%>
+							<%=message%>
+							<%
+								} else {
+							%>
+							<%="request wrong"%>
+							<%
+								}
+							%>
+
 						</p>
 					</div>
 				</div>
@@ -75,20 +92,15 @@
 					<h3>
 						Hello
 						<%
-						String message = (String) request.getSession().getAttribute(
-								"message");
-					%>
-						<%
-							if (message != null) {
+						if (username != null) {
 						%>
 						<%=username%>
-						<a href="Logout.do">logout</a>
 						<%
-							} else {
+						} else {
 						%>
-						<%="request wrong"%>
+						<%="visitor"%>
 						<%
-							}
+						}
 						%>
 					</h3>
 					<p>

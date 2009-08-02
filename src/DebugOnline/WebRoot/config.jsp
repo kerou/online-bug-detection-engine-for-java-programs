@@ -19,7 +19,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript">
+        <script language="javascript">
 		function onLoad(){
 			var pmdenable=document.getElementById("pmdenable").value;
 			if(pmdenable=="1"){

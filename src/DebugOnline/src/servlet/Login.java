@@ -48,22 +48,20 @@ public class Login extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		
-		SQLUtil sql=SQLUtil.getInstance();
-		if(sql.chechLogin(username, password)){
-			
-			UserInfo userInfo=SQLUtil.getInstance().getUserInfo(username, password);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+
+		SQLUtil sql = SQLUtil.getInstance();
+		if (sql.chechLogin(username, password)) {
+
+			UserInfo userInfo = SQLUtil.getInstance().getUserInfo(username,
+					password);
 			request.getSession().setAttribute("userInfo", userInfo);
 			request.getSession().setAttribute("username", username);
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/customer.jsp");
-		    dispatcher.forward(request, response);
-		}else{
-			request.getSession().setAttribute("errorMessage", "inputwrong");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-		    dispatcher.forward(request, response);
+
+			response.sendRedirect("customer.jsp");
+		} else {
+			response.sendRedirect("login.jsp?message=\"input error\"");
 		}
 	}
 
@@ -98,4 +96,3 @@ public class Login extends HttpServlet {
 	}
 
 }
-
