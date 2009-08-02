@@ -209,6 +209,7 @@ public class SQLUtil {
 				+ ",'"
 				+ userInfo.getEmail()
 				+ "')";
+		System.out.println(sql);
 		try {
 			statement.execute(sql, Statement.RETURN_GENERATED_KEYS);
 			ResultSet set = statement.getGeneratedKeys();

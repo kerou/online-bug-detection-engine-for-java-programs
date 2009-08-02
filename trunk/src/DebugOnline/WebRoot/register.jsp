@@ -15,7 +15,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript">
+		<script type="text/javascript">
 		function checkUsername(){
 			var username=document.getElementById("username").value;
 			var patrn=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
@@ -66,7 +66,7 @@
 			}
 		}
 		
-		function submitForm(){
+		function submitForm2(){
 			if(document.getElementById("username").value==""){
 				alert("please enter username");
 			}else{
@@ -104,18 +104,21 @@
 		<div id="outer">
 			<div id="header">
 				<h1>
-					<a href="#">Bugcide</a>				</h1>
-		  <h2>
+					<a href="#">Bugcide</a>
+				</h1>
+				<h2>
 					by Baldur
 				</h2>
 			</div>
 			<div id="menu">
 				<ul>
 					<li class="first">
-					  <a href="index2.jsp" accesskey="1" title="">Home</a>					</li>
+						<a href="index2.jsp" accesskey="1" title="">Home</a>
+					</li>
 					<li>
-						<a href="BugStat.do" accesskey="2" title="">Statistics</a>					</li>
-			  <li>
+						<a href="BugStat.do" accesskey="2" title="">Statistics</a>
+					</li>
+					<li>
 						<a href="debug.jsp" accesskey="3" title="">Debug</a>
 					</li>
 					<li>
@@ -140,19 +143,22 @@
 										username:
 									</div>
 									<div class="inputField2">
-										<input name="username" type="text" id="username" onpropertychange="checkUsername()"/>
+										<input name="username" type="text" id="username"
+											onpropertychange="checkUsername()" />
 									</div>
 									<div class="inputLabel2">
 										choose a password:
 									</div>
 									<div class="inputField2">
-										<input type="password" name="password1" id="password1" onpropertychange="checkPassword1()"/>
+										<input type="password" name="password1" id="password1"
+											onpropertychange="checkPassword1()" />
 									</div>
 									<div class="inputLabel2">
 										re-enter password:
 									</div>
 									<div class="inputField2">
-										<input type="password" name="password2" id="password2" onpropertychange="checkPassword2()"/>
+										<input type="password" name="password2" id="password2"
+											onpropertychange="checkPassword2()" />
 									</div>
 									<div class="inputLabel2">
 										school
@@ -163,9 +169,10 @@
 									<div class="inputLabel2">
 										sex
 									</div>
-								  <div class="inputField2">
-							    <label>
-											<input type="radio" name="sex" value="0" id="M" checked="checked"/>
+									<div class="inputField2">
+										<label>
+											<input type="radio" name="sex" value="0" id="M"
+												checked="checked" />
 											Male
 										</label>
 										<label>
@@ -173,25 +180,41 @@
 											Female
 										</label>
 									</div>
-							  <div class="inputLabel2">
+									<div class="inputLabel2">
 										Email:
-								  </div>
-<div class="inputField2">
-										<input name="email" type="text" id="email" onpropertychange="checkEmail()"/>
 									</div>
-                                    							  <div class="inputLabel5" style="display:none" id="usernameerror">
-										username should only be consisted of numbers and letters. Its length should be between 5 and 15.</div>
-						                                          <div class="inputLabel5" style="display:none" id="passworderror">password should only be consisted of numbers and letters. Its length should be between 5 and 15.</div>
-								                              <div class="inputLabel5" style="display:none" id="passwordnotmatch">the two password can not match</div>
-									                              <div class="inputLabel5" style="display:none" id="emailerror">
-										something wrong with the pattern of the email address</div>
-									                              </div>
+									<div class="inputField2">
+										<input name="email" type="text" id="email"
+											onpropertychange="checkEmail()" />
+									</div>
+									<div class="inputLabel5" style="display: none"
+										id="usernameerror">
+										username should only be consisted of numbers and letters. Its
+										length should be between 5 and 15.
+									</div>
+									<div class="inputLabel5" style="display: none"
+										id="passworderror">
+										password should only be consisted of numbers and letters. Its
+										length should be between 5 and 15.
+									</div>
+									<div class="inputLabel5" style="display: none"
+										id="passwordnotmatch">
+										the two password can not match
+									</div>
+									<div class="inputLabel5" style="display: none" id="emailerror">
+										something wrong with the pattern of the email address
+									</div>
+								</div>
 							</form>
 						</div>
-						<div class="inputButton">                          <input type="submit" name="submit" id="submit" value="submit" onclick="submitForm()"/>
-                        </div>
-						<p>&nbsp;						</p>
-				  </div>
+						<div class="inputButton">
+							<input type="submit" name="submit" id="submit" value="submit"
+								onclick="submitForm2()" />
+						</div>
+						<p>
+							&nbsp;
+						</p>
+					</div>
 				</div>
 				<div id="secondaryContent">
 					<h3>
