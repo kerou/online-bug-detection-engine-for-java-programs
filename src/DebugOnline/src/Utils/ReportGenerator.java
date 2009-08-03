@@ -26,7 +26,7 @@ public class ReportGenerator {
 	public void reportFromProject(int userId,String projectName,int Pid,UserInfo userInfo){
 	}
 	
-	public void process(){
+	public void process(UserInfo userInfo,int Pid){
 	}
 	
 	public String getFileName(String src) {

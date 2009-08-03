@@ -27,7 +27,7 @@ public class SQLUtil {
 	String url = "jdbc:mysql://localhost:3306";
 	String driver = "com.mysql.jdbc.Driver";
 
-	Connection connection;
+	public Connection connection;
 	Statement statement;
 
 	private SQLUtil() {
@@ -209,7 +209,6 @@ public class SQLUtil {
 				+ ",'"
 				+ userInfo.getEmail()
 				+ "')";
-		System.out.println(sql);
 		try {
 			statement.execute(sql, Statement.RETURN_GENERATED_KEYS);
 			ResultSet set = statement.getGeneratedKeys();

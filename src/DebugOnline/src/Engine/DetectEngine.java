@@ -1,5 +1,6 @@
 package Engine;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -44,7 +45,7 @@ public class DetectEngine extends ReportGenerator {
 				reports.add(generators.get(i).reports.get(j));
 			}
 		}
-		process();
+		process(userInfo, -1);
 	}
 
 	@Override
@@ -58,37 +59,29 @@ public class DetectEngine extends ReportGenerator {
 				reports.add(generators.get(i).reports.get(j));
 			}
 		}
-		process();
+		process(userInfo, Pid);
 	}
 
 	@Override
-	public void process() {
+	public void process(UserInfo userInfo, int Pid) {
+		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 		for (int i = 0; i < reports.size(); i++) {
-			String sql1 = "SELECT * FROM rulesstat WHERE name='"
-					+ reports.get(i).getRule() + "' and type='"
-					+ reports.get(i).type + "'";
-			ResultSet rs = SQLUtil.getInstance().executeQuery(sql1);
+			String sql = "INSERT INTO rulesstat(name,category,type,tool,userId,proId,create_at) VALUES(?,?,?,?,?,?,?)";
+			PreparedStatement pstmt;
 			try {
-				if (rs.next()) {
-					int update = rs.getInt("count") + 1;
-					rs.updateInt("count", update);
-					rs.updateRow();
-				} else {
-					String sql2 = "INSERT INTO rulesstat(name,category,type,tool,count) VALUES('"
-							+ reports.get(i).rule
-							+ "','"
-							+ reports.get(i).ruleSet
-							+ "','"
-							+ reports.get(i).type
-							+ "','"
-							+ reports.get(i).tool
-							+ "',1" + ")";
-					SQLUtil.getInstance().execute(sql2);
-				}
+				pstmt = SQLUtil.getInstance().connection.prepareStatement(sql,
+						PreparedStatement.RETURN_GENERATED_KEYS);
+				pstmt.setString(1, reports.get(i).getRule());
+				pstmt.setString(2, reports.get(i).getRuleSet());
+				pstmt.setString(3, reports.get(i).getType());
+				pstmt.setString(4, reports.get(i).getTool());
+				pstmt.setInt(5, reports.get(i).getUserId());
+				pstmt.setInt(6, reports.get(i).getProId());
+				pstmt.setDate(7, date);
+				pstmt.execute();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 }

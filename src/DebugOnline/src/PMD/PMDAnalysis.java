@@ -92,7 +92,7 @@ public class PMDAnalysis extends ReportGenerator {
 			System.out.println("execute: " + command);
 			process = Runtime.getRuntime().exec(command);
 			parseType = "single";
-			process();
+			process(userInfo, -1);
 			System.out.println("pmd process finished");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			process = Runtime.getRuntime().exec(command);
 			parseType = "project";
-			process();
+			process(userInfo,Pid);
 			System.out.println("pmd project process finished");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class PMDAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void process() {
+	public void process(UserInfo userInfo, int Pid) {
 		InputStream stdin = process.getInputStream();
 		InputStreamReader isr = new InputStreamReader(stdin);
 		BufferedReader reader = new BufferedReader(isr);
