@@ -20,7 +20,7 @@
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
         <script language="javascript">
-		function onLoad(){
+		function loadPage(){
 			var pmdenable=document.getElementById("pmdenable").value;
 			if(pmdenable=="1"){
 				document.getElementById("Enable_2").checked=true;
@@ -88,7 +88,7 @@
         </script>
 	</head>
 
-	<body onload="onload()">
+	<body onload="loadPage()">
 		<input type="hidden" id="pmdenable" value="<%=pmdArray[0]%>" />
 		<%
 			for (int i = 1; i < pmdArray.length; i++) {

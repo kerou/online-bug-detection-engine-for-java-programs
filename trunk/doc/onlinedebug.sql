@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: onlinedebug
 Target Host: localhost
 Target Database: onlinedebug
-Date: 2009-7-25 14:14:18
+Date: 2009-8-3 21:03:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,7 +50,9 @@ CREATE TABLE `rulesstat` (
   `category` varchar(255) default NULL,
   `type` varchar(255) default NULL,
   `tool` varchar(255) default NULL,
-  `count` int(11) default NULL,
+  `userId` int(11) default NULL,
+  `proId` int(11) default NULL,
+  `create_at` datetime default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

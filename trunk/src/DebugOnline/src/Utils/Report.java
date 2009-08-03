@@ -9,6 +9,9 @@ public class Report {
 	public String ruleSet;
 	public String tool;
 	public String type;
+	public int userId;
+	public int proId;
+	public String createAt;
 
 	public Report() {
 	}
@@ -77,5 +80,45 @@ public class Report {
 		sb.append("Info:" + info);
 
 		return sb.toString();
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getProId() {
+		return proId;
+	}
+
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+
+	public String getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(String createAt) {
+		this.createAt = createAt;
+	}
+
+	public String getTool() {
+		return tool;
+	}
+
+	public void setTool(String tool) {
+		this.tool = tool;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

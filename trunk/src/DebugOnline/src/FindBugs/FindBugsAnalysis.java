@@ -68,7 +68,9 @@ public class FindBugsAnalysis extends ReportGenerator {
 	public void reportFromFile(String path, UserInfo userInfo) {
 		try {
 			System.out.println("start findbugs process");
-			if (userInfo != null) {
+			if (userInfo == null) {
+				return;
+			} else {
 				if (!userInfo.isFB) {
 					return;
 				}
@@ -79,7 +81,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 					+ path.substring(0, path.lastIndexOf("\\"));
 			System.out.println("execute:" + command);
 			process = Runtime.getRuntime().exec(command);
-			process();
+			process(userInfo, -1);
 			System.out.println("findbugs process finished");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -102,7 +104,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 		try {
 			System.out.println("execute:" + command);
 			process = Runtime.getRuntime().exec(command);
-			process();
+			process(userInfo, Pid);
 			System.out.println("findbugs project process finished");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -110,7 +112,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 	}
 
 	@Override
-	public void process() {
+	public void process(UserInfo userInfo, int Pid) {
 		InputStream stdin = process.getInputStream();
 		InputStreamReader isr = new InputStreamReader(stdin);
 		BufferedReader reader = new BufferedReader(isr);
@@ -133,7 +135,6 @@ public class FindBugsAnalysis extends ReportGenerator {
 			parser.SetInput(result);
 			parser.parse();
 			reports = parser.getReports();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
