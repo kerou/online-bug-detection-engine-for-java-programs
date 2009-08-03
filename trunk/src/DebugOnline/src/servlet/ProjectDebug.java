@@ -49,10 +49,8 @@ public class ProjectDebug extends HttpServlet {
 		int Uid = Integer.parseInt(request.getParameter("Uid"));
 		Vector<Project> projects = SQLUtil.getInstance().getProjectByUid(Uid);
 		request.getSession().setAttribute("projects", projects);
-
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/projectDebug.jsp");
-		dispatcher.forward(request, response);
+		
+		response.sendRedirect("projectDebug.jsp");
 	}
 
 	/**

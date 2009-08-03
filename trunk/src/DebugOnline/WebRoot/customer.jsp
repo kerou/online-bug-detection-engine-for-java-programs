@@ -85,7 +85,7 @@
 										style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/02.png" alt="ency" width="128" height="128" /></div>
                               <div
 										style="width: 70%; position: relative; margin-bottom: 10px;">
-                                <p><a href="encylopedia.jsp">Let's go and look up the bug encyclopedia</a></p>
+                                <p><a href="encyclopedia.jsp">Let's go and look up the bug encyclopedia</a></p>
                               </div>
                             </div>
                           </div>

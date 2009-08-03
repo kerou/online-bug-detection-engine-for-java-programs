@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import Utils.BugStatis;
 import Utils.SQLUtil;
+import Utils.UserInfo;
 
-public class BugStat extends HttpServlet {
+public class MyBug extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public BugStat() {
+	public MyBug() {
 		super();
 	}
 
@@ -48,20 +49,26 @@ public class BugStat extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+				"userInfo");
+		if (userInfo == null) {
+			response.sendRedirect("showMessage.jsp?message=please login first");
+		}
+		int Uid=userInfo.getId();
 		String category = request.getParameter("category");
 		Vector<BugStatis> bugstat = new Vector<BugStatis>();
 
 		if (category == null) {
-			processName(bugstat);
+			processName(bugstat,Uid);
 		} else {
 			if (category.equals("name")) {
-				processName(bugstat);
+				processName(bugstat,Uid);
 			} else {
 				if (category.equals("category")) {
-					processCategory(bugstat);
+					processCategory(bugstat,Uid);
 				} else {
 					if (category.equals("time")) {
-						processTime(bugstat);
+						processTime(bugstat,Uid);
 					} else {
 						response
 								.sendRedirect("showMessage.jsp?message=something wrong");
@@ -77,8 +84,8 @@ public class BugStat extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void processName(Vector<BugStatis> bugstat) {
-		String sql = "SELECT name,category,count(name) FROM rulesstat GROUP BY name";
+	private void processName(Vector<BugStatis> bugstat,int Uid) {
+		String sql = "SELECT name,category,count(name) FROM rulesstat WHERE userId="+Uid+" GROUP BY name";
 		ResultSet rs = SQLUtil.getInstance().executeQuery(sql);
 		try {
 			while (rs.next()) {
@@ -93,8 +100,8 @@ public class BugStat extends HttpServlet {
 		}
 	}
 
-	private void processCategory(Vector<BugStatis> bugstat) {
-		String sql = "SELECT category,count(category) FROM rulesstat GROUP BY category";
+	private void processCategory(Vector<BugStatis> bugstat,int Uid) {
+		String sql = "SELECT category,count(category) FROM rulesstat WHERE userId="+Uid+" GROUP BY category ";
 		ResultSet rs = SQLUtil.getInstance().executeQuery(sql);
 		try {
 			while (rs.next()) {
@@ -108,8 +115,8 @@ public class BugStat extends HttpServlet {
 		}
 	}
 
-	private void processTime(Vector<BugStatis> bugstat) {
-		String sql = "SELECT create_at,count(create_at) FROM rulesstat GROUP BY create_at";
+	private void processTime(Vector<BugStatis> bugstat,int Uid) {
+		String sql = "SELECT create_at,count(create_at) FROM rulesstat WHERE userId="+Uid+" GROUP BY create_at";
 		ResultSet rs = SQLUtil.getInstance().executeQuery(sql);
 		try {
 			while (rs.next()) {

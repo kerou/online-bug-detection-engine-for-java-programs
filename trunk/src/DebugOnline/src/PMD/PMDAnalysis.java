@@ -81,6 +81,7 @@ public class PMDAnalysis extends ReportGenerator {
 			System.out.println("start pmd process");
 			if (userInfo != null) {
 				if (!userInfo.isPMD) {
+					System.out.println("pmd return");
 					return;
 				}
 				processRules(userInfo);
@@ -132,7 +133,7 @@ public class PMDAnalysis extends ReportGenerator {
 		try {
 			process = Runtime.getRuntime().exec(command);
 			parseType = "project";
-			process(userInfo,Pid);
+			process(userInfo, Pid);
 			System.out.println("pmd project process finished");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -164,7 +165,7 @@ public class PMDAnalysis extends ReportGenerator {
 			System.out.println(result);
 			parser.SetInput(result);
 			parser.SetParseType(parseType);
-			parser.parse();
+			parser.parse(userInfo, Pid);
 			reports = parser.getReports();
 		} catch (IOException e) {
 			e.printStackTrace();

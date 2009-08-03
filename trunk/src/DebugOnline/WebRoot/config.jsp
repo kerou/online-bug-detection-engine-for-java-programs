@@ -19,7 +19,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 		<link href="default.css" rel="stylesheet" type="text/css" />
-        <script language="javascript">
+		<script language="javascript">
 		function loadPage(){
 			var pmdenable=document.getElementById("pmdenable").value;
 			if(pmdenable=="1"){
@@ -61,28 +61,36 @@
 		function enablePMD(){
 			for(var i=1;i<30;i++){
 					var value=document.getElementById("checkbox"+i);
-					value.disabled=false;
+					if(value!=null){
+						value.disabled=false;
+					}
 			}
 		}
 		
 		function disablePMD(){
 			for(var i=1;i<30;i++){
 					var value=document.getElementById("checkbox"+i);
-					value.disabled=true;
+					if(value!=null){
+						value.disabled=true;
+					}
 			}
 		}
 		
 		function enableFB(){
 			for(var i=0;i<3;i++){
 					var value=document.getElementById("RadioGroup1_"+i);
-					value.disabled=false;
+					if(value!=null){
+						value.disabled=false;
+					}
 			}
 		}
 		
 		function disableFB(){
 			for(var i=0;i<3;i++){
 					var value=document.getElementById("RadioGroup1_"+i);
-					value.disabled=true;
+					if(value!=null){
+						value.disabled=true;
+					}
 			}
 		}
         </script>
@@ -145,11 +153,13 @@
 									</div>
 									<div class="inputField">
 										<label>
-											<input type="radio" name="enable" value="1" id="Enable_2" onclick="enablePMD()" />
+											<input type="radio" name="enable" value="1" id="Enable_2"
+												onclick="enablePMD()" />
 											Yes
 										</label>
 										<label>
-											<input type="radio" name="enable" value="0" id="Enable_3" onclick="disablePMD()"/>
+											<input type="radio" name="enable" value="0" id="Enable_3"
+												onclick="disablePMD()" />
 											No
 										</label>
 										<br />
@@ -281,8 +291,9 @@
 								</div>
 							</form>
 
-							<p>&nbsp;
-								
+							<p>
+								&nbsp;
+
 
 
 							</p>
@@ -296,11 +307,13 @@
 									</div>
 									<div class="inputField">
 										<label>
-											<input type="radio" name="enable" value="1" id="Enable_0" onclick="enableFB()"/>
+											<input type="radio" name="enable" value="1" id="Enable_0"
+												onclick="enableFB()" />
 											Yes
 										</label>
 										<label>
-											<input type="radio" name="enable" value="0" id="Enable_1" onclick="disableFB()"/>
+											<input type="radio" name="enable" value="0" id="Enable_1"
+												onclick="disableFB()" />
 											No
 										</label>
 										<br />
@@ -334,8 +347,9 @@
 								</div>
 							</form>
 						</div>
-						<p>&nbsp;
-							
+						<p>
+							&nbsp;
+
 
 
 						</p>
