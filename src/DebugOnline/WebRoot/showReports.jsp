@@ -49,60 +49,64 @@
 				</ul>
 			</div>
 			<div id="content">
-				<div></div>
 				<div id="primaryContentContainer">
 					<div id="primaryContent">
 						<h2>
 							Bug Detect Reports
 						</h2>
-						<div>
-							<p>
-								<%
-									Vector<Report> reports = (Vector<Report>) request.getSession()
-											.getAttribute("reports");
-								%>
-							</p>
-							<p>
-								&nbsp;
-							</p>
-							<%
-								for (int i = 0; i < reports.size(); i++) {
-							%>
-							<%
-								Report report = reports.get(i);
-							%>
-							<h3><%=i + 1%>.
-								<a
-									href="FileDetail.jsp?line=<%=report.getLine()%>&&path=<%=report.getFilePath()%>"><%=report.getFilePath()%></a>
-							</h3>
-							<li>
-								Line:<%=report.getLine()%></li>
-							<%
-								if (report.tool.equals("PMD")) {
-							%>
-							<li>
-								Infomation:
-								<a href="encyclopedia/PMDWiki.html#<%=report.getRuleSet()%>"><%=report.getInfo()%></a>
-							</li>
-							<%
-								} else {
-							%>
-							<li>
-								Infomation:
-								<a href="encyclopedia/FindBugsWiki.html#<%=report.rule%>"><%=report.getInfo()%></a>
-							</li>
-							<%
-								}
-							%>
-							<p></p>
-							<%
-								}
-							%>
+						<%
+							Vector<Report> reports = (Vector<Report>) request.getSession()
+									.getAttribute("reports");
+						%>
+						<%
+							for (int i = 0; i < reports.size(); i++) {
+						%>
+						<%
+							Report report = reports.get(i);
+						%>
+						<div class="loginBack">
+							<div class="loginPanel3">
+								<h3 align="left"><%=i + 1%>.
+									<a
+										href="FileDetail.jsp?line=<%=report.getLine()%>&&path=<%=report.getFilePath()%>"><%=report.getFilePath()%></a>
+								</h3>
+								<li>
+									<div align="left">
+										Line:<%=report.getLine()%>
+									</div>
+								</li>
+								<div align="left">
+									<%
+										if (report.tool.equals("PMD")) {
+									%>
+								</div>
+								<li>
+									<div align="left">
+										Infomation:
+										<a href="encyclopedia/PMDWiki.html#<%=report.getRuleSet()%>"><%=report.getInfo()%></a>
+									</div>
+								</li>
+								<div align="left">
+									<%
+										} else {
+									%>
+								</div>
+								<li>
+									<div align="left">
+										Infomation:
+										<a href="encyclopedia/FindBugsWiki.html#<%=report.rule%>"><%=report.getInfo()%></a>
+									</div>
+								</li>
+								<div align="left">
+									<%
+										}
+									%>
+								</div>
+							</div>
 						</div>
-						<p>
-							&nbsp;
-
-						</p>
+						<%
+							}
+						%>
 					</div>
 				</div>
 				<div id="secondaryContent">

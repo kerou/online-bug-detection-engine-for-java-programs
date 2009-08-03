@@ -56,10 +56,7 @@ public class CreateProject extends HttpServlet {
 		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
 				"userInfo");
 		if (userInfo == null) {
-			request.getSession().setAttribute("message", "please login first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("shoeMessage.jsp?message='please login first'");
 		}
 
 		String PName = request.getParameter("name");

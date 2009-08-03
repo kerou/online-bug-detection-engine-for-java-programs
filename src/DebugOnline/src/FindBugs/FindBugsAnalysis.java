@@ -41,6 +41,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 	@Override
 	public void reportFromString(String src, String sessionId, UserInfo userInfo) {
 		if (userInfo == null) {
+			System.out.println("findbugs return");
 			return;
 		}
 		File file = new File(tempFilePath);
@@ -69,9 +70,11 @@ public class FindBugsAnalysis extends ReportGenerator {
 		try {
 			System.out.println("start findbugs process");
 			if (userInfo == null) {
+				System.out.println("findbugs return");
 				return;
 			} else {
 				if (!userInfo.isFB) {
+					System.out.println("findbugs return");
 					return;
 				}
 			}
@@ -133,7 +136,7 @@ public class FindBugsAnalysis extends ReportGenerator {
 			result = sb.toString();
 			System.out.println(result);
 			parser.SetInput(result);
-			parser.parse();
+			parser.parse(userInfo,Pid);
 			reports = parser.getReports();
 		} catch (IOException e) {
 			e.printStackTrace();

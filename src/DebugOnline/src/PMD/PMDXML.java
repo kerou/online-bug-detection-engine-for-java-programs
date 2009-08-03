@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import Utils.Report;
+import Utils.UserInfo;
 import Utils.XMLParserInterface;
 
 public class PMDXML implements XMLParserInterface {
@@ -42,11 +43,10 @@ public class PMDXML implements XMLParserInterface {
 	}
 
 	public void SetParseType(String parseType) {
-		this.parseType=parseType;
+		this.parseType = parseType;
 	}
 
-
-	public void parse() {
+	public void parse(UserInfo userInfo, int Pid) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		try {
@@ -73,8 +73,14 @@ public class PMDXML implements XMLParserInterface {
 							.getAttribute("priority")));
 					report.setRule(violation.getAttribute("rule"));
 					report.setRuleSet(violation.getAttribute("ruleset"));
-					report.tool="PMD";
-					report.type=parseType;
+					report.tool = "PMD";
+					report.type = parseType;
+					if (userInfo == null) {
+						report.setUserId(-1);
+					} else {
+						report.setUserId(userInfo.getId());
+					}
+					report.setProId(Pid);
 
 					reports.add(report);
 				}
@@ -109,15 +115,9 @@ public class PMDXML implements XMLParserInterface {
 						+ " priority=\"1\">"
 						+ "Class names should begin with an uppercase character"
 						+ "</violation>" + "</file>" + "</pmd>");
-		xml.parse();
 
 		for (int i = 0; i < xml.reports.size(); i++) {
 			Report report = xml.reports.get(i);
-			System.out.println(report.getFilePath());
-			System.out.println(report.getLine());
-			System.out.println(report.getPriority());
-			System.out.println(report.getInfo());
-			System.out.println();
 		}
 	}
 }

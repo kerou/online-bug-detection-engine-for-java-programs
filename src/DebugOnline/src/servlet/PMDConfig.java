@@ -73,15 +73,13 @@ public class PMDConfig extends HttpServlet {
 			} else {
 				sb.append("1");
 			}
-			match=false;
+			match = false;
 		}
 		String sql = "UPDATE UserCOnfig SET PMDconfig ='" + enable
 				+ sb.toString() + "' WHERE userId=" + Uid;
 		SQLUtil.getInstance().execute(sql);
-		SQLUtil.updateRules(userInfo, enable+sb.toString(), "PMD");
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("/customer.jsp");
-		dispatcher.forward(request, response);
+		SQLUtil.updateRules(userInfo, enable + sb.toString(), "PMD");
+		response.sendRedirect("Config.do");
 	}
 
 	/**

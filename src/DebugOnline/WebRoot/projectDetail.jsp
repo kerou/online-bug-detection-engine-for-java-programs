@@ -39,7 +39,8 @@
 			<div id="menu">
 				<ul>
 					<li class="first">
-					  <a href="index2.jsp" accesskey="1" title="">Home</a>					</li>
+						<a href="index2.jsp" accesskey="1" title="">Home</a>
+					</li>
 					<li>
 						<a href="searchPage.jsp" accesskey="2" title="">Statistics</a>
 					</li>
@@ -75,24 +76,26 @@
 						<h2>
 							Your Project
 						</h2>
-						<p>&nbsp;
-							
+						<p>
+							&nbsp;
+
 
 						</p>
-						<p>&nbsp;
-							
+						<p>
+							&nbsp;
+
 
 						</p>
 						<div class="loginBack">
 							<div>
 								<div class="loginPanel3">
-										<div
-											style="position: relative; float: left; margin-bottom: 10px; text-align: left;">
-											<p>
-												<a href="javascript: d.openAll();">open all</a> |
-												<a href="javascript: d.closeAll();">close all</a>
-											</p>
-											<script type="text/javascript">
+									<div
+										style="position: relative; float: left; margin-bottom: 10px; text-align: left;">
+										<p>
+											<a href="javascript: d.openAll();">open all</a> |
+											<a href="javascript: d.closeAll();">close all</a>
+										</p>
+										<script type="text/javascript">
 		<!--
 
 		d = new dTree('d');
@@ -102,27 +105,31 @@
 				if (item.getIsDir()) {%>
 				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="''"%>,<%="'" + item.getName() + "'"%>,<%="''"%>,<%="''"%>,<%="'img/folderopen.gif'"%>);
 				<%} else {%>
-				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="'FileDetail.jsp?Fid=" + item.getId() + "&line=0'"%>,"","_blank");
+				d.add(<%=item.getId()%>,<%=item.getParent()%>,<%="'" + item.getName() + "'"%>,<%="'FileDetail.jsp?Fid=" + item.getId()
+							+ "&line=0'"%>,"","_blank");
 				<%}
 			}%>
 		document.write(d);
 
 		//-->
 	</script>
+									</div>
+									<div
+										style="width: 70%; position: relative; margin-bottom: 10px; text-align: center; float: right;">
+										<div class="buttonContainer">
+											<a href="uploadProject.jsp">Upload</a>
 										</div>
-									  <div
-											style="width: 70%; position: relative; margin-bottom: 10px; text-align: center; float:right;">
-											<div class="buttonContainer">
-												<a href="uploadProject.jsp">Upload</a>											</div>
-									  <div class="buttonContainer">
-												<a href="modifyProject.jsp">Modify</a>											</div>
-									  <div class="buttonContainer">
-												<a href="CreateProjectReport.do">Debug</a>											</div>
-									  </div>
+										<div class="buttonContainer">
+											<a href="DeleteProject.do?PId=<%=project.getId()%>">Delete</a>
+										</div>
+										<div class="buttonContainer">
+											<a href="CreateProjectReport.do">Debug</a>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 
 				<div id="secondaryContent">

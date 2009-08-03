@@ -67,12 +67,10 @@ Please choose the debug mode
 <div class="loginPanel">
 <div>
 <div
-	style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
-aaa
-</div>
+	style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/02.png" alt="" width="128" height="128" /></div>
 <div style="width: 70%; position: relative; margin-bottom: 10px;">
 <a href="singleDebug.jsp">
-link1
+If you want to find the hidden bugs in a single file.Please click here.
 </a>
 </div>
 </div>
@@ -89,12 +87,10 @@ link1
             <div class="loginPanel">
                 <div>
                     <div
-                        style="width: 30%; position: relative; float: left; margin-bottom: 10px;">
-                        aaa
-                    </div>
-                    <div
+                        style="width: 30%; position: relative; float: left; margin-bottom: 10px;"><img src="images/bugs/07.png" alt="" width="128" height="128" /></div>
+      <div
                         style="width: 70%; position: relative; margin-bottom: 10px;">
-                        <a href="ProjectDebug.do?Uid=<%=userInfo.getId()%>">link2</a>
+                        <a href="ProjectDebug.do?Uid=<%=userInfo.getId()%>">If you want to find the hidden bugs in a built project.Please click here.</a>
                     </div>
                 </div>
             </div>

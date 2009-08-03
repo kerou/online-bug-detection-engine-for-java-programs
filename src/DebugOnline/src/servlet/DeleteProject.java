@@ -1,24 +1,27 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+
+import Utils.Config;
+import Utils.Project;
 import Utils.SQLUtil;
 import Utils.UserInfo;
 
-public class FindBugsConfig extends HttpServlet {
+public class DeleteProject extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public FindBugsConfig() {
+	public DeleteProject() {
 		super();
 	}
 
@@ -48,24 +51,23 @@ public class FindBugsConfig extends HttpServlet {
 			throws ServletException, IOException {
 		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
 				"userInfo");
-		if (userInfo == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("message", "Please login first");
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("/showMessage.jsp");
-			dispatcher.forward(request, response);
+		int Pid = Integer.parseInt(request.getParameter("PId"));
+		Project project = SQLUtil.getInstance().getProject(Pid);
+		if (userInfo == null || project == null
+				|| (project.getUserId() != userInfo.getId())) {
+			response
+					.sendRedirect("showMessage.jsp?message='something goes wrong'");
 		}
-		int Uid = userInfo.getId();
-		String enable = request.getParameter("enable");
-		String strength = (request.getParameter("strength") == null) ? "0"
-				: request.getParameter("strength");
-		String result = enable + strength;
-		String sql = "UPDATE UserConfig SET FBconfig ='" + result
-				+ "' WHERE userId=" + Uid;
-		System.out.println(sql);
-		SQLUtil.getInstance().execute(sql);
-		SQLUtil.updateRules(userInfo, result, "FindBugs");
-		response.sendRedirect("Config.do");
+		File file = new File(Config.UserDir + userInfo.getId() + "/"
+				+ project.getId());
+		System.out.println(file.getAbsolutePath());
+		if (file.exists()) {
+			System.out.println("file existed delete");
+			FileUtils.forceDelete(file);
+			String sql="DELETE FROM project WHERE id="+Pid;
+			SQLUtil.getInstance().execute(sql);
+		}
+		response.sendRedirect("ProjectDebug.do?Uid=" + userInfo.getId());
 	}
 
 	/**

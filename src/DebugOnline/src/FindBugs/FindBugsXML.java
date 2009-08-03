@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import Utils.Report;
+import Utils.UserInfo;
 import Utils.XMLParserInterface;
 
 public class FindBugsXML implements XMLParserInterface {
@@ -45,7 +46,7 @@ public class FindBugsXML implements XMLParserInterface {
 		this.parseType = parseType;
 	}
 
-	public void parse() {
+	public void parse(UserInfo userInfo, int Pid) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		try {
@@ -89,6 +90,12 @@ public class FindBugsXML implements XMLParserInterface {
 						}
 						report.tool = "FindBugs";
 						report.type = parseType;
+						if (userInfo == null) {
+							report.setUserId(-1);
+						} else {
+							report.setUserId(userInfo.getId());
+						}
+						report.setProId(Pid);
 
 						reports.add(report);
 					}

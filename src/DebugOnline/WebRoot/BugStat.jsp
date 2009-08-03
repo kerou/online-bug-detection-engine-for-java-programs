@@ -5,6 +5,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	String category = (String) request.getAttribute("category");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -79,30 +80,117 @@
 							%>
 
 						</p>
+						<%
+							UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+									"userInfo");
+						%>
+						<%
+							if (userInfo != null) {
+						%>
+						<a href="MyBug.do"> click here to see your statistics </a>
+						<br></br>
+						<a href="MyBug.do?category=name">name</a>
+						<a href="MyBug.do?category=category">category</a>
+						<a href="MyBug.do?category=time">time</a>
+						<%
+							}else{
+						%>
+						<a href="BugStat.do?category=name">name</a>
+						<a href="BugStat.do?category=category">category</a>
+						<a href="BugStat.do?category=time">time</a>
+						<%}
+							if (category == null) {
+						%>
+						<%
+							for (int i = 0; i < bugstat.size(); i++) {
+									BugStatis bug = bugstat.get(i);
+						%>
 						<div class="loginBack">
 							<div>
 								<div class="loginPanel3">
-									<%
-										for (int i = 0; i < bugstat.size(); i++) {
-									%>
-									<%
+									<div align="left"><h2><%=bug.getName()%></h2></div>
+									<div align="left"><h3>Count:<%=bug.getCount()%></h3></div>
+								    </div>
+								</div>
+							</div>
+						<%
+							}
+						%>
+						<%
+							} else {
+								if (category.equals("name")) {
+						%>
+						<%
+							for (int i = 0; i < bugstat.size(); i++) {
 										BugStatis bug = bugstat.get(i);
-									%>
-									<%if(bug.tool.equals("PMD")){ %>
-									<h3><a href="encyclopedia/PMDWiki.html#<%=bug.getCategory()%>"><%=bug.name%>(<%=bug.category%>)</a>
-									</h3>
-									<% }else{%>
-									<h3><a href="encyclopedia/FindBugsWiki.html#<%=bug.name%>"><%=bug.name%>(<%=bug.category%>)</a>
-									</h3>
-									<%} %>
-									<li><%=bug.count%></li>
-									</tr>
-									<%
-										}
-									%>
+						%>
+						<div class="loginBack">
+							<div>
+								<div class="loginPanel3">
+									<div align="left"><h2><%=bug.getName()%></h2></div>
+									<div align="left"><h2>Count:<%=bug.getCount()%></h2></div>
 								</div>
 							</div>
 						</div>
+						<%
+							}
+						%>
+						<%
+							} else {
+									if (category.equals("category")) {
+						%>
+						<%
+							for (int i = 0; i < bugstat.size(); i++) {
+											BugStatis bug = bugstat.get(i);
+						%>
+						<div class="loginBack">
+							<div>
+								<div class="loginPanel3">
+									<div align="left"><h2><%=bug.getCategory()%></h2></div>
+									<div align="left"><h2>Count:<%=bug.getCount()%></h2></div>
+								</div>
+							</div>
+						</div>
+						<%
+							}
+						%>
+						<%
+							} else {
+										if (category.equals("time")) {
+						%>
+						<%
+							for (int i = 0; i < bugstat.size(); i++) {
+												BugStatis bug = bugstat.get(i);
+						%>
+						<div class="loginBack">
+							<div>
+								<div class="loginPanel3">
+									<div align="left"><h2><%=bug.time%></h2></div>
+									<div align="left"><h2>Count:<%=bug.getCount()%></h2></div>
+								</div>
+							</div>
+						</div>
+						<%
+							}
+						%>
+						<%
+							} else {
+						%>
+						Something wrong
+						<%
+							}
+						%>
+						<%
+							}
+						%>
+						<%
+							}
+						%>
+						<%
+							}
+						%>
+
+
 					</div>
 				</div>
 

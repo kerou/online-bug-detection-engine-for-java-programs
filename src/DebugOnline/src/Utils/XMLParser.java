@@ -35,41 +35,41 @@ public class XMLParser implements XMLParserInterface {
 		return reports;
 	}
 
-	public void parse() {
+	public void parse(UserInfo userInfo, int Pid) {
 		switch (this.type) {
 		case XMLSettings.PMD:
-			processPMD();
+			processPMD(userInfo, Pid);
 			break;
 		case XMLSettings.FindBugs:
-			processFindBugs();
+			processFindBugs(userInfo, Pid);
 			break;
 		}
 	}
 
-	private void processPMD() {
-		PMDXML pmdxml=new PMDXML();
+	private void processPMD(UserInfo userInfo, int Pid) {
+		PMDXML pmdxml = new PMDXML();
 		pmdxml.SetInput(input);
 		pmdxml.SetParseType(parseType);
-		pmdxml.parse();
-		
-		for(int i=0;i<pmdxml.reports.size();i++){
+		pmdxml.parse(userInfo, Pid);
+
+		for (int i = 0; i < pmdxml.reports.size(); i++) {
 			this.reports.add(pmdxml.reports.get(i));
 		}
-		
+
 	}
 
-	private void processFindBugs() {
-		FindBugsXML fbxml=new FindBugsXML();
+	private void processFindBugs(UserInfo userInfo, int Pid) {
+		FindBugsXML fbxml = new FindBugsXML();
 		fbxml.SetInput(input);
 		fbxml.SetParseType(parseType);
-		fbxml.parse();
-		
-		for(int i=0;i<fbxml.reports.size();i++){
+		fbxml.parse(userInfo, Pid);
+
+		for (int i = 0; i < fbxml.reports.size(); i++) {
 			this.reports.add(fbxml.reports.get(i));
 		}
 	}
 
 	public void SetParseType(String parseType) {
-		this.parseType=parseType;
+		this.parseType = parseType;
 	}
 }
