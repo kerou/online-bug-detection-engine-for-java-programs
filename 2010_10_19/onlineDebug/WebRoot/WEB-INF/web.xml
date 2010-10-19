@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>Login</servlet-name>
+  <servlet-class>servlet.Login</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>GoRegister</servlet-name>
+  <servlet-class>servlet.GoRegister</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>Register</servlet-name>
+  <servlet-class>servlet.Register</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>Logout</servlet-name>
+  <servlet-class>servlet.Logout</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>EditUserData</servlet-name>
+  <servlet-class>servlet.EditUserData</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>UploadFile</servlet-name>
+  <servlet-class>servlet.UploadFile</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>CreateSingleReport</servlet-name>
+  <servlet-class>servlet.CreateSingleReport</servlet-class>
+ </servlet>
+ <servlet>
+  <description>java servelt</description>
+  <display-name>java servelt</display-name>
+  <servlet-name>CreateProjectReport</servlet-name>
+  <servlet-class>servlet.CreateProjectReport</servlet-class>
+ </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>CreateProject</servlet-name>
+    <servlet-class>servlet.CreateProject</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>ProjectDetail</servlet-name>
+    <servlet-class>servlet.ProjectDetail</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>ProjectDebug</servlet-name>
+    <servlet-class>servlet.ProjectDebug</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>FileDetail</servlet-name>
+    <servlet-class>servlet.FileDetail</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>EditFile</servlet-name>
+    <servlet-class>servlet.EditFile</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>DeleteFile</servlet-name>
+    <servlet-class>servlet.DeleteFile</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>PMDConfig</servlet-name>
+    <servlet-class>servlet.PMDConfig</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>FindBugsConfig</servlet-name>
+    <servlet-class>servlet.FindBugsConfig</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>BugStat</servlet-name>
+    <servlet-class>servlet.BugStat</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>UploadProject</servlet-name>
+    <servlet-class>servlet.UploadProject</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>SaveFile</servlet-name>
+    <servlet-class>servlet.SaveFile</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>Config</servlet-name>
+    <servlet-class>servlet.Config</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>DeleteProject</servlet-name>
+    <servlet-class>servlet.DeleteProject</servlet-class>
+  </servlet>
+  <servlet>
+    <description>java servelt</description>
+    <display-name>java servelt</display-name>
+    <servlet-name>MyBug</servlet-name>
+    <servlet-class>servlet.MyBug</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <servlet-mapping>
+  <servlet-name>Login</servlet-name>
+  <url-pattern>/Login.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>GoRegister</servlet-name>
+  <url-pattern>/GoRegister.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Register</servlet-name>
+  <url-pattern>/Register.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Logout</servlet-name>
+  <url-pattern>/Logout.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>EditUserData</servlet-name>
+  <url-pattern>/EditUserData.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>UploadFile</servlet-name>
+  <url-pattern>/UploadFile.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>CreateSingleReport</servlet-name>
+  <url-pattern>/CreateSingleReport.do</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>CreateProjectReport</servlet-name>
+  <url-pattern>/CreateProjectReport.do</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreateProject</servlet-name>
+    <url-pattern>/CreateProject.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProjectDetail</servlet-name>
+    <url-pattern>/ProjectDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProjectDebug</servlet-name>
+    <url-pattern>/ProjectDebug.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FileDetail</servlet-name>
+    <url-pattern>/FileDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditFile</servlet-name>
+    <url-pattern>/EditFile.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteFile</servlet-name>
+    <url-pattern>/DeleteFile.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PMDConfig</servlet-name>
+    <url-pattern>/PMDConfig.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindBugsConfig</servlet-name>
+    <url-pattern>/FindBugsConfig.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BugStat</servlet-name>
+    <url-pattern>/BugStat.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadProject</servlet-name>
+    <url-pattern>/UploadProject.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SaveFile</servlet-name>
+    <url-pattern>/SaveFile.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Config</servlet-name>
+    <url-pattern>/Config.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteProject</servlet-name>
+    <url-pattern>/DeleteProject.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MyBug</servlet-name>
+    <url-pattern>/MyBug.do</url-pattern>
+  </servlet-mapping>
+ <welcome-file-list>
+  <welcome-file>index.jsp</welcome-file>
+ </welcome-file-list>
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
+</web-app>

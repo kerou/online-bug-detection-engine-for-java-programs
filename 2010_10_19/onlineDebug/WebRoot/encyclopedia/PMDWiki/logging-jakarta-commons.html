@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Jakarta Commons Logging Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Jakarta_Commons_Logging_Rules"></a><h2>Jakarta Commons Logging Rules</h2>
+				
+  
+The Jakarta Commons Logging ruleset contains a collection of rules that find questionable usages of that framework.
+  
+
+	
+	
+	<div class="subsection"><a name="UseCorrectExceptionLogging"></a><h3>UseCorrectExceptionLogging</h3>
+		<p>Since: PMD 3.2</p>
+		<p>
+To make sure the full stacktrace is printed out, use the logging statement with 2 arguments: a String and a Throwable.
+        </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+//CatchStatement/Block/BlockStatement/Statement/StatementExpression
+/PrimaryExpression[PrimaryPrefix/Name[starts-with(@Image,
+concat(ancestor::ClassOrInterfaceDeclaration/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration
+[Type//ClassOrInterfaceType[@Image='Log']]
+/VariableDeclarator/VariableDeclaratorId/@Image, '.'))]]
+[PrimarySuffix/Arguments[@ArgumentCount='1']]
+[PrimarySuffix/Arguments//Name/@Image = ancestor::CatchStatement/FormalParameter/VariableDeclaratorId/@Image]
+         </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+public class Main {
+ private static final Log _LOG = LogFactory.getLog( Main.class );
+ void bar() {
+  try {
+  } catch( Exception e ) {
+   _LOG.error( e ); //Wrong!
+  } catch( OtherException oe ) {
+   _LOG.error( oe.getMessage(), oe ); //Correct
+  }
+ }
+}
+
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="ProperLogger"></a><h3>ProperLogger</h3>
+		<p>Since: PMD 3.3</p>
+		<p>
+A logger should normally be defined private static final and have the correct class.
+Private final Log log; is also allowed for rare cases where loggers need to be passed
+around, with the restriction that the logger needs to be passed into the constructor.
+             </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+     
+//ClassOrInterfaceBodyDeclaration[FieldDeclaration//ClassOrInterfaceType[@Image='Log']
+ and
+ not(FieldDeclaration[@Final='true'][@Static='true'][@Private='true'][.//VariableDeclaratorId[@Image=$staticLoggerName]]
+ //ArgumentList//ClassOrInterfaceType/@Image = ancestor::ClassOrInterfaceDeclaration/@Image)
+ and
+ not(FieldDeclaration[@Final='true'][@Private='true'][.//VariableDeclaratorId[@Image='log']]
+ [count(.//VariableInitializer)=0]
+ [ancestor::ClassOrInterfaceBody//StatementExpression[.//PrimaryExpression/descendant::*[@Image='log']][count(.//AllocationExpression)=0]]
+ )]
+     
+                     </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+ public class Foo {
+ // right
+  private static final Log LOG = LogFactory.getLog(Foo.class);
+ // wrong
+ protected Log LOG = LogFactory.getLog(Testclass.class);
+}
+ 
+            
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="a">
+                    <td>staticLoggerName</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

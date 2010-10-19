@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Coupling Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Coupling_Rules"></a><h2>Coupling Rules</h2>
+				
+
+  
+    These are rules which find instances of high or inappropriate coupling between objects and packages.
+  
+
+    
+	
+	<div class="subsection"><a name="CouplingBetweenObjects"></a><h3>CouplingBetweenObjects</h3>
+		<p>Since: PMD 1.04</p>
+		<p>
+This rule counts unique attributes, local variables and return types within an object. A number
+ higher than specified threshold can indicate a high degree of coupling.
+    </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/CouplingBetweenObjects.html">net.sourceforge.pmd.rules.CouplingBetweenObjects</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+import com.Blah;
+import org.Bar;
+import org.Bardo;
+public class Foo {
+ private Blah var1;
+ private Bar var2;
+ //followed by many imports of unique objects
+ void ObjectC doWork() {
+  Bardo var55;
+  ObjectA var44;
+  ObjectZ var93;
+  return something;
+ }
+}
+
+    
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="a">
+                    <td>threshold</td>
+                    <td>20</td>
+                    <td>The unique type reporting threshold</td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+  
+	
+	<div class="subsection"><a name="ExcessiveImports"></a><h3>ExcessiveImports</h3>
+		<p>Since: PMD 1.04</p>
+		<p>
+A high number of imports can indicate a high degree of coupling within
+an object. Rule counts the number of unique imports and reports a violation
+if the count is above the user defined threshold.
+  </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/ExcessiveImports.html">net.sourceforge.pmd.rules.ExcessiveImports</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+      
+import blah.blah.Baz;
+import blah.blah.Bif;
+// 18 others from the same package elided
+public class Foo {
+ public void doWork() {}
+}
+      
+  
+            </pre></div>
+  
+        
+
+        
+        
+            
+                <p>This rule has the following properties:</p>
+                <table class="bodyTable"><th>Name</th><th>Default value</th><th>Description</th>
+                
+                
+                    <tr class="b">
+                    <td>minimum</td>
+                    <td>30</td>
+                    <td>The import count reporting threshold</td>
+                    </tr>
+                
+                </table>
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="LooseCoupling"></a><h3>LooseCoupling</h3>
+		<p>Since: PMD 0.7</p>
+		<p>
+Avoid using implementation types (i.e., HashSet); use the interface (i.e, Set) instead
+      </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/design/LooseCoupling.html">net.sourceforge.pmd.rules.design.LooseCoupling</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+import java.util.*;
+public class Bar {
+ // Use List instead
+ private ArrayList list = new ArrayList();
+ // Use Set instead
+ public HashSet getFoo() {
+  return new HashSet();
+ }
+}
+  
+      
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+ 
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><title>PMD - Rule Set: Java Logging Rules</title><style type="text/css" media="all">
+          @import url("../style/maven-base.css");
+          
+          @import url("../style/maven-theme.css");</style><link rel="stylesheet" href="../style/print.css" type="text/css" media="print"></link><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta><meta name="author" content="Tom Copeland"></meta><meta name="email" content="tom@infoether.com"></meta></head><body class="composite">
+			<div id="bodyColumn"><div class="contentBox"><div class="section"><a name="Java_Logging_Rules"></a><h2>Java Logging Rules</h2>
+				
+
+  
+The Java Logging ruleset contains a collection of rules that find questionable usages of the logger.
+  
+
+    
+	
+	<div class="subsection"><a name="MoreThanOneLogger"></a><h3>MoreThanOneLogger</h3>
+		<p>Since: PMD 2.0</p>
+		<p>
+Normally only one logger is used in each class.
+     </p>
+		
+		
+		    
+		    
+    		    
+    		    
+    		    
+
+    		    <p>This rule is defined by the following Java class:
+    		    <a href="../xref/net/sourceforge/pmd/rules/MoreThanOneLogger.html">net.sourceforge.pmd.rules.MoreThanOneLogger</a>
+    		    </p>
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+class Foo{
+    Logger log = Logger.getLogger(Foo.class.getName());
+    // It is very rare to see two loggers on a class, normally
+    // log information is multiplexed by levels
+    Logger log2= Logger.getLogger(Foo.class.getName());
+}
+
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+     
+	
+	<div class="subsection"><a name="LoggerIsNotStaticFinal"></a><h3>LoggerIsNotStaticFinal</h3>
+		<p>Since: PMD 2.0</p>
+		<p>
+In most cases, the Logger can be declared static and final.
+     </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                 
+//VariableDeclarator
+ [parent::FieldDeclaration]
+ [../Type/ReferenceType
+  /ClassOrInterfaceType[@Image='Logger']
+   and
+  (..[@Final='false'] or ..[@Static = 'false'] ) ]
+                
+             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+class Foo{
+    Logger log = Logger.getLogger(Foo.class.getName());
+    // It is much better to declare the logger as follows 
+    // static final Logger log = Logger.getLogger(Foo.class.getName());
+}
+
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+
+
+
+
+    
+	
+	<div class="subsection"><a name="SystemPrintln"></a><h3>SystemPrintln</h3>
+		<p>Since: PMD 2.1</p>
+		<p>
+System.(out|err).print is used, consider using a logger.
+     </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+                 
+//Name[
+    starts-with(@Image, 'System.out.print')
+    or
+    starts-with(@Image, 'System.err.print')
+    ]
+                
+             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+ 
+class Foo{
+    Logger log = Logger.getLogger(Foo.class.getName());
+    public void testA () {
+        System.out.println("Entering test");
+        // Better use this
+        log.fine("Entering test");
+    }
+}
+
+     
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+
+    
+	
+	<div class="subsection"><a name="AvoidPrintStackTrace"></a><h3>AvoidPrintStackTrace</h3>
+		<p>Since: PMD 3.2</p>
+		<p>
+Avoid printStackTrace(); use a logger call instead.
+           </p>
+		
+		
+		    
+    			<p>This rule is defined by the following XPath expression:</p>
+    			
+    			
+    <div class="source"><pre>
+
+//PrimaryExpression
+ [PrimaryPrefix/Name[contains(@Image,'printStackTrace')]]
+ [PrimarySuffix[not(boolean(Arguments/ArgumentList/Expression))]]
+
+             </pre></div>
+  
+		    
+		    
+	    
+	    
+        
+        
+        <p>Example:</p>
+            
+    <div class="source"><pre>
+                
+
+class Foo {
+ void bar() {
+  try {
+   // do something
+  } catch (Exception e) {
+   e.printStackTrace();
+  }
+ }
+}
+
+           
+            </pre></div>
+  
+        
+
+        
+        
+            
+        
+
+	</div>
+
+    
+
+			</div></div></div><div class="clear"><hr></hr></div><div id="footer"><div class="xright">© 2002-2009, InfoEther</div><div class="clear"><hr></hr></div></div></body></html>
