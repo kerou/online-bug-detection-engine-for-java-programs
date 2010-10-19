@@ -1,0 +1,251 @@
+CallSuperFirst:Android Rules
+CallSuperLast:Android Rules
+ProtectLogD:Android Rules
+ProtectLogV:Android Rules
+DontNestJsfInJstlIteration:Basic JSF rules
+NoLongScripts:Basic JSP rules
+NoScriptlets:Basic JSP rules
+NoInlineStyleInformation:Basic JSP rules
+NoClassAttribute:Basic JSP rules
+NoJspForward:Basic JSP rules
+IframeMissingSrcAttribute:Basic JSP rules
+NoHtmlComments:Basic JSP rules
+DuplicateJspImports:Basic JSP rules
+JspEncoding:Basic JSP rules
+EmptyCatchBlock:Basic Rules
+EmptyIfStmt:Basic Rules
+EmptyWhileStmt:Basic Rules
+EmptyTryBlock:Basic Rules
+EmptyFinallyBlock:Basic Rules
+EmptySwitchStatements:Basic Rules
+JumbledIncrementer:Basic Rules
+ForLoopShouldBeWhileLoop:Basic Rules
+UnnecessaryConversionTemporary:Basic Rules
+OverrideBothEqualsAndHashcode:Basic Rules
+DoubleCheckedLocking:Basic Rules
+ReturnFromFinallyBlock:Basic Rules
+EmptySynchronizedBlock:Basic Rules
+UnnecessaryReturn:Basic Rules
+EmptyStaticInitializer:Basic Rules
+UnconditionalIfStatement:Basic Rules
+EmptyStatementNotInLoop:Basic Rules
+BooleanInstantiation:Basic Rules
+UnnecessaryFinalModifier:Basic Rules
+CollapsibleIfStatements:Basic Rules
+UselessOverridingMethod:Basic Rules
+ClassCastExceptionWithToArray:Basic Rules
+AvoidDecimalLiteralsInBigDecimalConstructor:Basic Rules
+UselessOperationOnImmutable:Basic Rules
+MisplacedNullCheck:Basic Rules
+UnusedNullCheckInEquals:Basic Rules
+AvoidThreadGroup:Basic Rules
+BrokenNullCheck:Basic Rules
+BigIntegerInstantiation:Basic Rules
+AvoidUsingOctalValues:Basic Rules
+AvoidUsingHardCodedIP:Basic Rules
+CheckResultSet:Basic Rules
+AvoidMultipleUnaryOperators:Basic Rules
+EmptyInitializer:Basic Rules
+IfStmtsMustUseBraces:Braces Rules
+WhileLoopsMustUseBraces:Braces Rules
+IfElseStmtsMustUseBraces:Braces Rules
+ForLoopsMustUseBraces:Braces Rules
+ProperCloneImplementation:Clone Implementation Rules
+CloneThrowsCloneNotSupportedException:Clone Implementation Rules
+CloneMethodMustImplementCloneable:Clone Implementation Rules
+NPathComplexity:Code Size Rules
+ExcessiveMethodLength:Code Size Rules
+ExcessiveParameterList:Code Size Rules
+ExcessiveClassLength:Code Size Rules
+CyclomaticComplexity:Code Size Rules
+ExcessivePublicCount:Code Size Rules
+TooManyFields:Code Size Rules
+NcssMethodCount:Code Size Rules
+NcssTypeCount:Code Size Rules
+NcssConstructorCount:Code Size Rules
+TooManyMethods:Code Size Rules
+UnnecessaryConstructor:Controversial Rules
+NullAssignment:Controversial Rules
+OnlyOneReturn:Controversial Rules
+UnusedModifier:Controversial Rules
+AssignmentInOperand:Controversial Rules
+AtLeastOneConstructor:Controversial Rules
+DontImportSun:Controversial Rules
+SuspiciousOctalEscape:Controversial Rules
+CallSuperInConstructor:Controversial Rules
+UnnecessaryParentheses:Controversial Rules
+DefaultPackage:Controversial Rules
+BooleanInversion:Controversial Rules
+DataflowAnomalyAnalysis:Controversial Rules
+AvoidFinalLocalVariable:Controversial Rules
+AvoidUsingShortType:Controversial Rules
+AvoidUsingVolatile:Controversial Rules
+AvoidUsingNativeCode:Controversial Rules
+AvoidAccessibilityAlteration:Controversial Rules
+DoNotCallGarbageCollectionExplicitly:Controversial Rules
+CouplingBetweenObjects:Coupling Rules
+ExcessiveImports:Coupling Rules
+LooseCoupling:Coupling Rules
+UseSingleton:Design Rules
+SimplifyBooleanReturns:Design Rules
+SimplifyBooleanExpressions:Design Rules
+SwitchStmtsShouldHaveDefault:Design Rules
+AvoidDeeplyNestedIfStmts:Design Rules
+AvoidReassigningParameters:Design Rules
+SwitchDensity:Design Rules
+ConstructorCallsOverridableMethod:Design Rules
+AccessorClassGeneration:Design Rules
+FinalFieldCouldBeStatic:Design Rules
+CloseResource:Design Rules
+NonStaticInitializer:Design Rules
+DefaultLabelNotLastInSwitchStmt:Design Rules
+NonCaseLabelInSwitchStatement:Design Rules
+OptimizableToArrayCall:Design Rules
+BadComparison:Design Rules
+EqualsNull:Design Rules
+ConfusingTernary:Design Rules
+InstantiationToGetClass:Design Rules
+IdempotentOperations:Design Rules
+SimpleDateFormatNeedsLocale:Design Rules
+ImmutableField:Design Rules
+UseLocaleWithCaseConversions:Design Rules
+AvoidProtectedFieldInFinalClass:Design Rules
+AssignmentToNonFinalStatic:Design Rules
+MissingStaticMethodInNonInstantiatableClass:Design Rules
+AvoidSynchronizedAtMethodLevel:Design Rules
+MissingBreakInSwitch:Design Rules
+UseNotifyAllInsteadOfNotify:Design Rules
+AvoidInstanceofChecksInCatchClause:Design Rules
+AbstractClassWithoutAbstractMethod:Design Rules
+SimplifyConditional:Design Rules
+CompareObjectsWithEquals:Design Rules
+PositionLiteralsFirstInComparisons:Design Rules
+UnnecessaryLocalBeforeReturn:Design Rules
+NonThreadSafeSingleton:Design Rules
+UncommentedEmptyMethod:Design Rules
+UncommentedEmptyConstructor:Design Rules
+AvoidConstantsInterface:Design Rules
+UnsynchronizedStaticDateFormatter:Design Rules
+PreserveStackTrace:Design Rules
+UseCollectionIsEmpty:Design Rules
+ClassWithOnlyPrivateConstructorsShouldBeFinal:Design Rules
+EmptyMethodInAbstractClassShouldBeAbstract:Design Rules
+SingularField:Design Rules
+ReturnEmptyArrayRatherThanNull:Design Rules
+AbstractClassWithoutAnyMethod:Design Rules
+TooFewBranchesForASwitchStatement:Design Rules
+EmptyFinalizer:Finalizer Rules
+FinalizeOnlyCallsSuperFinalize:Finalizer Rules
+FinalizeOverloaded:Finalizer Rules
+FinalizeDoesNotCallSuperFinalize:Finalizer Rules
+FinalizeShouldBeProtected:Finalizer Rules
+AvoidCallingFinalize:Finalizer Rules
+DuplicateImports:Import Statement Rules
+DontImportJavaLang:Import Statement Rules
+UnusedImports:Import Statement Rules
+ImportFromSamePackage:Import Statement Rules
+TooManyStaticImports:Import Statement Rules
+UseProperClassLoader:J2EE Rules
+MDBAndSessionBeanNamingConvention:J2EE Rules
+RemoteSessionInterfaceNamingConvention:J2EE Rules
+LocalInterfaceSessionNamingConvention:J2EE Rules
+LocalHomeNamingConvention:J2EE Rules
+RemoteInterfaceNamingConvention:J2EE Rules
+DoNotCallSystemExit:J2EE Rules
+StaticEJBFieldShouldBeFinal:J2EE Rules
+DoNotUseThreads:J2EE Rules
+BeanMembersShouldSerialize:JavaBean Rules
+MissingSerialVersionUID:JavaBean Rules
+JUnitStaticSuite:JUnit Rules
+JUnitSpelling:JUnit Rules
+JUnitAssertionsShouldIncludeMessage:JUnit Rules
+JUnitTestsShouldIncludeAssert:JUnit Rules
+TestClassWithoutTestCases:JUnit Rules
+UnnecessaryBooleanAssertion:JUnit Rules
+UseAssertEqualsInsteadOfAssertTrue:JUnit Rules
+UseAssertSameInsteadOfAssertTrue:JUnit Rules
+UseAssertNullInsteadOfAssertTrue:JUnit Rules
+SimplifyBooleanAssertion:JUnit Rules
+UseCorrectExceptionLogging:Jakarta Commons Logging Rules
+ProperLogger:Jakarta Commons Logging Rules
+MoreThanOneLogger:Java Logging Rules
+LoggerIsNotStaticFinal:Java Logging Rules
+SystemPrintln:Java Logging Rules
+AvoidPrintStackTrace:Java Logging Rules
+ReplaceVectorWithList:Migration Rules
+ReplaceHashtableWithMap:Migration Rules
+ReplaceEnumerationWithIterator:Migration Rules
+AvoidEnumAsIdentifier:Migration Rules
+AvoidAssertAsIdentifier:Migration Rules
+IntegerInstantiation:Migration Rules
+ByteInstantiation:Migration Rules
+ShortInstantiation:Migration Rules
+LongInstantiation:Migration Rules
+JUnit4TestShouldUseBeforeAnnotation:Migration Rules
+JUnit4TestShouldUseAfterAnnotation:Migration Rules
+JUnit4TestShouldUseTestAnnotation:Migration Rules
+JUnit4SuitesShouldUseSuiteAnnotation:Migration Rules
+JUnitUseExpected:Migration Rules
+ShortVariable:Naming Rules
+LongVariable:Naming Rules
+ShortMethodName:Naming Rules
+VariableNamingConventions:Naming Rules
+MethodNamingConventions:Naming Rules
+ClassNamingConventions:Naming Rules
+AbstractNaming:Naming Rules
+AvoidDollarSigns:Naming Rules
+MethodWithSameNameAsEnclosingClass:Naming Rules
+SuspiciousHashcodeMethodName:Naming Rules
+SuspiciousConstantFieldName:Naming Rules
+SuspiciousEqualsMethodName:Naming Rules
+AvoidFieldNameMatchingTypeName:Naming Rules
+AvoidFieldNameMatchingMethodName:Naming Rules
+NoPackage:Naming Rules
+PackageCase:Naming Rules
+MisleadingVariableName:Naming Rules
+BooleanGetMethodName:Naming Rules
+LocalVariableCouldBeFinal:Optimization Rules
+MethodArgumentCouldBeFinal:Optimization Rules
+AvoidInstantiatingObjectsInLoops:Optimization Rules
+UseArrayListInsteadOfVector:Optimization Rules
+SimplifyStartsWith:Optimization Rules
+UseStringBufferForStringAppends:Optimization Rules
+UseArraysAsList:Optimization Rules
+AvoidArrayLoops:Optimization Rules
+UnnecessaryWrapperObjectCreation:Optimization Rules
+AddEmptyString:Optimization Rules
+AvoidCatchingThrowable:Strict Exception Rules
+SignatureDeclareThrowsException:Strict Exception Rules
+ExceptionAsFlowControl:Strict Exception Rules
+AvoidCatchingNPE:Strict Exception Rules
+AvoidThrowingRawExceptionTypes:Strict Exception Rules
+AvoidThrowingNullPointerException:Strict Exception Rules
+AvoidRethrowingException:Strict Exception Rules
+DoNotExtendJavaLangError:Strict Exception Rules
+DoNotThrowExceptionInFinally:Strict Exception Rules
+AvoidThrowingNewInstanceOfSameException:Strict Exception Rules
+AvoidDuplicateLiterals:String and StringBuffer Rules
+StringInstantiation:String and StringBuffer Rules
+StringToString:String and StringBuffer Rules
+InefficientStringBuffering:String and StringBuffer Rules
+UnnecessaryCaseChange:String and StringBuffer Rules
+UseStringBufferLength:String and StringBuffer Rules
+AppendCharacterWithChar:String and StringBuffer Rules
+ConsecutiveLiteralAppends:String and StringBuffer Rules
+UseIndexOfChar:String and StringBuffer Rules
+InefficientEmptyStringCheck:String and StringBuffer Rules
+InsufficientStringBufferDeclaration:String and StringBuffer Rules
+UselessStringValueOf:String and StringBuffer Rules
+StringBufferInstantiationWithChar:String and StringBuffer Rules
+UseEqualsToCompareStrings:String and StringBuffer Rules
+AvoidStringBufferField:String and StringBuffer Rules
+MethodReturnsInternalArray:Security Code Guidelines
+ArrayIsStoredDirectly:Security Code Guidelines
+LooseCoupling:Type Resolution Rules
+CloneMethodMustImplementCloneable:Type Resolution Rules
+UnusedImports:Type Resolution Rules
+SignatureDeclareThrowsException:Type Resolution Rules
+UnusedPrivateField:Unused Code Rules
+UnusedLocalVariable:Unused Code Rules
+UnusedPrivateMethod:Unused Code Rules
+UnusedFormalParameter:Unused Code Rules
